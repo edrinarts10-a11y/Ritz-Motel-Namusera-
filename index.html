@@ -6,6 +6,9 @@
 <title>Ritz Motel – Namusera | Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -22,7 +25,7 @@
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="tel:+256753600044" class="nav-cta">📞 Book Now</a>
+  <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
   <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
@@ -48,7 +51,7 @@
 <!-- STRIP -->
 <div class="strip">
   <a href="rooms.html" class="strip-item" style="text-decoration:none;">
-    <div class="strip-icon">🛏</div><div><h3>Accommodation</h3><p>Comfortable rooms for all</p></div>
+    <div class="strip-icon">🛏</div><div><h3>Accommodation</h3><p>4 room types from 50k</p></div>
   </a>
   <a href="bar.html" class="strip-item" style="text-decoration:none;">
     <div class="strip-icon">🍺</div><div><h3>Bar & Restaurant</h3><p>Drinks, food & great vibes</p></div>
@@ -69,9 +72,9 @@
     <p>Ritz Motel is a modern hospitality destination along Kampala-Hoima Road in Namusera, just after Shell Petro Station. Whether travelling for business or leisure, we offer a clean, comfortable and affordable experience.</p>
     <p>From well-furnished rooms to our garden lounge — perfect for birthdays, get-togethers, and weddings — plus a vibrant bar and restaurant, every corner of Ritz is designed for your relaxation.</p>
     <div class="stats-row">
-      <div class="stat-box"><span class="num">3</span><span class="lbl">Room Types</span></div>
+      <div class="stat-box"><span class="num">4</span><span class="lbl">Room Types</span></div>
       <div class="stat-box"><span class="num">24/7</span><span class="lbl">Open</span></div>
-      <div class="stat-box"><span class="num">⭐ 4.8</span><span class="lbl">Rated</span></div>
+      <div class="stat-box"><span class="num" id="avgStat">⭐</span><span class="lbl">Rated</span></div>
     </div>
   </div>
   <div class="about-visual">
@@ -84,44 +87,43 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
+<!-- REVIEWS (Firebase dynamic) -->
 <section class="reviews" id="reviews">
   <div class="sec-head">
     <p class="sec-label">✦ Guest Reviews</p>
     <h2>What Our <em>Guests Say</em></h2>
   </div>
   <div class="reviews-overall">
-    <div class="ov-score">4.8</div>
-    <div class="ov-stars">★★★★★</div>
-    <p class="ov-label">Based on guest reviews</p>
+    <div class="ov-score" id="ovScore">—</div>
+    <div class="ov-stars" id="ovStars">☆☆☆☆☆</div>
+    <p class="ov-label" id="ovLabel">Loading reviews…</p>
   </div>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Clean, comfortable and great value. The staff were very welcoming and the garden area is perfect for relaxing in the evening. Will definitely come back!"</p>
-      <div class="rv-author">
-        <div class="rv-avatar">JK</div>
-        <div><h5>James Kato</h5><span>Kampala · June 2025</span></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Stopped here on my way to Hoima and was really impressed. The room was clean, AC worked perfectly, and the bar had everything I needed. Good location too."</p>
-      <div class="rv-author">
-        <div class="rv-avatar">AM</div>
-        <div><h5>Aisha Mugisha</h5><span>Hoima · May 2025</span></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="rv-stars">★★★★☆</div>
-      <p class="rv-text">"Very nice place along Hoima Road. Affordable rooms and the nyama choma at the bar was delicious. I enjoyed the outdoor seating in the gardens at night."</p>
-      <div class="rv-author">
-        <div class="rv-avatar">DO</div>
-        <div><h5>David Okello</h5><span>Gulu · April 2025</span></div>
-      </div>
-    </div>
+  <div class="reviews-grid" id="reviewsGrid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">Loading reviews…</div>
   </div>
 </section>
+
+<!-- REVIEW SUBMISSION FORM -->
+<div class="review-form-wrap" id="leaveReview">
+  <div class="sec-head">
+    <p class="sec-label">✦ Share Your Experience</p>
+    <h2>Leave a <em>Review</em></h2>
+  </div>
+  <div class="rf-inner">
+    <div class="star-picker" id="starPicker">
+      <span class="sp-star" data-v="1">★</span>
+      <span class="sp-star" data-v="2">★</span>
+      <span class="sp-star" data-v="3">★</span>
+      <span class="sp-star" data-v="4">★</span>
+      <span class="sp-star" data-v="5">★</span>
+    </div>
+    <div class="rf-field"><label>Your Name</label><input type="text" id="rfName" placeholder="e.g. Sarah Nakato"></div>
+    <div class="rf-field"><label>Where are you from?</label><input type="text" id="rfLocation" placeholder="e.g. Kampala, Jinja, Hoima…"></div>
+    <div class="rf-field"><label>Your Review</label><textarea id="rfText" placeholder="Tell others about your stay at Ritz Motel…"></textarea></div>
+    <button class="rf-submit" id="rfSubmit" onclick="submitReview()">⭐ Submit Review</button>
+    <div class="rf-msg" id="rfMsg"></div>
+  </div>
+</div>
 
 <!-- PAGE TEASERS -->
 <section class="teasers">
@@ -134,7 +136,7 @@
       <div class="teaser-img t1">🛏</div>
       <div class="teaser-body">
         <h3>Our Rooms</h3>
-        <p>From UGX 50,000/night. Standard, Double and Executive Suites — all clean, comfortable, and fully equipped.</p>
+        <p>From UGX 50,000/night. Four room types — Standard, Deluxe, Executive and Suite. Executive & Suite include breakfast.</p>
         <div class="teaser-link">View Rooms →</div>
       </div>
     </a>
@@ -157,13 +159,36 @@
   </div>
 </section>
 
+<!-- COMING SOON -->
+<section class="coming-soon">
+  <div class="sec-head">
+    <p class="sec-label">✦ What's Coming</p>
+    <h2>New at <em>Ritz</em></h2>
+  </div>
+  <div class="cs-grid">
+    <div class="cs-card">
+      <div class="cs-icon">🧖</div>
+      <h3>Ritz Sauna</h3>
+      <p>A relaxing sauna retreat for guests and walk-ins. Unwind, detox and recharge in style after a long day.</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-icon">🏋️</div>
+      <h3>Ritz Gym</h3>
+      <p>A fully equipped fitness centre opening soon. Keep up your routine while staying at Ritz Motel.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <p class="sec-label">✦ Find Us</p>
   <h2>Come Stay at <em>Ritz</em></h2>
   <p>Easy to find along Kampala-Hoima Road. Call us or WhatsApp to book your room.</p>
+
+<iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=456&amp;height=400&amp;hl=en&amp;q=Ritz%20Motel%20wakiso+(Ritz%20Motel)&amp;t=k&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://www.privat-krankenversicherung-vergleich.at/'>private Krankenversicherung</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=991885a7cadaf30b27c129e290166569da2a3ac9'></script>
+
   <div class="c-cards">
-    <div class="c-card"><span class="ci">📞</span><h4>Phone</h4><a href="tel:+256753600044">0753 600 044</a></div>
+    <div class="c-card"><span class="ci">📞</span><h4>Phone</h4><a href="tel:+256787700044">0787 700 044</a></div>
     <div class="c-card"><span class="ci">📍</span><h4>Address</h4><p>Hoima Rd, Namusera<br>Off Musembi Road</p></div>
     <div class="c-card"><span class="ci">📬</span><h4>P.O. Box</h4><p>33294 Kampala</p></div>
   </div>
@@ -179,13 +204,11 @@
     <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
     <div class="f-dot" style="background:var(--green)"></div>
   </div>
-  <p>Kampala-Hoima Rd, Namusera · 0753 600 044</p>
+  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
 </footer>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/256753600044"><img src="images (4).jpeg" class="float-wa" target="_blank" title="Chat on WhatsApp"></a>
+<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
 
-<!-- NINA CHATBOT -->
 <div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
 <img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
 <div class="nina-window" id="ninaWindow">
@@ -196,15 +219,14 @@
   </div>
   <div class="nina-msgs" id="ninaMsgs">
     <div class="msg-time">Today</div>
-    <div class="msg bot">Hi there! 👋 I'm <strong>Nina</strong>, your Ritz Motel assistant. I can help you with rooms, bar info, gardens, pricing, and booking. How can I help?</div>
+    <div class="msg bot">Hi there! 👋 I'm <strong>Nina</strong>, your Ritz Motel assistant. How can I help you?</div>
   </div>
   <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
-    <div class="nina-typing" id="ninaTyping" style="display:flex;"><span></span><span></span><span></span></div>
+    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
   </div>
   <div class="nina-quick" id="quickChips">
     <div class="q-chip" onclick="sendQuick('What rooms do you have?')">🛏 Rooms</div>
     <div class="q-chip" onclick="sendQuick('What does the bar offer?')">🍺 Bar</div>
-    <div class="q-chip" onclick="sendQuick('Tell me about the gardens')">🌿 Gardens</div>
     <div class="q-chip" onclick="sendQuick('How do I book?')">📅 Book</div>
     <div class="q-chip" onclick="sendQuick('Where are you located?')">📍 Location</div>
   </div>
@@ -215,6 +237,113 @@
 </div>
 
 <script>
+  // ════════════════════════════════════════
+  // ⬇️  REPLACE WITH YOUR FIREBASE CONFIG
+  // (Get this from Firebase Console → Project Settings)
+  const firebaseConfig = {
+    apiKey:            "REPLACE_WITH_YOUR_API_KEY",
+    authDomain:        "REPLACE_WITH_YOUR_AUTH_DOMAIN",
+    projectId:         "REPLACE_WITH_YOUR_PROJECT_ID",
+    storageBucket:     "REPLACE_WITH_YOUR_STORAGE_BUCKET",
+    messagingSenderId: "REPLACE_WITH_YOUR_SENDER_ID",
+    appId:             "REPLACE_WITH_YOUR_APP_ID"
+  };
+  // ════════════════════════════════════════
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // ── Load reviews from Firestore ──
+  async function loadReviews() {
+    try {
+      const snap = await db.collection('reviews').orderBy('date', 'desc').limit(9).get();
+      const grid = document.getElementById('reviewsGrid');
+      if (snap.empty) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">No reviews yet — be the first! 😊</div>';
+        document.getElementById('ovScore').textContent = '—';
+        document.getElementById('ovStars').textContent = '☆☆☆☆☆';
+        document.getElementById('ovLabel').textContent = '0 reviews';
+        return;
+      }
+      let total = 0, count = 0, html = '';
+      snap.forEach(doc => {
+        const r = doc.data();
+        total += r.rating; count++;
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        html += `<div class="review-card">
+          <div class="rv-stars">${stars}</div>
+          <p class="rv-text">"${r.text}"</p>
+          <div class="rv-author">
+            <div class="rv-avatar">${r.name.slice(0,2).toUpperCase()}</div>
+            <div><h5>${r.name}</h5><span>${r.location} · ${r.dateLabel}</span></div>
+          </div>
+        </div>`;
+      });
+      grid.innerHTML = html;
+      const avg = (total / count).toFixed(1);
+      document.getElementById('ovScore').textContent = avg;
+      document.getElementById('ovStars').textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
+      document.getElementById('ovLabel').textContent = `Based on ${count} review${count > 1 ? 's' : ''}`;
+      document.getElementById('avgStat').textContent = '⭐ ' + avg;
+    } catch(e) {
+      document.getElementById('reviewsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">Could not load reviews right now.</div>';
+    }
+  }
+  loadReviews();
+
+  // ── Star picker ──
+  let selectedRating = 0;
+  document.querySelectorAll('.sp-star').forEach(star => {
+    star.addEventListener('mouseover', function() {
+      const v = +this.dataset.v;
+      document.querySelectorAll('.sp-star').forEach(s => s.classList.toggle('lit', +s.dataset.v <= v));
+    });
+    star.addEventListener('click', function() {
+      selectedRating = +this.dataset.v;
+      document.querySelectorAll('.sp-star').forEach(s => s.classList.toggle('lit', +s.dataset.v <= selectedRating));
+    });
+  });
+  document.getElementById('starPicker').addEventListener('mouseleave', function() {
+    document.querySelectorAll('.sp-star').forEach(s => s.classList.toggle('lit', +s.dataset.v <= selectedRating));
+  });
+
+  // ── Submit review ──
+  async function submitReview() {
+    const name = document.getElementById('rfName').value.trim();
+    const location = document.getElementById('rfLocation').value.trim();
+    const text = document.getElementById('rfText').value.trim();
+    const msg = document.getElementById('rfMsg');
+    msg.style.display = 'none';
+    if (!selectedRating) { showMsg('Please select a star rating ⭐', 'err'); return; }
+    if (!name) { showMsg('Please enter your name', 'err'); return; }
+    if (text.length < 15) { showMsg('Please write a bit more about your stay 😊', 'err'); return; }
+    const btn = document.getElementById('rfSubmit');
+    btn.disabled = true; btn.textContent = 'Submitting…';
+    const now = new Date();
+    const dateLabel = now.toLocaleDateString('en-UG', { month: 'long', year: 'numeric' });
+    try {
+      await db.collection('reviews').add({
+        name, location: location || 'Uganda', text, rating: selectedRating,
+        date: firebase.firestore.FieldValue.serverTimestamp(), dateLabel
+      });
+      showMsg('✅ Thank you for your review! It\'s now live.', 'ok');
+      document.getElementById('rfName').value = '';
+      document.getElementById('rfLocation').value = '';
+      document.getElementById('rfText').value = '';
+      selectedRating = 0;
+      document.querySelectorAll('.sp-star').forEach(s => s.classList.remove('lit'));
+      loadReviews();
+    } catch(e) {
+      showMsg('Something went wrong. Please try again.', 'err');
+    }
+    btn.disabled = false; btn.textContent = '⭐ Submit Review';
+  }
+  function showMsg(txt, type) {
+    const el = document.getElementById('rfMsg');
+    el.textContent = txt; el.className = 'rf-msg ' + type; el.style.display = 'block';
+  }
+
+  // ── Nina chatbot ──
   let ninaOpen = false;
   const labelEl = document.getElementById('ninaLabel');
   function toggleNina() {
@@ -223,41 +352,35 @@
     labelEl.style.display = ninaOpen ? 'none' : 'block';
   }
   setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
-  const history = [];
-  const SYSTEM = `You are Nina, a friendly and helpful assistant for Ritz Motel Namusera, Uganda.
-Ritz Motel is located along Kampala-Hoima Road, Namusera, Off Musembi Road. P.O Box 33294 Kampala. Tel: 0753600044.
-Services: Accommodation (Standard Room UGX 50,000/night, Double Room UGX 80,000/night, Executive Suite UGX 120,000/night with garden view), Bar & Restaurant (local beers - Bell, Nile, Club, Castle; spirits, wines, soft drinks, fresh juice, nyama choma and snacks, outdoor seating), and beautiful Gardens (shaded trees, outdoor seating, private event hire, great evening vibes).
-Open 24/7. Booking: call 0753600044 or WhatsApp same number.
-Keep replies short, warm, and helpful. Use occasional emojis. If asked about prices, quote in UGX. If asked to book, direct them to call or WhatsApp 0753600044.`;
+  const chatHistory = [];
+  const SYSTEM = `You are Nina, a friendly assistant for Ritz Motel Namusera, Uganda.
+Located: Kampala-Hoima Road, Namusera, Off Musembi Road. Tel: 0787700044. P.O Box 33294 Kampala.
+Rooms: Standard UGX 50,000/night (no breakfast), Deluxe UGX 60,000/night (no breakfast), Executive UGX 100,000/night (breakfast included), Suite UGX 150,000/night (breakfast included).
+Coming soon: Sauna and Gym.
+Bar & Restaurant: local beers (Bell, Nile, Club, Castle), spirits, wines, soft drinks, fresh juice, nyama choma, rolex, chips, snacks. Open 24/7.
+Gardens: outdoor seating, event hire (birthdays, weddings, get-togethers).
+Booking: call or WhatsApp 0787700044. Keep replies short, warm, helpful. Quote prices in UGX.`;
   function appendMsg(text, who) {
     const msgs = document.getElementById('ninaMsgs');
-    const d = document.createElement('div');
-    d.className = `msg ${who}`;
-    d.innerHTML = text.replace(/\n/g,'<br>');
-    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    const d = document.createElement('div'); d.className = `msg ${who}`;
+    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   }
   function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
   async function sendMsg() {
     const inp = document.getElementById('ninaInput');
     const text = inp.value.trim(); if (!text) return;
     inp.value = ''; appendMsg(text, 'user');
-    history.push({ role: 'user', content: text });
-    document.getElementById('quickChips').style.display = 'none';
-    setTyping(true);
+    chatHistory.push({ role: 'user', content: text });
+    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: chatHistory })
       });
       const data = await res.json();
-      const reply = data.content?.[0]?.text || "Sorry, I couldn't get a response. Please call us on 0753600044 😊";
-      setTyping(false); appendMsg(reply, 'bot');
-      history.push({ role: 'assistant', content: reply });
-    } catch(e) {
-      setTyping(false);
-      appendMsg("Oops! Something went wrong. Please call us directly on 0753600044 📞", 'bot');
-    }
+      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
+      setTyping(false); appendMsg(reply, 'bot'); chatHistory.push({ role: 'assistant', content: reply });
+    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
   }
   function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
 </script>
