@@ -6,9 +6,8 @@
 <title>Ritz Motel – Namusera | Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -184,9 +183,7 @@
   <p class="sec-label">✦ Find Us</p>
   <h2>Come Stay at <em>Ritz</em></h2>
   <p>Easy to find along Kampala-Hoima Road. Call us or WhatsApp to book your room.</p>
-
-<iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=456&amp;height=400&amp;hl=en&amp;q=Ritz%20Motel%20wakiso+(Ritz%20Motel)&amp;t=k&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://www.privat-krankenversicherung-vergleich.at/'>private Krankenversicherung</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=991885a7cadaf30b27c129e290166569da2a3ac9'></script>
-
+  <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=456&amp;height=400&amp;hl=en&amp;q=Ritz%20Motel%20wakiso+(Ritz%20Motel)&amp;t=k&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://www.privat-krankenversicherung-vergleich.at/'>private Krankenversicherung</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=991885a7cadaf30b27c129e290166569da2a3ac9'></script>
   <div class="c-cards">
     <div class="c-card"><span class="ci">📞</span><h4>Phone</h4><a href="tel:+256787700044">0787 700 044</a></div>
     <div class="c-card"><span class="ci">📍</span><h4>Address</h4><p>Hoima Rd, Namusera<br>Off Musembi Road</p></div>
@@ -238,27 +235,25 @@
 
 <script>
   // ════════════════════════════════════════
-  // ⬇️  REPLACE WITH YOUR FIREBASE CONFIG
-  // (Get this from Firebase Console → Project Settings)
-  const firebaseConfig = {
-    apiKey:            "REPLACE_WITH_YOUR_API_KEY",
-    authDomain:        "REPLACE_WITH_YOUR_AUTH_DOMAIN",
-    projectId:         "REPLACE_WITH_YOUR_PROJECT_ID",
-    storageBucket:     "REPLACE_WITH_YOUR_STORAGE_BUCKET",
-    messagingSenderId: "REPLACE_WITH_YOUR_SENDER_ID",
-    appId:             "REPLACE_WITH_YOUR_APP_ID"
-  };
+  // ⬇️  REPLACE WITH YOUR SUPABASE PROJECT DETAILS
+  // (Get these from Supabase Dashboard → Project Settings → API)
+  const SUPABASE_URL = "https://nyplpfiykmanteemzjbb.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55cGxwZml5a21hbnRlZW16amJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0OTUyNTEsImV4cCI6MjA5NzA3MTI1MX0.-6_r2TXyZhbkLKvvTBLNY01e42IbDa9SgFA8_p3DzkI";
   // ════════════════════════════════════════
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // ── Load reviews from Firestore ──
+  // ── Load reviews from Supabase ──
   async function loadReviews() {
     try {
-      const snap = await db.collection('reviews').orderBy('date', 'desc').limit(9).get();
+      const { data, error } = await sb
+        .from('reviews')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(9);
+      if (error) throw error;
       const grid = document.getElementById('reviewsGrid');
-      if (snap.empty) {
+      if (!data || data.length === 0) {
         grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">No reviews yet — be the first! 😊</div>';
         document.getElementById('ovScore').textContent = '—';
         document.getElementById('ovStars').textContent = '☆☆☆☆☆';
@@ -266,8 +261,7 @@
         return;
       }
       let total = 0, count = 0, html = '';
-      snap.forEach(doc => {
-        const r = doc.data();
+      data.forEach(r => {
         total += r.rating; count++;
         const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
         html += `<div class="review-card">
@@ -275,7 +269,7 @@
           <p class="rv-text">"${r.text}"</p>
           <div class="rv-author">
             <div class="rv-avatar">${r.name.slice(0,2).toUpperCase()}</div>
-            <div><h5>${r.name}</h5><span>${r.location} · ${r.dateLabel}</span></div>
+            <div><h5>${r.name}</h5><span>${r.location} · ${r.date_label}</span></div>
           </div>
         </div>`;
       });
@@ -322,10 +316,10 @@
     const now = new Date();
     const dateLabel = now.toLocaleDateString('en-UG', { month: 'long', year: 'numeric' });
     try {
-      await db.collection('reviews').add({
-        name, location: location || 'Uganda', text, rating: selectedRating,
-        date: firebase.firestore.FieldValue.serverTimestamp(), dateLabel
+      const { error } = await sb.from('reviews').insert({
+        name, location: location || 'Uganda', text, rating: selectedRating, date_label: dateLabel
       });
+      if (error) throw error;
       showMsg('✅ Thank you for your review! It\'s now live.', 'ok');
       document.getElementById('rfName').value = '';
       document.getElementById('rfLocation').value = '';
