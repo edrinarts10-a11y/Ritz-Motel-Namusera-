@@ -353,7 +353,7 @@
       rfRatingText.textContent = '\u00A0';
       loadReviews();
     } catch(e) {
-      showMsg('Something went wrong. Please try again.', 'err');
+      showMsg('Error: ' + (e?.message || JSON.stringify(e)), 'err');
     }
     btn.disabled = false; btn.textContent = '⭐ Submit Review';
   }
