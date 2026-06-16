@@ -282,13 +282,14 @@
       let total = 0, count = 0, html = '';
       data.forEach(r => {
         total += r.rating; count++;
+        const dateLabel = new Date(r.created_at).toLocaleDateString('en-UG', { month: 'long', year: 'numeric' });
         const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
         html += `<div class="review-card">
           <div class="rv-stars">${stars}</div>
           <p class="rv-text">"${r.text}"</p>
           <div class="rv-author">
             <div class="rv-avatar">${r.name.slice(0,2).toUpperCase()}</div>
-            <div><h5>${r.name}</h5><span>${r.location} · ${r.date_label}</span></div>
+            <div><h5>${r.name}</h5><span>${r.location} · ${dateLabel}</span></div>
           </div>
         </div>`;
       });
@@ -337,11 +338,9 @@
     if (text.length < 15) { showMsg('Please write a bit more about your stay 😊', 'err'); return; }
     const btn = document.getElementById('rfSubmit');
     btn.disabled = true; btn.textContent = 'Submitting…';
-    const now = new Date();
-    const dateLabel = now.toLocaleDateString('en-UG', { month: 'long', year: 'numeric' });
     try {
       const { error } = await sb.from('reviews').insert({
-        name, location: location || 'Uganda', text, rating: selectedRating, date_label: dateLabel
+        name, location: location || 'Uganda', text, rating: selectedRating
       });
       if (error) throw error;
       showMsg('✅ Thank you for your review! It\'s now live.', 'ok');
