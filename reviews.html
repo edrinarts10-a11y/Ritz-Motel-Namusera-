@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guest Reviews – Ritz Motel Namusera</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="bar.html">Bar & Restaurant</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <p class="sec-label">✦ Guest Reviews</p>
+    <h1>What Guests <em>Say</em></h1>
+    <p>Real experiences from real guests who've stayed at Ritz Motel Namusera.</p>
+  </div>
+  <div class="page-hero-deco">⭐</div>
+</section>
+
+<!-- OVERALL RATING -->
+<div style="background:var(--white);padding:40px 60px;text-align:center;border-bottom:1px solid var(--border);">
+  <div class="reviews-overall" style="margin-bottom:0;">
+    <div class="ov-score" id="ovScore">—</div>
+    <div class="ov-stars" id="ovStars">☆☆☆☆☆</div>
+    <p class="ov-label" id="ovLabel">Loading…</p>
+  </div>
+</div>
+
+<!-- ALL REVIEWS -->
+<section class="reviews" style="background:var(--white);">
+  <div class="reviews-grid" id="reviewsGrid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:48px;font-size:14px;">Loading reviews…</div>
+  </div>
+  <div style="text-align:center;margin-top:40px;" id="loadMoreWrap">
+    <button class="btn-outline-red" id="loadMoreBtn" onclick="loadMore()">Load More Reviews</button>
+  </div>
+</section>
+
+<!-- WRITE A REVIEW CTA -->
+<section style="background:var(--red);padding:56px 60px;text-align:center;">
+  <p class="sec-label" style="color:rgba(255,255,255,0.7);">✦ Share Your Experience</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);color:white;margin:10px 0 12px;">Stayed at Ritz? <em style="font-style:italic;">Leave a Review</em></h2>
+  <p style="color:rgba(255,255,255,0.8);font-size:15px;margin-bottom:28px;">Your feedback helps other travellers and helps us improve.</p>
+  <a href="index.html#leaveReview" class="btn-call" style="display:inline-flex;align-items:center;gap:8px;background:white;color:var(--red);padding:14px 32px;border-radius:50px;text-decoration:none;font-size:15px;font-weight:600;">⭐ Write a Review</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
+  <div class="f-dots">
+    <div class="f-dot" style="background:var(--red)"></div>
+    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
+    <div class="f-dot" style="background:var(--green)"></div>
+  </div>
+  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
+</footer>
+
+<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
+
+<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
+<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
+<div class="nina-window" id="ninaWindow">
+  <div class="nina-header">
+    <img src="images (3).jpeg" class="nina-avatar">
+    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
+    <div class="nina-status"><div class="nina-dot"></div> Online</div>
+  </div>
+  <div class="nina-msgs" id="ninaMsgs">
+    <div class="msg-time">Today</div>
+    <div class="msg bot">Hi! 👋 Want to book a room or have a question? I'm here to help!</div>
+  </div>
+  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
+    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
+  </div>
+  <div class="nina-quick" id="quickChips">
+    <div class="q-chip" onclick="sendQuick('How do I book a room?')">📅 Book</div>
+    <div class="q-chip" onclick="sendQuick('What rooms do you have?')">🛏 Rooms</div>
+  </div>
+  <div class="nina-input-row">
+    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="nina-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+  // Supabase
+  const SUPABASE_URL = "https://nyplpfiykmanteemzjbb.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55cGxwZml5a21hbnRlZW16amJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0OTUyNTEsImV4cCI6MjA5NzA3MTI1MX0.-6_r2TXyZhbkLKvvTBLNY01e42IbDa9SgFA8_p3DzkI";
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const PAGE_SIZE = 9;
+  let currentPage = 0;
+  let allLoaded = false;
+
+  function renderCard(r) {
+    const dateLabel = new Date(r.created_at).toLocaleDateString('en-UG', { month: 'long', year: 'numeric' });
+    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    return `<div class="review-card">
+      <div class="rv-stars">${stars}</div>
+      <p class="rv-text">"${r.text}"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">${r.name.slice(0,2).toUpperCase()}</div>
+        <div><h5>${r.name}</h5><span>${r.location} · ${dateLabel}</span></div>
+      </div>
+    </div>`;
+  }
+
+  async function loadReviews() {
+    try {
+      const { data, error } = await sb
+        .from('reviews').select('*')
+        .order('created_at', { ascending: false })
+        .range(0, PAGE_SIZE - 1);
+      if (error) throw error;
+      const grid = document.getElementById('reviewsGrid');
+      if (!data || data.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:48px;">No reviews yet — be the first!</div>';
+        document.getElementById('loadMoreWrap').style.display = 'none';
+        document.getElementById('ovScore').textContent = '—';
+        document.getElementById('ovStars').textContent = '☆☆☆☆☆';
+        document.getElementById('ovLabel').textContent = '0 reviews';
+        return;
+      }
+      grid.innerHTML = data.map(renderCard).join('');
+      currentPage = 1;
+      if (data.length < PAGE_SIZE) document.getElementById('loadMoreWrap').style.display = 'none';
+      updateOverall();
+    } catch(e) {
+      document.getElementById('reviewsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:48px;">Could not load reviews right now.</div>';
+    }
+  }
+
+  async function loadMore() {
+    const btn = document.getElementById('loadMoreBtn');
+    btn.textContent = 'Loading…'; btn.disabled = true;
+    const from = currentPage * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    const { data, error } = await sb
+      .from('reviews').select('*')
+      .order('created_at', { ascending: false })
+      .range(from, to);
+    if (!error && data.length > 0) {
+      document.getElementById('reviewsGrid').innerHTML += data.map(renderCard).join('');
+      currentPage++;
+      if (data.length < PAGE_SIZE) document.getElementById('loadMoreWrap').style.display = 'none';
+    } else {
+      document.getElementById('loadMoreWrap').style.display = 'none';
+    }
+    btn.textContent = 'Load More Reviews'; btn.disabled = false;
+  }
+
+  async function updateOverall() {
+    const { data } = await sb.from('reviews').select('rating');
+    if (!data || data.length === 0) return;
+    const avg = (data.reduce((s, r) => s + r.rating, 0) / data.length).toFixed(1);
+    document.getElementById('ovScore').textContent = avg;
+    document.getElementById('ovStars').textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
+    document.getElementById('ovLabel').textContent = `Based on ${data.length} review${data.length > 1 ? 's' : ''}`;
+  }
+
+  loadReviews();
+
+  // Nina
+  let ninaOpen = false;
+  const labelEl = document.getElementById('ninaLabel');
+  function toggleNina() {
+    ninaOpen = !ninaOpen;
+    document.getElementById('ninaWindow').classList.toggle('open', ninaOpen);
+    labelEl.style.display = ninaOpen ? 'none' : 'block';
+  }
+  setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
+  const history = [];
+  const SYSTEM = `You are Nina, assistant for Ritz Motel Namusera, Uganda. Tel: 0787700044.
+Rooms: Standard UGX50,000, Comfort UGX60,000, Executive UGX100,000 (breakfast), Deluxe Suite UGX150,000 (breakfast). Open 24/7. Book via WhatsApp 0787700044.`;
+  function appendMsg(text, who) {
+    const msgs = document.getElementById('ninaMsgs');
+    const d = document.createElement('div'); d.className = `msg ${who}`;
+    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
+  async function sendMsg() {
+    const inp = document.getElementById('ninaInput');
+    const text = inp.value.trim(); if (!text) return;
+    inp.value = ''; appendMsg(text, 'user');
+    history.push({ role: 'user', content: text });
+    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
+      setTyping(false); appendMsg(reply, 'bot'); history.push({ role: 'assistant', content: reply });
+    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
+  }
+  function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
+</script>
+</body>
+</html>
