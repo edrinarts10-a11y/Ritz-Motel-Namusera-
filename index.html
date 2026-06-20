@@ -100,6 +100,9 @@
   <div class="reviews-grid" id="reviewsGrid">
     <div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">Loading reviews…</div>
   </div>
+  <div style="text-align:center;margin-top:36px;">
+    <a href="reviews.html" class="btn-outline-red">See All Reviews →</a>
+  </div>
 </section>
 
 <!-- REVIEW SUBMISSION FORM -->
@@ -269,7 +272,7 @@
         .from('reviews')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(9);
+        .limit(3);
       if (error) throw error;
       const grid = document.getElementById('reviewsGrid');
       if (!data || data.length === 0) {
@@ -352,7 +355,7 @@
       rfRatingText.textContent = '\u00A0';
       loadReviews();
     } catch(e) {
-      showMsg('Error: ' + (e?.message || JSON.stringify(e)), 'err');
+      showMsg('Something went wrong. Please try again.', 'err');
     }
     btn.disabled = false; btn.textContent = '⭐ Submit Review';
   }

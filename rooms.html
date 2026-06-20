@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms – Ritz Motel Namusera</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html" style="color:var(--red);">Rooms</a></li>
+    <li><a href="bar.html">Bar & Restaurant</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <p class="sec-label">✦ Accommodation</p>
+    <h1>Our <em>Rooms</em></h1>
+    <p>Four room types to suit every traveller and budget. All rooms are clean, comfortable, and serviced daily.</p>
+  </div>
+  <div class="page-hero-deco">🛏</div>
+</section>
+
+<section class="room-detail">
+
+  <!-- STANDARD ROOM - 50k -->
+  <div class="room-detail-item">
+    <div class="room-detail-img r1">
+      🛏
+      <div class="img-placeholder-label">📷 Photo Coming Soon</div>
+    </div>
+    <div class="room-detail-text">
+      <span class="rd-badge">Standard</span>
+      <h2 class="rd-title">Standard Room</h2>
+      <div class="rd-price">UGX 50,000 <span>/ night</span></div>
+      <p class="rd-desc">Our most affordable option — clean, functional, and comfortable. Perfect for solo travellers or a quick overnight stay along Hoima Road.</p>
+      <div class="rd-amenities">
+        <span class="rd-amenity">🛁 Private Bathroom</span>
+        <span class="rd-amenity">📺 Television</span>
+        <span class="rd-amenity">🔒 Secure Lock</span>
+        <span class="rd-amenity">💡 24h Power</span>
+        <span class="rd-amenity">🧹 Daily Housekeeping</span>
+      </div>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20the%20Standard%20Room%20(UGX%2050%2C000)." class="btn-red" target="_blank">💬 Book This Room</a>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- COMFORT ROOM - 60k -->
+  <div class="room-detail-item reverse">
+    <div class="room-detail-img r2">
+      🛌
+      <div class="img-placeholder-label">📷 Photo Coming Soon</div>
+    </div>
+    <div class="room-detail-text">
+      <span class="rd-badge">Comfort</span>
+      <h2 class="rd-title">Comfort Room</h2>
+      <div class="rd-price">UGX 60,000 <span>/ night</span></div>
+      <p class="rd-desc">A step up in space and comfort. Ideal for business travellers or anyone wanting a bit more room to unwind after a long day.</p>
+      <div class="rd-amenities">
+        <span class="rd-amenity">🛁 En-suite Bathroom</span>
+        <span class="rd-amenity">📺 Television</span>
+        <span class="rd-amenity">❄️ Air Conditioning</span>
+        <span class="rd-amenity">💡 24h Power</span>
+        <span class="rd-amenity">🧹 Daily Housekeeping</span>
+      </div>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20the%20Comfort%20Room%20(UGX%2060%2C000)." class="btn-red" target="_blank">💬 Book This Room</a>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- EXECUTIVE ROOM - 100k + breakfast -->
+  <div class="room-detail-item">
+    <div class="room-detail-img r3">
+      🏨
+      <div class="img-placeholder-label">📷 Photo Coming Soon</div>
+    </div>
+    <div class="room-detail-text">
+      <span class="rd-badge">Executive</span>
+      <h2 class="rd-title">Executive Room</h2>
+      <div class="rd-price">UGX 100,000 <span>/ night</span></div>
+      <div class="breakfast-badge">🍳 Includes Breakfast</div>
+      <p class="rd-desc">Our Executive Room combines premium comfort with a full breakfast each morning. Spacious, well-furnished, and ideal for a longer or more relaxed stay.</p>
+      <div class="rd-amenities">
+        <span class="rd-amenity">🍳 Breakfast Included</span>
+        <span class="rd-amenity">🛁 En-suite Bathroom</span>
+        <span class="rd-amenity">📶 Free WiFi</span>
+        <span class="rd-amenity">❄️ Air Conditioning</span>
+        <span class="rd-amenity">📺 Smart TV</span>
+        <span class="rd-amenity">☕ Hot Water</span>
+        <span class="rd-amenity">🧹 Daily Housekeeping</span>
+      </div>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20the%20Executive%20Room%20(UGX%20100%2C000)." class="btn-red" target="_blank">💬 Book This Room</a>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- DELUXE SUITE - 150k + breakfast -->
+  <div class="room-detail-item reverse">
+    <div class="room-detail-img" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);height:320px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:90px;position:relative;overflow:hidden;">
+      🌟
+      <div class="img-placeholder-label">📷 Photo Coming Soon</div>
+    </div>
+    <div class="room-detail-text">
+      <span class="rd-badge" style="background:var(--gold);color:#1a1a1a;">⭐ Deluxe</span>
+      <h2 class="rd-title">Deluxe Suite</h2>
+      <div class="rd-price">UGX 150,000 <span>/ night</span></div>
+      <div class="breakfast-badge">🍳 Includes Breakfast</div>
+      <p class="rd-desc">The best Ritz has to offer. The Deluxe Suite features a garden view, a dedicated seating area, premium bedding, and a full breakfast every morning. Treat yourself.</p>
+      <div class="rd-amenities">
+        <span class="rd-amenity">🍳 Breakfast Included</span>
+        <span class="rd-amenity">🌿 Garden View</span>
+        <span class="rd-amenity">📶 Free WiFi</span>
+        <span class="rd-amenity">❄️ Air Conditioning</span>
+        <span class="rd-amenity">📺 Smart TV</span>
+        <span class="rd-amenity">🛋️ Seating Area</span>
+        <span class="rd-amenity">🔒 In-room Safe</span>
+        <span class="rd-amenity">☕ Hot Water</span>
+        <span class="rd-amenity">🧹 Daily Housekeeping</span>
+      </div>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20the%20Deluxe%20Suite%20(UGX%20150%2C000)." class="btn-red" target="_blank">💬 Book This Room</a>
+    </div>
+  </div>
+
+  <!-- COMING SOON -->
+  <div style="max-width:1080px;margin:72px auto 0;padding:48px;background:var(--off-white);border-radius:20px;border:2px dashed var(--border);text-align:center;">
+    <p class="sec-label" style="justify-content:center;">✦ Coming Soon</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,40px);font-weight:900;color:var(--text);margin:10px 0 16px;">Sauna & <em style="color:var(--red);">Gym</em></h2>
+    <p style="color:var(--text-soft);max-width:480px;margin:0 auto 24px;line-height:1.8;">We're building a fully equipped gym and relaxing sauna at Ritz Motel. Stay tuned — these facilities will be available to all guests very soon.</p>
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;color:var(--text-soft);font-size:14px;"><span style="font-size:32px;">🧖</span><span>Steam Sauna</span></div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--text-soft);font-size:14px;"><span style="font-size:32px;">🏋️</span><span>Fitness Gym</span></div>
+    </div>
+  </div>
+
+</section>
+
+<section class="book-banner">
+  <h2>Ready to Book Your Stay?</h2>
+  <p>Call us or send a WhatsApp message — we'll confirm your room in minutes.</p>
+  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20a%20room." class="btn-wa" target="_blank">💬 WhatsApp Us</a>
+  <a href="tel:+256787700044" class="btn-call">📞 Call 0787 700 044</a>
+</section>
+
+<footer>
+  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
+  <div class="f-dots">
+    <div class="f-dot" style="background:var(--red)"></div>
+    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
+    <div class="f-dot" style="background:var(--green)"></div>
+  </div>
+  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
+  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
+
+<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
+<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
+<div class="nina-window" id="ninaWindow">
+  <div class="nina-header">
+    <img src="images (3).jpeg" class="nina-avatar">
+    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
+    <div class="nina-status"><div class="nina-dot"></div> Online</div>
+  </div>
+  <div class="nina-msgs" id="ninaMsgs">
+    <div class="msg-time">Today</div>
+    <div class="msg bot">Hi! 👋 I'm <strong>Nina</strong>. Looking for a room? I can help you choose the right one and walk you through booking. What's your budget?</div>
+  </div>
+  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
+    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
+  </div>
+  <div class="nina-quick" id="quickChips">
+    <div class="q-chip" onclick="sendQuick('What is the cheapest room?')">💰 Budget</div>
+    <div class="q-chip" onclick="sendQuick('Which rooms include breakfast?')">🍳 Breakfast</div>
+    <div class="q-chip" onclick="sendQuick('Tell me about the Deluxe Suite')">⭐ Deluxe</div>
+    <div class="q-chip" onclick="sendQuick('How do I book?')">📅 Book</div>
+  </div>
+  <div class="nina-input-row">
+    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="nina-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+  let ninaOpen = false;
+  const labelEl = document.getElementById('ninaLabel');
+  function toggleNina() {
+    ninaOpen = !ninaOpen;
+    document.getElementById('ninaWindow').classList.toggle('open', ninaOpen);
+    labelEl.style.display = ninaOpen ? 'none' : 'block';
+  }
+  setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
+  const history = [];
+  const SYSTEM = `You are Nina, assistant for Ritz Motel Namusera, Uganda. Tel: 0787700044.
+Rooms: Standard (UGX 50,000/night - bathroom, TV, no breakfast), Comfort (UGX 60,000/night - en-suite, AC, no breakfast), Executive (UGX 100,000/night - en-suite, WiFi, AC, Smart TV, INCLUDES BREAKFAST), Deluxe Suite (UGX 150,000/night - garden view, WiFi, AC, Smart TV, seating area, safe, INCLUDES BREAKFAST).
+Coming soon: Sauna and Gym. Booking: call or WhatsApp 0787700044. Open 24/7. Keep replies short and helpful.`;
+  function appendMsg(text, who) {
+    const msgs = document.getElementById('ninaMsgs');
+    const d = document.createElement('div'); d.className = `msg ${who}`;
+    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
+  async function sendMsg() {
+    const inp = document.getElementById('ninaInput');
+    const text = inp.value.trim(); if (!text) return;
+    inp.value = ''; appendMsg(text, 'user');
+    history.push({ role: 'user', content: text });
+    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
+      setTyping(false); appendMsg(reply, 'bot'); history.push({ role: 'assistant', content: reply });
+    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
+  }
+  function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
+</script>
+</body>
+</html>
