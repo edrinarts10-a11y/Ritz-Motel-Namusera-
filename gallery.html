@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery – Ritz Motel Namusera</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="bar.html">Bar & Restaurant</a></li>
+    <li><a href="gallery.html" style="color:var(--red);">Gallery</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <p class="sec-label">✦ Photo Gallery</p>
+    <h1>See <em>Ritz</em></h1>
+    <p>A glimpse into our rooms, bar, gardens and outdoor spaces at Ritz Motel Namusera.</p>
+  </div>
+  <div class="page-hero-deco">📸</div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-filters">
+    <button class="gf-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="gf-btn" onclick="filterGallery('bar', this)">🍺 Bar & Lounge</button>
+    <button class="gf-btn" onclick="filterGallery('facility', this)">🏨 Facility</button>
+    <button class="gf-btn" onclick="filterGallery('gardens', this)">🌿 Gardens</button>
+    <button class="gf-btn" onclick="filterGallery('exterior', this)">🌆 Exterior</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+
+    <!-- BAR & LOUNGE -->
+    <div class="g-item wide" data-cat="bar" onclick="openLightbox(this, 'The Bar – Ritz Motel')">
+      <img src="bar_lounge.jpg" alt="Bar lounge with blue lighting">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Bar & Lounge</div>
+    </div>
+    <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Bar Counter – Ritz Motel')">
+      <img src="bar_counter.jpg" alt="Bar counter">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Bar & Lounge</div>
+    </div>
+    <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Lobby Lounge – Ritz Motel')">
+      <img src="lobby_sofas.jpg" alt="Lobby with teal sofas">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Bar & Lounge</div>
+    </div>
+    <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Reception – Ritz Motel')">
+      <img src="reception.jpg" alt="Reception desk">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Bar & Lounge</div>
+    </div>
+
+    <!-- FACILITY -->
+    <div class="g-item wide" data-cat="facility" onclick="openLightbox(this, 'Balcony View – Ritz Motel')">
+      <img src="balcony_view.jpg" alt="Balcony with panoramic view">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Corridor – Ritz Motel')">
+      <img src="corridor.jpg" alt="Corridor">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Corridor Seating – Ritz Motel')">
+      <img src="corridor_seating.jpg" alt="Corridor seating area">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Outdoor Terrace – Ritz Motel')">
+      <img src="outdoor_seating.jpg" alt="Outdoor seating area">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Night Terrace – Ritz Motel')">
+      <img src="terrace_night.jpg" alt="Terrace at night">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Interior Light – Ritz Motel')">
+      <img src="wall_lamp.jpg" alt="Interior wall lamp">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+
+    <!-- GARDENS -->
+    <div class="g-item wide" data-cat="gardens" onclick="openLightbox(this, 'Garden Path – Ritz Motel')">
+      <img src="garden_path.jpg" alt="Garden pathway">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Path – Ritz Motel')">
+      <img src="garden_path_2.jpg" alt="Garden path 2">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Green Garden – Ritz Motel')">
+      <img src="garden_green.jpg" alt="Green garden lawn">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Lawn – Ritz Motel')">
+      <img src="garden_lawn.jpg" alt="Garden lawn">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden at Night – Ritz Motel')">
+      <img src="garden_night_1.jpg" alt="Garden at night">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Night Lights – Ritz Motel')">
+      <img src="garden_night_2.jpg" alt="Garden night lights">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+    <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Evening – Ritz Motel')">
+      <img src="garden_night_3.jpg" alt="Garden evening">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Gardens</div>
+    </div>
+
+    <!-- EXTERIOR -->
+    <div class="g-item wide" data-cat="exterior" onclick="openLightbox(this, 'Ritz Motel Entrance – Night')">
+      <img src="entrance_night.jpg" alt="Entrance at night">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Exterior</div>
+    </div>
+    <div class="g-item" data-cat="exterior" onclick="openLightbox(this, 'Ritz Motel Building')">
+      <img src="exterior.jpg" alt="Building exterior">
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Exterior</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <img id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-nav lb-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<!-- BOOKING BANNER -->
+<section class="book-banner">
+  <h2>Like What You See?</h2>
+  <p>Come experience Ritz Motel in person. Book a room or plan your next event with us.</p>
+  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20a%20visit." class="btn-wa" target="_blank">💬 WhatsApp Us</a>
+  <a href="tel:+256787700044" class="btn-call">📞 Call 0787 700 044</a>
+</section>
+
+<footer>
+  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
+  <div class="f-dots">
+    <div class="f-dot" style="background:var(--red)"></div>
+    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
+    <div class="f-dot" style="background:var(--green)"></div>
+  </div>
+  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
+  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
+
+<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
+<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
+<div class="nina-window" id="ninaWindow">
+  <div class="nina-header">
+    <img src="images (3).jpeg" class="nina-avatar">
+    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
+    <div class="nina-status"><div class="nina-dot"></div> Online</div>
+  </div>
+  <div class="nina-msgs" id="ninaMsgs">
+    <div class="msg-time">Today</div>
+    <div class="msg bot">Hi! 📸 Beautiful place, right? I can help you book a room or answer any questions about Ritz Motel.</div>
+  </div>
+  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
+    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
+  </div>
+  <div class="nina-quick" id="quickChips">
+    <div class="q-chip" onclick="sendQuick('What rooms do you have?')">🛏 Rooms</div>
+    <div class="q-chip" onclick="sendQuick('How do I book?')">📅 Book</div>
+    <div class="q-chip" onclick="sendQuick('Tell me about the gardens')">🌿 Gardens</div>
+  </div>
+  <div class="nina-input-row">
+    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="nina-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+  // Gallery items for lightbox navigation
+  let lbItems = [];
+  let lbIndex = 0;
+
+  function buildLbItems() {
+    lbItems = Array.from(document.querySelectorAll('#galleryGrid .g-item:not([style*="none"])'));
+  }
+
+  function openLightbox(el, caption) {
+    buildLbItems();
+    lbIndex = lbItems.indexOf(el);
+    const img = el.querySelector('img');
+    document.getElementById('lbImg').src = img.src;
+    document.getElementById('lbCaption').textContent = caption || img.alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navLightbox(dir) {
+    buildLbItems();
+    lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+    const img = lbItems[lbIndex].querySelector('img');
+    const cap = lbItems[lbIndex].querySelector('.g-cat-label');
+    document.getElementById('lbImg').src = img.src;
+    document.getElementById('lbCaption').textContent = img.alt;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      if (e.key === 'ArrowRight') navLightbox(1);
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.g-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Nina
+  let ninaOpen = false;
+  const labelEl = document.getElementById('ninaLabel');
+  function toggleNina() {
+    ninaOpen = !ninaOpen;
+    document.getElementById('ninaWindow').classList.toggle('open', ninaOpen);
+    labelEl.style.display = ninaOpen ? 'none' : 'block';
+  }
+  setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
+  const history = [];
+  const SYSTEM = `You are Nina, assistant for Ritz Motel Namusera, Uganda. Tel: 0787700044.
+Rooms: Standard UGX50,000, Comfort UGX60,000, Executive UGX100,000 (breakfast), Deluxe Suite UGX150,000 (breakfast). Open 24/7. Book via WhatsApp 0787700044.`;
+  function appendMsg(text, who) {
+    const msgs = document.getElementById('ninaMsgs');
+    const d = document.createElement('div'); d.className = `msg ${who}`;
+    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
+  async function sendMsg() {
+    const inp = document.getElementById('ninaInput');
+    const text = inp.value.trim(); if (!text) return;
+    inp.value = ''; appendMsg(text, 'user');
+    history.push({ role: 'user', content: text });
+    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
+      setTyping(false); appendMsg(reply, 'bot'); history.push({ role: 'assistant', content: reply });
+    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
+  }
+  function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
+</script>
+</body>
+</html>
