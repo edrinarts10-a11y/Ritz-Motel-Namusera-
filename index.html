@@ -22,6 +22,7 @@
     <li><a href="rooms.html">Rooms</a></li>
     <li><a href="bar.html">Bar & Restaurant</a></li>
     <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#book">Book Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
@@ -194,6 +195,61 @@
   </div>
 </section>
 
+<!-- BOOKING FORM -->
+<section class="booking-form-section" id="book">
+  <div class="sec-head">
+    <p class="sec-label">✦ Book a Room</p>
+    <h2>Reserve Your <em>Stay</em></h2>
+    <p style="color:var(--text-soft);font-size:15px;max-width:500px;margin:0 auto;">Fill in your details and we'll confirm your room via WhatsApp within minutes.</p>
+  </div>
+  <div class="bf-card">
+    <div class="bf-grid">
+      <div class="bf-field">
+        <label>🙂 Full Name</label>
+        <input type="text" id="bfName" placeholder="e.g. John Kato">
+      </div>
+      <div class="bf-field">
+        <label>📞 Phone Number</label>
+        <input type="tel" id="bfPhone" placeholder="e.g. 0787 123 456">
+      </div>
+      <div class="bf-field">
+        <label>🛏 Room Type</label>
+        <select id="bfRoom">
+          <option value="">Select a room…</option>
+          <option value="Standard Room – UGX 50,000/night">Standard Room – UGX 50,000/night</option>
+          <option value="Comfort Room – UGX 60,000/night">Comfort Room – UGX 60,000/night</option>
+          <option value="Executive Room – UGX 100,000/night (Breakfast included)">Executive Room – UGX 100,000/night (Breakfast included)</option>
+          <option value="Deluxe Suite – UGX 150,000/night (Breakfast included)">Deluxe Suite – UGX 150,000/night (Breakfast included)</option>
+        </select>
+      </div>
+      <div class="bf-field">
+        <label>👥 Number of Guests</label>
+        <select id="bfGuests">
+          <option value="1 guest">1 guest</option>
+          <option value="2 guests">2 guests</option>
+          <option value="3 guests">3 guests</option>
+          <option value="4+ guests">4+ guests</option>
+        </select>
+      </div>
+      <div class="bf-field">
+        <label>📅 Check-in Date</label>
+        <input type="date" id="bfCheckin">
+      </div>
+      <div class="bf-field">
+        <label>📅 Check-out Date</label>
+        <input type="date" id="bfCheckout">
+      </div>
+    </div>
+    <div class="bf-field" style="margin-top:4px;">
+      <label>📝 Special Requests (optional)</label>
+      <textarea id="bfNotes" placeholder="e.g. early check-in, ground floor room, extra towels…" rows="3"></textarea>
+    </div>
+    <div class="bf-msg" id="bfMsg"></div>
+    <button class="bf-submit" onclick="submitBooking()">💬 Send Booking Request via WhatsApp</button>
+    <p class="bf-note">We'll confirm your booking on WhatsApp within minutes. Open 24/7.</p>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <p class="sec-label">✦ Find Us</p>
@@ -224,6 +280,7 @@
     <div class="f-dot" style="background:var(--green)"></div>
   </div>
   <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
+  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
 </footer>
 
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
@@ -404,6 +461,62 @@ Booking: call or WhatsApp 0787700044. Keep replies short, warm, helpful. Quote p
     } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
   }
   function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
+
+  // ── Booking Form ──
+  function submitBooking() {
+    const name = document.getElementById('bfName').value.trim();
+    const phone = document.getElementById('bfPhone').value.trim();
+    const room = document.getElementById('bfRoom').value;
+    const guests = document.getElementById('bfGuests').value;
+    const checkin = document.getElementById('bfCheckin').value;
+    const checkout = document.getElementById('bfCheckout').value;
+    const notes = document.getElementById('bfNotes').value.trim();
+    const msg = document.getElementById('bfMsg');
+
+    // Validation
+    if (!name) { showBfMsg('Please enter your full name', 'err'); return; }
+    if (!phone) { showBfMsg('Please enter your phone number', 'err'); return; }
+    if (!room) { showBfMsg('Please select a room type', 'err'); return; }
+    if (!checkin) { showBfMsg('Please select a check-in date', 'err'); return; }
+    if (!checkout) { showBfMsg('Please select a check-out date', 'err'); return; }
+    if (new Date(checkout) <= new Date(checkin)) { showBfMsg('Check-out must be after check-in', 'err'); return; }
+
+    // Calculate nights
+    const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
+
+    // Format dates nicely
+    const fmt = d => new Date(d).toLocaleDateString('en-UG', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
+
+    // Build WhatsApp message
+    let waMsg = `Hello Ritz Motel! I'd like to make a booking.\n\n`;
+    waMsg += `👤 *Name:* ${name}\n`;
+    waMsg += `📞 *Phone:* ${phone}\n`;
+    waMsg += `🛏 *Room:* ${room}\n`;
+    waMsg += `👥 *Guests:* ${guests}\n`;
+    waMsg += `📅 *Check-in:* ${fmt(checkin)}\n`;
+    waMsg += `📅 *Check-out:* ${fmt(checkout)}\n`;
+    waMsg += `🌙 *Nights:* ${nights} night${nights > 1 ? 's' : ''}\n`;
+    if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
+    waMsg += `\nPlease confirm availability. Thank you!`;
+
+    const encoded = encodeURIComponent(waMsg);
+    window.open(`https://wa.me/256787700044?text=${encoded}`, '_blank');
+    showBfMsg('✅ Opening WhatsApp — please send the message to confirm your booking!', 'ok');
+  }
+
+  function showBfMsg(txt, type) {
+    const el = document.getElementById('bfMsg');
+    el.textContent = txt; el.className = 'bf-msg ' + type; el.style.display = 'block';
+    setTimeout(() => { if (type === 'ok') el.style.display = 'none'; }, 6000);
+  }
+
+  // Set min date to today for date pickers
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('bfCheckin').min = today;
+  document.getElementById('bfCheckout').min = today;
+  document.getElementById('bfCheckin').addEventListener('change', function() {
+    document.getElementById('bfCheckout').min = this.value;
+  });
 </script>
 </body>
 </html>
