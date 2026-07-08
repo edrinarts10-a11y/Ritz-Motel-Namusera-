@@ -3,7 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ritz Motel – Namusera | Home</title>
+<title>Ritz Motel Namusera – Accommodation, Bar & Restaurant | Kampala-Hoima Road</title>
+<meta name="description" content="Ritz Motel Namusera offers clean, affordable rooms (UGX 50,000–150,000/night), a fully stocked bar & restaurant, and beautiful gardens along Kampala-Hoima Road, Wakiso, Uganda.">
+<meta name="keywords" content="Ritz Motel, Namusera, hotel Wakiso, motel Kampala Hoima Road, accommodation Uganda, bar restaurant Namusera, cheap hotel near Kampala">
+<meta name="author" content="Ritz Motel Namusera">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ritzmotelnamusera.com/">
+
+<!-- Open Graph (Facebook, WhatsApp previews) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ritzmotelnamusera.com/">
+<meta property="og:title" content="Ritz Motel Namusera – Accommodation & Bar, Kampala-Hoima Road">
+<meta property="og:description" content="Clean, comfortable rooms from UGX 50,000/night. Bar & restaurant, beautiful gardens, 24/7 service. Along Kampala-Hoima Road, Namusera, Wakiso.">
+<meta property="og:image" content="https://ritzmotelnamusera.com/entrance_night.jpg">
+<meta property="og:locale" content="en_UG">
+<meta property="og:site_name" content="Ritz Motel Namusera">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ritz Motel Namusera – Accommodation & Bar">
+<meta name="twitter:description" content="Clean rooms from UGX 50,000/night. Bar, restaurant & gardens. Kampala-Hoima Road, Namusera.">
+<meta name="twitter:image" content="https://ritzmotelnamusera.com/entrance_night.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="IMG_20260613_023639.jpg">
+<link rel="apple-touch-icon" href="IMG_20260613_023639.jpg">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Ritz Motel Namusera",
+  "url": "https://ritzmotelnamusera.com",
+  "logo": "https://ritzmotelnamusera.com/IMG_20260613_023639.jpg",
+  "image": "https://ritzmotelnamusera.com/entrance_night.jpg",
+  "description": "Clean, comfortable accommodation along Kampala-Hoima Road in Namusera, Wakiso. Bar, restaurant and gardens on site.",
+  "telephone": "+256787700044",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kampala-Hoima Road, Off Musembi Road",
+    "addressLocality": "Namusera",
+    "addressRegion": "Wakiso",
+    "addressCountry": "UG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "0.3736",
+    "longitude": "32.4785"
+  },
+  "priceRange": "UGX 50,000 – 150,000",
+  "checkinTime": "12:00",
+  "checkoutTime": "11:00",
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Bar & Restaurant", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Garden", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true}
+  ],
+  "openingHours": "Mo-Su 00:00-23:59",
+  "currenciesAccepted": "UGX",
+  "paymentAccepted": "Cash, Mobile Money"
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <!-- Supabase -->
@@ -25,7 +88,7 @@
     <li><a href="#book">Book Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="tel:+256787700044" class="nav-cta">📞 Book Now</a>
+  <a href="#book" class="nav-cta">🛏 Book a Room</a>
   <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
@@ -149,15 +212,19 @@
   </div>
   <div class="teasers-grid">
     <a href="rooms.html" class="teaser-card">
-      <div class="teaser-img t1">🛏</div>
+      <div class="teaser-img t1">
+        <img src="reception.jpg" alt="Ritz Motel Rooms">
+      </div>
       <div class="teaser-body">
         <h3>Our Rooms</h3>
-        <p>From UGX 50,000/night. Four room types — Standard, Deluxe, Executive and Suite. Executive & Suite include breakfast.</p>
+        <p>From UGX 50,000/night. Four room types — Standard, Comfort, Executive and Deluxe Suite. Executive & Suite include breakfast.</p>
         <div class="teaser-link">View Rooms →</div>
       </div>
     </a>
     <a href="bar.html" class="teaser-card">
-      <div class="teaser-img t2">🍹</div>
+      <div class="teaser-img t2">
+        <img src="bar_lounge.jpg" alt="Ritz Motel Bar & Restaurant">
+      </div>
       <div class="teaser-body">
         <h3>Bar & Restaurant</h3>
         <p>Cold drinks, local beers, spirits, wines, nyama choma and more. Open to guests and the public, day and night.</p>
@@ -165,7 +232,9 @@
       </div>
     </a>
     <a href="gallery.html" class="teaser-card">
-      <div class="teaser-img t3">📸</div>
+      <div class="teaser-img t3">
+        <img src="seat.jpg" alt="Ritz Motel Gallery">
+      </div>
       <div class="teaser-body">
         <h3>Photo Gallery</h3>
         <p>See our rooms, bar, gardens and event spaces. Get a feel for the Ritz experience before you arrive.</p>
@@ -257,8 +326,10 @@
   <p>Easy to find along Kampala-Hoima Road. Call us or WhatsApp to book your room.</p>
   <div class="c-cards">
     <div class="c-card"><span class="ci">📞</span><h4>Phone</h4><a href="tel:+256787700044">0787 700 044</a></div>
+        <div class="c-card"><span class="ci">✉️</span><h4>Email Address</h4><p>info@ritzmotelnamusera.com</p></div>
     <div class="c-card"><span class="ci">📍</span><h4>Address</h4><p>Hoima Rd, Namusera<br>Off Musembi Road</p></div>
     <div class="c-card"><span class="ci">📬</span><h4>P.O. Box</h4><p>33294 Kampala</p></div>
+
   </div>
   <div class="map-wrap">
     <iframe
@@ -267,7 +338,7 @@
       referrerpolicy="no-referrer-when-downgrade" title="Ritz Motel Namusera Location">
     </iframe>
   </div>
-  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20a%20room." class="wa-btn" target="_blank">💬 Book via WhatsApp</a>
+
   <p style="color:var(--text-soft);font-size:13px;margin-top:12px;">Open 24 hours · 7 days a week</p>
 </section>
 
@@ -431,13 +502,32 @@
   }
   setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
   const chatHistory = [];
-  const SYSTEM = `You are Nina, a friendly assistant for Ritz Motel Namusera, Uganda.
-Located: Kampala-Hoima Road, Namusera, Off Musembi Road. Tel: 0787700044. P.O Box 33294 Kampala.
-Rooms: Standard UGX 50,000/night (no breakfast), Deluxe UGX 60,000/night (no breakfast), Executive UGX 100,000/night (breakfast included), Suite UGX 150,000/night (breakfast included).
-Coming soon: Sauna and Gym.
-Bar & Restaurant: local beers (Bell, Nile, Club, Castle), spirits, wines, soft drinks, fresh juice, nyama choma, rolex, chips, snacks. Open 24/7.
-Gardens: outdoor seating, event hire (birthdays, weddings, get-togethers).
-Booking: call or WhatsApp 0787700044. Keep replies short, warm, helpful. Quote prices in UGX.`;
+  const SYSTEM = `You are Nina, the friendly AI assistant for Ritz Motel Namusera, Uganda. You help guests with information, bookings, and questions about the motel.
+
+LOCATION: Kampala-Hoima Road, Namusera, Off Musembi Road, Wakiso. P.O Box 33294 Kampala. Tel: 0787700044. Website: ritzmotelnamusera.com
+
+ROOMS:
+- Standard Room: UGX 50,000/night — bathroom, TV, secure lock, 24h power. No breakfast.
+- Comfort Room: UGX 60,000/night — en-suite, AC, TV. No breakfast.
+- Executive Room: UGX 100,000/night — en-suite, WiFi, AC, Smart TV, hot water. BREAKFAST INCLUDED.
+- Deluxe Suite: UGX 150,000/night — garden view, WiFi, AC, Smart TV, seating area, in-room safe. BREAKFAST INCLUDED.
+Coming soon: Sauna & Gym.
+
+BAR DRINKS: Local beers (Bell UGX3,500, Nile UGX4,000, Club UGX3,500, Castle UGX4,000). Spirits (Waragi UGX5,000, Konyagi UGX5,000, Smirnoff UGX7,000, Jameson UGX9,000). Wine UGX12,000/glass. Fresh juices (Passion/Mango UGX5,000). Soft drinks UGX1,500-2,000.
+
+TEA & HOT DRINKS: Black Tea UGX3,000, Milk Tea UGX5,000, Lemon Tea UGX5,000, Dawa Tea UGX10,000, Black Coffee UGX8,000, Milk Coffee UGX7,000, Plain Milk UGX5,000, Hot Water UGX1,500, Honey extra UGX1,000.
+
+FOOD MAINS: Chips & Chicken UGX25,000, Beef & Chips UGX25,000, Goat Meat & Chips UGX30,000, Fish & Chips UGX35,000, Gizzard & Liver UGX30,000, Meat Katogo+Matooke UGX10,000.
+LIGHT BITES: Plain Chips UGX10,000, Potato Wedges UGX10,000, 2 Eggs UGX5,000, Beef Samosa pair UGX4,000, Chicken Samosa pair UGX5,000, Bread 3/4 slices UGX3,000.
+UGANDAN STAPLES: Plain Katogo(veg)+Matooke UGX10,000, Rice UGX5,000, Matooke UGX10,000, Cassava UGX5,000, Cowpeas UGX10,000. All meals served with salad/kachumbari — can swap to posho, rice, spaghetti, matooke or cassava.
+
+GARDENS: Beautiful outdoor spaces, shaded seating, available for private events (birthdays, weddings, corporate). Open 24/7.
+
+BOOKING: Guests can book by calling or WhatsApp on 0787700044, or using the booking form on the website. Check-in: 12pm, Check-out: 11am.
+
+PAGES: Rooms (rooms.html), Bar & Restaurant (bar.html), Gallery (gallery.html), Reviews (reviews.html).
+
+PERSONALITY: Warm, helpful, concise. Use occasional emojis. Always quote prices in UGX. For bookings always direct to WhatsApp 0787700044. Never make up information not listed above.`;
   function appendMsg(text, who) {
     const msgs = document.getElementById('ninaMsgs');
     const d = document.createElement('div'); d.className = `msg ${who}`;

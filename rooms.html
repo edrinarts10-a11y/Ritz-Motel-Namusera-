@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rooms – Ritz Motel Namusera</title>
+<title>Rooms & Accommodation – Ritz Motel Namusera | From UGX 50,000/night</title>
+<meta name="description" content="Book clean, comfortable rooms from UGX 50,000/night at Ritz Motel Namusera. Standard, Comfort, Executive and Deluxe Suite — some with breakfast. Kampala-Hoima Road, Wakiso.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ritzmotelnamusera.com/rooms">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ritzmotelnamusera.com/rooms">
+<meta property="og:title" content="Rooms & Accommodation – Ritz Motel Namusera | From UGX 50,000/night">
+<meta property="og:description" content="Book clean, comfortable rooms from UGX 50,000/night at Ritz Motel Namusera. Standard, Comfort, Executive and Deluxe Suite — some with breakfast. Kampala-Hoima Road, Wakiso.">
+<meta property="og:image" content="https://ritzmotelnamusera.com/entrance_night.jpg">
+<link rel="icon" type="image/jpeg" href="IMG_20260613_023639.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -167,69 +176,7 @@
 
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
 
-<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
-<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
-<div class="nina-window" id="ninaWindow">
-  <div class="nina-header">
-    <img src="images (3).jpeg" class="nina-avatar">
-    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
-    <div class="nina-status"><div class="nina-dot"></div> Online</div>
-  </div>
-  <div class="nina-msgs" id="ninaMsgs">
-    <div class="msg-time">Today</div>
-    <div class="msg bot">Hi! 👋 I'm <strong>Nina</strong>. Looking for a room? I can help you choose the right one and walk you through booking. What's your budget?</div>
-  </div>
-  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
-    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
-  </div>
-  <div class="nina-quick" id="quickChips">
-    <div class="q-chip" onclick="sendQuick('What is the cheapest room?')">💰 Budget</div>
-    <div class="q-chip" onclick="sendQuick('Which rooms include breakfast?')">🍳 Breakfast</div>
-    <div class="q-chip" onclick="sendQuick('Tell me about the Deluxe Suite')">⭐ Deluxe</div>
-    <div class="q-chip" onclick="sendQuick('How do I book?')">📅 Book</div>
-  </div>
-  <div class="nina-input-row">
-    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="nina-send" onclick="sendMsg()">➤</button>
-  </div>
-</div>
-
 <script>
-  let ninaOpen = false;
-  const labelEl = document.getElementById('ninaLabel');
-  function toggleNina() {
-    ninaOpen = !ninaOpen;
-    document.getElementById('ninaWindow').classList.toggle('open', ninaOpen);
-    labelEl.style.display = ninaOpen ? 'none' : 'block';
-  }
-  setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
-  const history = [];
-  const SYSTEM = `You are Nina, assistant for Ritz Motel Namusera, Uganda. Tel: 0787700044.
-Rooms: Standard (UGX 50,000/night - bathroom, TV, no breakfast), Comfort (UGX 60,000/night - en-suite, AC, no breakfast), Executive (UGX 100,000/night - en-suite, WiFi, AC, Smart TV, INCLUDES BREAKFAST), Deluxe Suite (UGX 150,000/night - garden view, WiFi, AC, Smart TV, seating area, safe, INCLUDES BREAKFAST).
-Coming soon: Sauna and Gym. Booking: call or WhatsApp 0787700044. Open 24/7. Keep replies short and helpful.`;
-  function appendMsg(text, who) {
-    const msgs = document.getElementById('ninaMsgs');
-    const d = document.createElement('div'); d.className = `msg ${who}`;
-    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
-  }
-  function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
-  async function sendMsg() {
-    const inp = document.getElementById('ninaInput');
-    const text = inp.value.trim(); if (!text) return;
-    inp.value = ''; appendMsg(text, 'user');
-    history.push({ role: 'user', content: text });
-    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
-      });
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
-      setTyping(false); appendMsg(reply, 'bot'); history.push({ role: 'assistant', content: reply });
-    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
-  }
-  function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
 </script>
 </body>
 </html>

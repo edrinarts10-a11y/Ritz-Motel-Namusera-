@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bar & Restaurant – Ritz Motel Namusera</title>
+<title>Bar & Restaurant – Ritz Motel Namusera | Drinks, Food & Tea</title>
+<meta name="description" content="Visit the Ritz Motel bar and restaurant. Cold beers, spirits, fresh juices, nyama choma, Ugandan dishes, tea & coffee. Open 24/7 to guests and the public.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ritzmotelnamusera.com/bar">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ritzmotelnamusera.com/bar">
+<meta property="og:title" content="Bar & Restaurant – Ritz Motel Namusera | Drinks, Food & Tea">
+<meta property="og:description" content="Visit the Ritz Motel bar and restaurant. Cold beers, spirits, fresh juices, nyama choma, Ugandan dishes, tea & coffee. Open 24/7 to guests and the public.">
+<meta property="og:image" content="https://ritzmotelnamusera.com/entrance_night.jpg">
+<link rel="icon" type="image/jpeg" href="IMG_20260613_023639.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -174,72 +183,7 @@
 
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
 
-<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
-<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
-<div class="nina-window" id="ninaWindow">
-  <div class="nina-header">
-    <img src="images (3).jpeg" class="nina-avatar">
-    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
-    <div class="nina-status"><div class="nina-dot"></div> Online</div>
-  </div>
-  <div class="nina-msgs" id="ninaMsgs">
-    <div class="msg-time">Today</div>
-    <div class="msg bot">Hey! 🍺 Welcome to the Ritz Bar & Restaurant. Ask me about our drinks, food, or anything else!</div>
-  </div>
-  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
-    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
-  </div>
-  <div class="nina-quick" id="quickChips">
-    <div class="q-chip" onclick="sendQuick('What beers do you have?')">🍺 Beers</div>
-    <div class="q-chip" onclick="sendQuick('What tea and hot drinks do you have?')">☕ Tea</div>
-    <div class="q-chip" onclick="sendQuick('What main dishes are available?')">🍽️ Food</div>
-  </div>
-  <div class="nina-input-row">
-    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="nina-send" onclick="sendMsg()">➤</button>
-  </div>
-</div>
-
 <script>
-  let ninaOpen = false;
-  const labelEl = document.getElementById('ninaLabel');
-  function toggleNina() {
-    ninaOpen = !ninaOpen;
-    document.getElementById('ninaWindow').classList.toggle('open', ninaOpen);
-    labelEl.style.display = ninaOpen ? 'none' : 'block';
-  }
-  setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
-  const history = [];
-  const SYSTEM = `You are Nina, assistant for Ritz Motel Bar & Restaurant, Namusera, Uganda. Tel: 0787700044.
-Bar: Local beers (Bell UGX3,500, Nile UGX4,000, Club UGX3,500, Castle UGX4,000), Spirits (Waragi UGX5,000, Konyagi UGX5,000, Smirnoff UGX7,000, Jameson UGX9,000), Wines (UGX12,000/glass), Fresh juices (Passion/Mango UGX5,000), Soft drinks (UGX1,500-2,000).
-Tea & Hot Drinks: Black Tea UGX3,000, Milk Tea UGX5,000, Lemon Tea UGX5,000, Dawa Tea UGX10,000, Black Coffee UGX8,000, Milk Coffee UGX7,000, Plain Milk UGX5,000, Hot Water UGX1,500, extra Honey UGX1,000.
-Food mains: Chips & Chicken UGX25,000, Beef & Chips UGX25,000, Goat Meat & Chips UGX30,000, Fish & Chips UGX35,000, Gizzard & Liver UGX30,000, Meat Katogo+Matooke UGX10,000.
-Light bites: Plain Chips UGX10,000, Potato Wedges UGX10,000, 2 Eggs UGX5,000, Beef Samosa pair UGX4,000, Chicken Samosa pair UGX5,000, Bread 3/4 slices UGX3,000.
-Ugandan staples: Plain Katogo (veg)+Matooke UGX10,000, Rice UGX5,000, Matooke UGX10,000, Cassava UGX5,000, Cowpeas UGX10,000.
-All meals come with salad/kachumbari; accompaniment can be swapped to posho, rice, spaghetti, matooke or cassava. Open 24/7. Keep replies short and helpful.`;
-  function appendMsg(text, who) {
-    const msgs = document.getElementById('ninaMsgs');
-    const d = document.createElement('div'); d.className = `msg ${who}`;
-    d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
-  }
-  function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
-  async function sendMsg() {
-    const inp = document.getElementById('ninaInput');
-    const text = inp.value.trim(); if (!text) return;
-    inp.value = ''; appendMsg(text, 'user');
-    history.push({ role: 'user', content: text });
-    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: history })
-      });
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
-      setTyping(false); appendMsg(reply, 'bot'); history.push({ role: 'assistant', content: reply });
-    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
-  }
-  function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
 
   function switchTab(tab, btn) {
     document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));

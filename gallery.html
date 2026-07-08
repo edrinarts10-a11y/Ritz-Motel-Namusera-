@@ -36,11 +36,11 @@
 
 <section class="gallery-section">
   <div class="gallery-filters">
-    <button class="gf-btn active" onclick="filterGallery('all', this)">All</button>
-    <button class="gf-btn" onclick="filterGallery('bar', this)">🍺 Bar & Lounge</button>
-    <button class="gf-btn" onclick="filterGallery('facility', this)">🏨 Facility</button>
-    <button class="gf-btn" onclick="filterGallery('gardens', this)">🌿 Gardens</button>
-    <button class="gf-btn" onclick="filterGallery('exterior', this)">🌆 Exterior</button>
+    <button class="gf-btn active" onclick="filterGallery('all', this)">All · 19</button>
+    <button class="gf-btn" onclick="filterGallery('bar', this)">🍺 Bar & Lounge · 4</button>
+    <button class="gf-btn" onclick="filterGallery('facility', this)">🏨 Facility · 6</button>
+    <button class="gf-btn" onclick="filterGallery('gardens', this)">🌿 Gardens · 7</button>
+    <button class="gf-btn" onclick="filterGallery('exterior', this)">🌆 Exterior · 2</button>
   </div>
 
   <div class="gallery-grid" id="galleryGrid">
@@ -249,6 +249,15 @@
       if (e.key === 'Escape') closeLightbox();
     }
   });
+
+  // Touch swipe support for lightbox
+  let touchStartX = 0;
+  const lb = document.getElementById('lightbox');
+  lb.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) navLightbox(diff > 0 ? 1 : -1);
+  }, { passive: true });
 
   function filterGallery(cat, btn) {
     document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
