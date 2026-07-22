@@ -421,6 +421,19 @@
     transition: transform .2s;
   }
   .float-wa:hover { transform: scale(1.1); }
+  
+  
+    /* ── FLOAT CAL ── */
+  .float-cal {
+    position: fixed; bottom: 85px; right: 28px; z-index: 999;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform .2s;
+  }
+  .float-wa:hover { transform: scale(1.1); }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -1009,4 +1022,8 @@
     .booking-form-section { padding: 60px 24px; }
     .bf-card { padding: 24px 18px; border-radius: 16px; }
     .bf-grid { grid-template-columns: 1fr; gap: 14px; }
+  }
+  
+  @view-transition {
+    navigation:auto
   }
