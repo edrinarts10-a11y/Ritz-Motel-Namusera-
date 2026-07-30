@@ -619,7 +619,7 @@
   .book-banner .btn-wa {
     display: inline-flex; align-items: center; gap: 10px;
     background: #25D366; color: white; padding: 14px 32px;
-    border-radius: 50px; text-decoration: none; font-size: 15px; font-weight: 500;
+    border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 500;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: opacity .2s, transform .2s;
     margin: 0 8px;
   }
@@ -1026,4 +1026,34 @@
   
   @view-transition {
     navigation:auto
+  }
+
+  /* ── GARDENS SECTION ── */
+  .gardens-section { background: var(--off-white); padding: 80px 60px; }
+  .gardens-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; max-width: 1080px; margin: 0 auto;
+  }
+  .gd-item {
+    position: relative; border-radius: 12px;
+    overflow: hidden; aspect-ratio: 1/1; cursor: pointer;
+  }
+  .gd-item.wide { grid-column: span 2; grid-row: span 2; aspect-ratio: unset; }
+  .gd-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .gd-item:hover img { transform: scale(1.06); }
+  .gd-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: 14px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .gd-item:hover .gd-overlay { opacity: 1; }
+  .gd-overlay span { color: white; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; }
+
+  @media (max-width: 768px) {
+    .gardens-section { padding: 60px 16px; }
+    .gardens-grid { grid-template-columns: 1fr 1fr; }
+    .gd-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
+    .gd-item { aspect-ratio: 1/1; }
+    .gd-overlay { opacity: 1; }
   }
