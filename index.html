@@ -343,14 +343,21 @@
         <label>📅 Check-out Date</label>
         <input type="date" id="bfCheckout">
       </div>
+      <div class="bf-field">
+        <label>📧 Email (optional)</label>
+        <input type="email" id="bfEmail" placeholder="e.g. john@gmail.com">
+      </div>
     </div>
     <div class="bf-field" style="margin-top:4px;">
       <label>📝 Special Requests (optional)</label>
       <textarea id="bfNotes" placeholder="e.g. early check-in, ground floor room, extra towels…" rows="3"></textarea>
     </div>
     <div class="bf-msg" id="bfMsg"></div>
-    <button class="bf-submit" onclick="submitBooking()">💬 Send Booking Request via WhatsApp</button>
-    <p class="bf-note">We'll confirm your booking on WhatsApp within minutes. Open 24/7.</p>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+      <button class="bf-submit" style="flex:1;background:#25D366;" onclick="submitBooking('whatsapp')">💬 Book via WhatsApp</button>
+      <button class="bf-submit" style="flex:1;background:var(--red);" onclick="submitBooking('pay')">💳 Pay Now (MTN/Airtel/Visa)</button>
+    </div>
+    <p class="bf-note">WhatsApp: instant confirmation. Pay Now: secure online payment via Pesapal.</p>
   </div>
 </section>
 
@@ -397,26 +404,34 @@
 <img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
 <div class="nina-window" id="ninaWindow">
   <div class="nina-header">
-    <img src="images (3).jpeg" class="nina-avatar">
-    <div class="nina-info"><h4>Nina</h4><p>Ritz Motel Assistant</p></div>
+    <img src="images (3).jpeg" class="nina-avatar" alt="Nina">
+    <div class="nina-info">
+      <h4>Nina</h4>
+      <p>Ritz Motel Assistant</p>
+    </div>
     <div class="nina-status"><div class="nina-dot"></div> Online</div>
+    <button onclick="toggleNina()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-size:18px;cursor:pointer;padding:0 0 0 8px;line-height:1;">✕</button>
   </div>
   <div class="nina-msgs" id="ninaMsgs">
     <div class="msg-time">Today</div>
-    <div class="msg bot">Hi there! 👋 I'm <strong>Nina</strong>, your Ritz Motel assistant. How can I help you?</div>
+    <div class="msg bot">Hi there! 👋 I'm <strong>Nina</strong>, your Ritz Motel assistant. I can help with rooms, food, bookings and more. What would you like to know?</div>
   </div>
-  <div style="padding:6px 14px;display:none;" id="ninaTypingWrap">
+  <div id="ninaTypingWrap" style="padding:6px 12px;display:none;">
     <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
   </div>
   <div class="nina-quick" id="quickChips">
     <div class="q-chip" onclick="sendQuick('What rooms do you have?')">🛏 Rooms</div>
+    <div class="q-chip" onclick="sendQuick('What food do you serve?')">🍽️ Food</div>
     <div class="q-chip" onclick="sendQuick('What does the bar offer?')">🍺 Bar</div>
-    <div class="q-chip" onclick="sendQuick('How do I book?')">📅 Book</div>
+    <div class="q-chip" onclick="sendQuick('How do I book a room?')">📅 Book</div>
     <div class="q-chip" onclick="sendQuick('Where are you located?')">📍 Location</div>
+    <div class="q-chip" onclick="sendQuick('Tell me about the gardens')">🌿 Gardens</div>
   </div>
   <div class="nina-input-row">
     <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="nina-send" onclick="sendMsg()">➤</button>
+    <button class="nina-send" onclick="sendMsg()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
   </div>
 </div>
 
@@ -539,68 +554,219 @@
   }
   setTimeout(() => { labelEl.style.opacity='0'; labelEl.style.transition='opacity .5s'; }, 4000);
   const chatHistory = [];
-  const SYSTEM = `You are Nina, the friendly AI assistant for Ritz Motel Namusera, Uganda. You help guests with information, bookings, and questions about the motel.
 
-LOCATION: Kampala-Hoima Road, Namusera, Off Musembi Road, Wakiso. P.O Box 33294 Kampala. Tel: 0787700044. Website: ritzmotelnamusera.com
+  // ── Nina keyword brain ──
+  const ninaRules = [
+    {
+      keys: ['hello','hi','hey','good morning','good afternoon','good evening','hie','ola','howdy'],
+      replies: [
+        "Hello! 👋 Welcome to Ritz Motel Namusera. I'm Nina, your virtual assistant. How can I help you today?",
+        "Hi there! 😊 Great to have you here. I'm Nina — ask me anything about our rooms, food, bar or how to book!",
+        "Hey! 👋 I'm Nina, your Ritz Motel assistant. What can I help you with today?"
+      ]
+    },
+    {
+      keys: ['room','rooms','accommodation','stay','bed','sleep','night','lodge'],
+      replies: [
+        "We have 4 room types at Ritz Motel 🛏\n\n• Standard Room — UGX 50,000/night\n• Comfort Room — UGX 60,000/night\n• Executive Room — UGX 100,000/night 🍳 (Breakfast included)\n• Deluxe Suite — UGX 150,000/night 🍳 (Breakfast included)\n\nAll rooms are clean and comfortable. Would you like to book? 😊"
+      ]
+    },
+    {
+      keys: ['standard'],
+      replies: ["Our Standard Room is UGX 50,000/night 🛏 — private bathroom, TV, 24h power and secure lock. No breakfast. Would you like to book it via WhatsApp? 0787700044"]
+    },
+    {
+      keys: ['comfort'],
+      replies: ["The Comfort Room is UGX 60,000/night 🛏 — en-suite bathroom, AC and TV. No breakfast included. To book, call or WhatsApp us on 0787700044 😊"]
+    },
+    {
+      keys: ['executive'],
+      replies: ["The Executive Room is UGX 100,000/night ⭐ — en-suite, WiFi, AC, Smart TV and hot water. Breakfast is INCLUDED every morning 🍳\n\nTo book: WhatsApp 0787700044"]
+    },
+    {
+      keys: ['deluxe','suite','best room','vip'],
+      replies: ["Our Deluxe Suite is UGX 150,000/night 🌟 — garden view, WiFi, AC, Smart TV, seating area and in-room safe. Breakfast INCLUDED 🍳\n\nThe best experience Ritz has to offer! Book via WhatsApp: 0787700044"]
+    },
+    {
+      keys: ['breakfast','b&b','bed and breakfast','include breakfast'],
+      replies: ["Breakfast is included in our Executive Room (UGX 100,000) and Deluxe Suite (UGX 150,000) 🍳\n\nThe Standard and Comfort rooms do not include breakfast, but food is available at our restaurant anytime! 😊"]
+    },
+    {
+      keys: ['cheap','affordable','budget','cheapest','lowest price','cheap room'],
+      replies: ["Our most affordable room is the Standard Room at UGX 50,000/night 🛏 — clean, comfortable and great value!\n\nTo book, WhatsApp us on 0787700044 😊"]
+    },
+    {
+      keys: ['price','cost','how much','rate','charge','fee','tariff'],
+      replies: ["Here are our room rates 💰\n\n• Standard — UGX 50,000/night\n• Comfort — UGX 60,000/night\n• Executive — UGX 100,000/night (+ breakfast 🍳)\n• Deluxe Suite — UGX 150,000/night (+ breakfast 🍳)\n\nWould you like to book? Call/WhatsApp: 0787700044"]
+    },
+    {
+      keys: ['book','booking','reserve','reservation','how to book','want to stay'],
+      replies: [
+        "Booking is easy! 📅\n\n1. Fill our booking form on this page, or\n2. Call/WhatsApp: 0787700044\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nWe confirm your room within minutes! 😊",
+        "To book a room at Ritz Motel, just WhatsApp or call us on 0787700044 📞 — we're available 24/7 and confirm within minutes!"
+      ]
+    },
+    {
+      keys: ['checkin','check in','check-in','arrival','arrive'],
+      replies: ["Check-in time at Ritz Motel is 12:00pm (noon) 🕛\n\nIf you need early check-in, please contact us in advance on 0787700044 and we'll do our best to accommodate you 😊"]
+    },
+    {
+      keys: ['checkout','check out','check-out','leaving','leave'],
+      replies: ["Check-out time is 11:00am 🕚\n\nFor late check-out requests, please speak to our staff or call 0787700044. Late check-out may be available depending on availability."]
+    },
+    {
+      keys: ['wifi','internet','network','data'],
+      replies: ["Free WiFi is available in our Comfort, Executive and Deluxe Suite rooms 📶\n\nThe Standard Room does not include WiFi. Need more info? Call 0787700044 😊"]
+    },
+    {
+      keys: ['ac','air condition','air-condition','fan','cool'],
+      replies: ["Air conditioning is available in our Comfort Room, Executive Room and Deluxe Suite ❄️\n\nThe Standard Room does not have AC. Would you like to book one of our AC rooms?"]
+    },
+    {
+      keys: ['food','eat','eating','meal','menu','restaurant','dining','lunch','dinner','supper'],
+      replies: ["Our restaurant serves delicious food 🍽️ Open 24/7!\n\n🥩 MAINS: Chips & Chicken 25k, Beef & Chips 25k, Goat Meat & Chips 30k, Fish & Chips 35k, Gizzard & Liver 30k\n\n🍟 LIGHT BITES: Plain Chips 10k, Potato Wedges 10k, 2 Eggs 5k, Samosas from 4k\n\n🍌 UGANDAN: Katogo+Matooke 10k, Rice 5k, Matooke 10k, Cassava 5k\n\nAll served with salad/kachumbari. Tap 'See the Menu' for the full list!"]
+    },
+    {
+      keys: ['fish','tilapia','nile perch'],
+      replies: ["Fish & Chips is UGX 35,000 🐟 — served with salad/kachumbari. The accompaniment can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
+    },
+    {
+      keys: ['chicken','chips chicken','kuku'],
+      replies: ["Chips & Chicken is UGX 25,000 🍗 — served with salad/kachumbari. The side can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
+    },
+    {
+      keys: ['goat','mbuzi','nyama choma','nyama','grill','bbq','roast'],
+      replies: ["Goat Meat & Chips is UGX 30,000 🥩 — classic nyama choma style, served with salad/kachumbari. Available 24/7 at our bar & restaurant!"]
+    },
+    {
+      keys: ['katogo','matooke','matoke','ugali','posho','cassava','cowpeas'],
+      replies: ["We serve authentic Ugandan food 🍌\n\n• Plain Katogo (veg) + Matooke — UGX 10,000\n• Meat Katogo + Matooke — UGX 10,000\n• Rice — UGX 5,000\n• Matooke — UGX 10,000\n• Cassava — UGX 5,000\n• Cowpeas — UGX 10,000\n\nAll main dishes come with salad/kachumbari!"]
+    },
+    {
+      keys: ['samosa','samoosa'],
+      replies: ["Samosas available! 😋\n• Beef Samosa (pair) — UGX 4,000\n• Chicken Samosa (pair) — UGX 5,000\n\nGreat snack with a cold drink! 🍺"]
+    },
+    {
+      keys: ['bar','drink','drinks','alcohol','beer','beers'],
+      replies: ["Welcome to the Ritz Bar! 🍺 Open 24/7 to guests and the public.\n\n🍺 LOCAL BEERS — UGX 5,000 each\nBell, Nile Special, Club Pilsner, Castle Lite\n\n🥃 SPIRITS: Waragi 5k, Konyagi 5k, Smirnoff 7k, Jameson 9k\n\n🍷 Wine — UGX 12,000/glass\n\n🧃 Fresh Juice — UGX 5,000\n💧 Sodas & Water — UGX 3,000\n\nCome on in! 🎉"]
+    },
+    {
+      keys: ['bell','nile','club pilsner','castle','tusker','lager'],
+      replies: ["All local beers are UGX 5,000 each 🍺\n• Bell Lager\n• Nile Special\n• Club Pilsner\n• Castle Lite\n\nCold and refreshing! Come visit the Ritz Bar 😊"]
+    },
+    {
+      keys: ['waragi','konyagi','vodka','whiskey','jameson','smirnoff','spirit','gin'],
+      replies: ["Our spirits menu 🥃\n\n• Uganda Waragi — UGX 5,000\n• Konyagi — UGX 5,000\n• Smirnoff Vodka — UGX 7,000\n• Jameson Whiskey — UGX 9,000\n• Wine (red/white) — UGX 12,000/glass\n\nCome enjoy a drink at the Ritz Bar! Open 24/7 🎉"]
+    },
+    {
+      keys: ['juice','fresh juice','mango','passion'],
+      replies: ["Fresh juices available at UGX 5,000 🧃\n• Fresh Passion Juice\n• Fresh Mango Juice\n\nAlso available: sodas (UGX 3,000), water (UGX 3,000) and hot drinks!"]
+    },
+    {
+      keys: ['tea','coffee','hot drink','milk tea','black tea','lemon tea','dawa','chai'],
+      replies: ["Our Tea & Hot Drinks menu ☕\n\n• Black Tea — UGX 3,000\n• Milk Tea — UGX 5,000\n• Lemon Tea — UGX 5,000\n• Dawa Tea — UGX 10,000\n• Black Coffee — UGX 8,000\n• Milk Coffee — UGX 7,000\n• Plain Milk — UGX 5,000\n• Hot Water — UGX 1,500\n\nPerfect for a morning or evening treat! 😊"]
+    },
+    {
+      keys: ['garden','gardens','outdoor','outside','seating','event','birthday','wedding','party','function'],
+      replies: ["Our gardens are beautiful! 🌿\n\nLush greenery, shaded outdoor seating and a relaxed atmosphere — perfect for:\n• Birthday parties 🎂\n• Weddings 💍\n• Corporate events\n• Evening drinks\n• Get-togethers\n\nOpen 24/7. For event booking call/WhatsApp: 0787700044 😊"]
+    },
+    {
+      keys: ['sauna','gym','fitness','spa','steam'],
+      replies: ["Great news — we're opening a Sauna & Gym at Ritz Motel very soon! 🧖🏋️\n\nStay tuned — it will be available to all guests. Call 0787700044 for the latest updates 😊"]
+    },
+    {
+      keys: ['location','where','find you','directions','how to get','address','map','namusera','hoima road'],
+      replies: ["We're easy to find! 📍\n\n🏨 Ritz Motel Namusera\nKampala-Hoima Road\nOff Musembi Road, Namusera, Wakiso\n\nWe're just after Shell Petro Station along Hoima Road 🚗\n\nCall for directions: 0787700044"]
+    },
+    {
+      keys: ['contact','phone','call','whatsapp','number','reach'],
+      replies: ["You can reach Ritz Motel on 📞\n\n• Phone/WhatsApp: 0787700044\n• Email: info@ritzmotelnamusera.com\n• Website: ritzmotelnamusera.com\n\nWe're open 24/7 — call anytime! 😊"]
+    },
+    {
+      keys: ['open','hours','24','when','time','always open'],
+      replies: ["Ritz Motel is open 24 hours, 7 days a week! 🕐\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nOur bar, restaurant and reception are always available. Come anytime! 😊"]
+    },
+    {
+      keys: ['wifi','parking','facilities','amenities','what do you have','what you offer'],
+      replies: ["Ritz Motel offers 🏨\n\n✅ Comfortable rooms (4 types)\n✅ Bar & Restaurant (open 24/7)\n✅ Beautiful gardens\n✅ Free WiFi (select rooms)\n✅ Air conditioning (select rooms)\n✅ Outdoor event space\n🔜 Sauna & Gym (coming soon!)\n\nAnything specific you'd like to know? 😊"]
+    },
+    {
+      keys: ['thank','thanks','thank you','asante','webale','merci'],
+      replies: [
+        "You're welcome! 😊 Feel free to ask anything else. We hope to see you at Ritz Motel soon!",
+        "Happy to help! 🌟 If you have more questions, I'm right here. Have a wonderful day!",
+        "Of course! 😊 Don't hesitate to ask if you need anything else. Ritz Motel looks forward to hosting you!"
+      ]
+    },
+    {
+      keys: ['bye','goodbye','good night','see you','later','ciao'],
+      replies: [
+        "Goodbye! 👋 We hope to welcome you to Ritz Motel soon. Have a wonderful day!",
+        "Take care! 😊 Remember, we're always here — 24/7. See you soon at Ritz Motel!"
+      ]
+    },
+    {
+      keys: ['review','reviews','feedback','rating','comment'],
+      replies: ["We love hearing from our guests! ⭐\n\nYou can leave a review right here on our website — just scroll to the Reviews section and share your experience!\n\nYou can also see what other guests are saying on our Reviews page 😊"]
+    }
+  ];
 
-ROOMS:
-- Standard Room: UGX 50,000/night — bathroom, TV, secure lock, 24h power. No breakfast.
-- Comfort Room: UGX 60,000/night — en-suite, AC, TV. No breakfast.
-- Executive Room: UGX 100,000/night — en-suite, WiFi, AC, Smart TV, hot water. BREAKFAST INCLUDED.
-- Deluxe Suite: UGX 150,000/night — garden view, WiFi, AC, Smart TV, seating area, in-room safe. BREAKFAST INCLUDED.
-Coming soon: Sauna & Gym.
+  function ninaReply(text) {
+    const t = text.toLowerCase();
+    for (const rule of ninaRules) {
+      if (rule.keys.some(k => t.includes(k))) {
+        const replies = rule.replies;
+        return replies[Math.floor(Math.random() * replies.length)];
+      }
+    }
+    // Default fallback
+    const defaults = [
+      "I'm not sure about that, but I'm happy to help with rooms, food, bar or bookings! 😊 Or call us directly on 0787700044.",
+      "Great question! For that, please call or WhatsApp us on 0787700044 — our team is available 24/7 😊",
+      "I didn't quite catch that 😅 Try asking about our rooms, food menu, bar, gardens or how to book. Or reach us on 0787700044!"
+    ];
+    return defaults[Math.floor(Math.random() * defaults.length)];
+  }
 
-BAR DRINKS: Local beers (Bell UGX5,000, Nile UGX5,000, Club UGX5,000, Castle UGX5,000). Spirits (Waragi UGX5,000, Konyagi UGX5,000, Smirnoff UGX7,000, Jameson UGX9,000). Wine UGX12,000/glass. Fresh juices (Passion/Mango UGX5,000). Soft drinks & water UGX3,000.
-
-TEA & HOT DRINKS: Black Tea UGX3,000, Milk Tea UGX5,000, Lemon Tea UGX5,000, Dawa Tea UGX10,000, Black Coffee UGX8,000, Milk Coffee UGX7,000, Plain Milk UGX5,000, Hot Water UGX1,500, Honey extra UGX1,000.
-
-FOOD MAINS: Chips & Chicken UGX25,000, Beef & Chips UGX25,000, Goat Meat & Chips UGX30,000, Fish & Chips UGX35,000, Gizzard & Liver UGX30,000, Meat Katogo+Matooke UGX10,000.
-LIGHT BITES: Plain Chips UGX10,000, Potato Wedges UGX10,000, 2 Eggs UGX5,000, Beef Samosa pair UGX4,000, Chicken Samosa pair UGX5,000, Bread 3/4 slices UGX3,000.
-UGANDAN STAPLES: Plain Katogo(veg)+Matooke UGX10,000, Rice UGX5,000, Matooke UGX10,000, Cassava UGX5,000, Cowpeas UGX10,000. All meals served with salad/kachumbari — can swap to posho, rice, spaghetti, matooke or cassava.
-
-GARDENS: Beautiful outdoor spaces, shaded seating, available for private events (birthdays, weddings, corporate). Open 24/7.
-
-BOOKING: Guests can book by calling or WhatsApp on 0787700044, or using the booking form on the website. Check-in: 12pm, Check-out: 11am.
-
-PAGES: Rooms (rooms.html), Bar & Restaurant (bar.html), Gallery (gallery.html), Reviews (reviews.html).
-
-PERSONALITY: Warm, helpful, concise. Use occasional emojis. Always quote prices in UGX. For bookings always direct to WhatsApp 0787700044. Never make up information not listed above.`;
   function appendMsg(text, who) {
     const msgs = document.getElementById('ninaMsgs');
     const d = document.createElement('div'); d.className = `msg ${who}`;
     d.innerHTML = text.replace(/\n/g,'<br>'); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   }
   function setTyping(show) { document.getElementById('ninaTypingWrap').style.display = show ? 'block' : 'none'; }
-  async function sendMsg() {
+
+  function sendMsg() {
     const inp = document.getElementById('ninaInput');
     const text = inp.value.trim(); if (!text) return;
     inp.value = ''; appendMsg(text, 'user');
-    chatHistory.push({ role: 'user', content: text });
-    document.getElementById('quickChips').style.display = 'none'; setTyping(true);
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM, messages: chatHistory })
-      });
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || "Please call us on 0787700044 😊";
-      setTyping(false); appendMsg(reply, 'bot'); chatHistory.push({ role: 'assistant', content: reply });
-    } catch(e) { setTyping(false); appendMsg("Please call us on 0787700044 📞", 'bot'); }
+    document.getElementById('quickChips').style.display = 'none';
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      appendMsg(ninaReply(text), 'bot');
+    }, 700 + Math.random() * 500);
   }
   function sendQuick(msg) { document.getElementById('ninaInput').value = msg; sendMsg(); }
 
   // ── Booking Form ──
-  function submitBooking() {
+  // ── Room prices map ──
+  const roomPrices = {
+    'Standard Room – UGX 50,000/night': 50000,
+    'Comfort Room – UGX 60,000/night': 60000,
+    'Executive Room – UGX 100,000/night (Breakfast included)': 100000,
+    'Deluxe Suite – UGX 150,000/night (Breakfast included)': 150000,
+  };
+
+  async function submitBooking(method) {
     const name = document.getElementById('bfName').value.trim();
     const phone = document.getElementById('bfPhone').value.trim();
+    const email = document.getElementById('bfEmail').value.trim();
     const room = document.getElementById('bfRoom').value;
     const guests = document.getElementById('bfGuests').value;
     const checkin = document.getElementById('bfCheckin').value;
     const checkout = document.getElementById('bfCheckout').value;
     const notes = document.getElementById('bfNotes').value.trim();
-    const msg = document.getElementById('bfMsg');
 
-    // Validation
     if (!name) { showBfMsg('Please enter your full name', 'err'); return; }
     if (!phone) { showBfMsg('Please enter your phone number', 'err'); return; }
     if (!room) { showBfMsg('Please select a room type', 'err'); return; }
@@ -608,27 +774,49 @@ PERSONALITY: Warm, helpful, concise. Use occasional emojis. Always quote prices 
     if (!checkout) { showBfMsg('Please select a check-out date', 'err'); return; }
     if (new Date(checkout) <= new Date(checkin)) { showBfMsg('Check-out must be after check-in', 'err'); return; }
 
-    // Calculate nights
     const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
-
-    // Format dates nicely
+    const pricePerNight = roomPrices[room] || 0;
+    const totalAmount = pricePerNight * nights;
     const fmt = d => new Date(d).toLocaleDateString('en-UG', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
 
-    // Build WhatsApp message
-    let waMsg = `Hello Ritz Motel! I'd like to make a booking.\n\n`;
-    waMsg += `👤 *Name:* ${name}\n`;
-    waMsg += `📞 *Phone:* ${phone}\n`;
-    waMsg += `🛏 *Room:* ${room}\n`;
-    waMsg += `👥 *Guests:* ${guests}\n`;
-    waMsg += `📅 *Check-in:* ${fmt(checkin)}\n`;
-    waMsg += `📅 *Check-out:* ${fmt(checkout)}\n`;
-    waMsg += `🌙 *Nights:* ${nights} night${nights > 1 ? 's' : ''}\n`;
-    if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
-    waMsg += `\nPlease confirm availability. Thank you!`;
+    if (method === 'whatsapp') {
+      let waMsg = `Hello Ritz Motel! I'd like to make a booking.\n\n`;
+      waMsg += `👤 *Name:* ${name}\n`;
+      waMsg += `📞 *Phone:* ${phone}\n`;
+      waMsg += `🛏 *Room:* ${room}\n`;
+      waMsg += `👥 *Guests:* ${guests}\n`;
+      waMsg += `📅 *Check-in:* ${fmt(checkin)}\n`;
+      waMsg += `📅 *Check-out:* ${fmt(checkout)}\n`;
+      waMsg += `🌙 *Nights:* ${nights} night${nights > 1 ? 's' : ''}\n`;
+      waMsg += `💰 *Total:* UGX ${totalAmount.toLocaleString()}\n`;
+      if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
+      waMsg += `\nPlease confirm availability. Thank you!`;
+      window.open(`https://wa.me/256787700044?text=${encodeURIComponent(waMsg)}`, '_blank');
+      showBfMsg('✅ Opening WhatsApp — send the message to confirm your booking!', 'ok');
+      return;
+    }
 
-    const encoded = encodeURIComponent(waMsg);
-    window.open(`https://wa.me/256787700044?text=${encoded}`, '_blank');
-    showBfMsg('✅ Opening WhatsApp — please send the message to confirm your booking!', 'ok');
+    if (method === 'pay') {
+      showBfMsg('⏳ Connecting to payment gateway…', 'ok');
+      const btns = document.querySelectorAll('.bf-submit');
+      btns.forEach(b => b.disabled = true);
+      try {
+        const res = await fetch('/api/pesapal?action=pay', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, email, room, checkin, checkout, nights, amount: totalAmount })
+        });
+        const data = await res.json();
+        if (data.redirect_url) {
+          window.location.href = data.redirect_url;
+        } else {
+          throw new Error(data.error || 'Payment initiation failed');
+        }
+      } catch(e) {
+        showBfMsg('Payment failed: ' + e.message + '. Try WhatsApp booking instead.', 'err');
+        btns.forEach(b => b.disabled = false);
+      }
+    }
   }
 
   function showBfMsg(txt, type) {
