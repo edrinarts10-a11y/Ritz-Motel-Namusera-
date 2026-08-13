@@ -354,7 +354,7 @@
     </div>
     <div class="bf-msg" id="bfMsg"></div>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-      <button class="bf-submit" style="flex:1;background:#25D366;" onclick="submitBooking('whatsapp')">💬 Book via WhatsApp</button>
+      <button class="bf-submit" style="flex:1;background:#25D366;" onclick="submitBooking('whatsapp')">Book via WhatsApp</button>
       <button class="bf-submit" style="flex:1;background:var(--red);" onclick="submitBooking('pay')">💳 Pay Now (MTN/Airtel/Visa)</button>
     </div>
     <p class="bf-note">WhatsApp: instant confirmation. Pay Now: secure online payment via Pesapal.</p>
@@ -791,10 +791,10 @@
       waMsg += `💰 *Total:* UGX ${totalAmount.toLocaleString()}\n`;
       if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
       waMsg += `\nPlease confirm availability. Thank you!`;
-      window.open(`https://wa.me/256787700044?text=${encodeURIComponent(waMsg)}`, '_blank');
+      window.open(`https://wa.me/256701114363?text=${encodeURIComponent(waMsg)}`, '_blank');
       showBfMsg('✅ Opening WhatsApp — send the message to confirm your booking!', 'ok');
       return;
-    }
+    }  // ── my number──
 
     if (method === 'pay') {
       showBfMsg('⏳ Connecting to payment gateway…', 'ok');
