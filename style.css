@@ -428,7 +428,7 @@
   
     /* ── FLOAT CAL ── */
   .float-cal {
-    position: fixed; bottom: 85px; right: 28px; z-index: 999;
+    position: fixed; bottom: 150px; right: 28px; z-index: 999;
     width: 56px; height: 56px; border-radius: 50%;
     background: #25D366;
     display: flex; align-items: center; justify-content: center;

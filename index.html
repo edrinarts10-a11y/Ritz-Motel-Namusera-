@@ -245,59 +245,6 @@
   </div>
 </section>
 
-<!-- COMING SOON -->
-<section class="coming-soon">
-  <div class="sec-head">
-    <p class="sec-label">✦ What's Coming</p>
-    <h2>New at <em>Ritz</em></h2>
-  </div>
-  <div class="cs-grid">
-    <div class="cs-card">
-      <div class="cs-icon">🧖</div>
-      <h3>Ritz Sauna</h3>
-      <p>A relaxing sauna retreat for guests and walk-ins. Unwind, detox and recharge in style after a long day.</p>
-    </div>
-    <div class="cs-card">
-      <div class="cs-icon">🏋️</div>
-      <h3>Ritz Gym</h3>
-      <p>A fully equipped fitness centre opening soon. Keep up your routine while staying at Ritz Motel.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GARDENS -->
-<section class="gardens-section" id="gardens">
-  <div class="sec-head" style="text-align:center;padding:0 24px 40px;">
-    <p class="sec-label">✦ Our Gardens</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:900;color:var(--text);margin:10px 0 12px;">Beautiful <em style="color:var(--red);font-style:italic;">Outdoor Spaces</em></h2>
-    <p style="color:var(--text-soft);font-size:15px;max-width:520px;margin:0 auto;">Lush greenery, shaded seating and a relaxed atmosphere. Perfect for evening drinks, private events, birthdays, weddings and get-togethers.</p>
-  </div>
-  <div class="gardens-grid">
-    <div class="gd-item wide">
-      <img src="garden_path.jpg" alt="Ritz Motel Gardens">
-      <div class="gd-overlay"><span>🌿 Our Gardens</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_lawn.jpg" alt="Garden Lawn">
-      <div class="gd-overlay"><span>🌱 Garden Lawn</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_green.jpg" alt="Green Garden">
-      <div class="gd-overlay"><span>🌴 Green Spaces</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_night_1.jpg" alt="Garden at Night">
-      <div class="gd-overlay"><span>🌙 Evening Vibes</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_night_2.jpg" alt="Garden Night Lights">
-      <div class="gd-overlay"><span>✨ Night Lights</span></div>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:36px;">
-    <a href="gallery.html" class="btn-outline-red">See Full Gallery →</a>
-  </div>
-</section>
 
 <!-- BOOKING FORM -->
 <section class="booking-form-section" id="book">
@@ -358,6 +305,60 @@
       <button class="bf-submit" style="flex:1;background:var(--red);" onclick="submitBooking('pay')">💳 Pay Now (MTN/Airtel/Visa)</button>
     </div>
     <p class="bf-note">WhatsApp: instant confirmation. Pay Now: secure online payment via Pesapal.</p>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="coming-soon">
+  <div class="sec-head">
+    <p class="sec-label">✦ What's Coming</p>
+    <h2>New at <em>Ritz</em></h2>
+  </div>
+  <div class="cs-grid">
+    <div class="cs-card">
+      <div class="cs-icon">🧖</div>
+      <h3>Ritz Sauna</h3>
+      <p>A relaxing sauna retreat for guests and walk-ins. Unwind, detox and recharge in style after a long day.</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-icon">🏋️</div>
+      <h3>Ritz Gym</h3>
+      <p>A fully equipped fitness centre opening soon. Keep up your routine while staying at Ritz Motel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GARDENS -->
+<section class="gardens-section" id="gardens">
+  <div class="sec-head" style="text-align:center;padding:0 24px 40px;">
+    <p class="sec-label">✦ Our Gardens</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:900;color:var(--text);margin:10px 0 12px;">Beautiful <em style="color:var(--red);font-style:italic;">Outdoor Spaces</em></h2>
+    <p style="color:var(--text-soft);font-size:15px;max-width:520px;margin:0 auto;">Lush greenery, shaded seating and a relaxed atmosphere. Perfect for evening drinks, private events, birthdays, weddings and get-togethers.</p>
+  </div>
+  <div class="gardens-grid">
+    <div class="gd-item wide">
+      <img src="garden_path.jpg" alt="Ritz Motel Gardens">
+      <div class="gd-overlay"><span>🌿 Our Gardens</span></div>
+    </div>
+    <div class="gd-item">
+      <img src="garden_lawn.jpg" alt="Garden Lawn">
+      <div class="gd-overlay"><span>🌱 Garden Lawn</span></div>
+    </div>
+    <div class="gd-item">
+      <img src="garden_green.jpg" alt="Green Garden">
+      <div class="gd-overlay"><span>🌴 Green Spaces</span></div>
+    </div>
+    <div class="gd-item">
+      <img src="garden_night_1.jpg" alt="Garden at Night">
+      <div class="gd-overlay"><span>🌙 Evening Vibes</span></div>
+    </div>
+    <div class="gd-item">
+      <img src="garden_night_2.jpg" alt="Garden Night Lights">
+      <div class="gd-overlay"><span>✨ Night Lights</span></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;">
+    <a href="gallery.html" class="btn-outline-red">See Full Gallery →</a>
   </div>
 </section>
 
@@ -791,7 +792,7 @@
       waMsg += `💰 *Total:* UGX ${totalAmount.toLocaleString()}\n`;
       if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
       waMsg += `\nPlease confirm availability. Thank you!`;
-      window.open(`https://wa.me/256701114363?text=${encodeURIComponent(waMsg)}`, '_blank');
+      window.open(`https://wa.me/256787700044?text=${encodeURIComponent(waMsg)}`, '_blank');
       showBfMsg('✅ Opening WhatsApp — send the message to confirm your booking!', 'ok');
       return;
     }  // ── my number──
