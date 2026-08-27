@@ -86,32 +86,51 @@
     <li><a href="bar.html">Bar & Restaurant</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="#gardens">Gardens</a></li>
-    <li><a href="#book">Book Now</a></li>
+    <li><a href="book.htm#book">Book Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#book" class="nav-cta">🛏 Book a Room</a>
   <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <video class="hero-video" autoplay loop muted playsinline>
-    <source src="images.mp4" type="video/mp4">
-  </video>
+<!-- HERO - CAROUSEL VERSION -->
+<section class="hero" id="hero">
+  <!-- Image Carousel Container -->
+  <div class="hero-carousel">
+    <div class="carousel-slide active" style="background-image: url('70000.jpg');"></div>
+    <div class="carousel-slide" style="background-image: url('120_000.jpg');"></div>
+  </div>
+  
+  <!-- Dark overlay for text readability -->
+  <div class="hero-overlay"></div>
+  
+  <!-- Hero Content -->
   <div class="hero-content">
-    <div class="hero-tag">🌿 New Along Hoima Road</div>
+    <div class="hero-tag">🌿 Your Comfort Retreat</div>
     <h1><em>Ritz</em><br>Motel</h1>
-    <p class="hero-sub">Namusera, Kampala</p>
+    <p class="hero-sub">Namusera, Kampala-Hoima Road</p>
     <div class="hero-bar"></div>
-    <p>Your comfort retreat along Kampala-Hoima Road. Quality accommodation, a fully stocked bar & restaurant, and lush garden spaces — all at one address.</p>
+    <p>Clean, comfortable rooms from UGX 50,000/night. Experience our bar & restaurant, beautiful gardens, and 24/7 hospitality — all at one address.</p>
     <div class="hero-btns">
-      <a href="#book" class="btn-red">Click to Book Now</a>
-      <a href="rooms.html" class="btn-ghost"> 🛏️ Our Rooms</a>
+      <a href="book.html" class="btn-red">Book Now</a>
+      <a href="rooms.html" class="btn-ghost">🛏️ View Rooms</a>
     </div>
   </div>
-</section>
 
+  <!-- Carousel indicators (dots) -->
+  <div class="carousel-dots">
+    <button class="dot active" data-slide="0" aria-label="Room 1"></button>
+    <button class="dot" data-slide="1" aria-label="Room 2"></button>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="12 5 12 19"></polyline>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </div>
+</section>
 <!-- STRIP -->
 <div class="strip">
   <a href="rooms.html" class="strip-item" style="text-decoration:none;">
@@ -150,6 +169,126 @@
     </div>
   </div>
 </section>
+
+<!-- ROOMS COLLECTION SECTION -->
+<section class="rooms-collection" id="rooms-section">
+  <div class="rooms-header">
+    <p class="sec-label">DISCOVER OUR SPACES</p>
+    <h2>Choose Your <em>Perfect Room</em></h2>
+    <p class="rooms-subtitle">Four distinct room types designed for comfort and affordability. All include clean linens, AC, and 24/7 service.</p>
+  </div>
+
+  <div class="rooms-grid">
+    <!-- Room 1: Standard -->
+    <div class="room-card">
+      <div class="room-image" style="background-image: url('70.000.jpg');">
+        <div class="room-overlay">
+          <div class="room-price-badge">UGX 50,000/night</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <h3>Standard Room</h3>
+        <p class="room-desc">Comfortable and clean entry-level accommodation. Perfect for budget-conscious travelers.</p>
+        <div class="room-amenities">
+          <span class="amenity">Bed: Queen or Twin</span>
+          <span class="amenity">Private Bathroom</span>
+          <span class="amenity">Good Airation</span>
+          <span class="amenity"> WiFi</span>
+        </div>
+        <div class="room-footer">
+          <a href="#book" class="room-btn">Book Now</a>
+          <span class="room-price">UGX 50,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 2: Comfort -->
+    <div class="room-card">
+      <div class="room-image" style="background-image: url('50,000.jpg');">
+        <div class="room-overlay">
+          <div class="room-price-badge">UGX 60,000/night</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <h3>Comfort Room</h3>
+        <p class="room-desc">Upgraded comfort with extra space and amenities. Your ideal choice for relaxation.</p>
+        <div class="room-amenities">
+          <span class="amenity">Bed: King Size</span>
+          <span class="amenity">Premium Bathroom</span>
+          <span class="amenity">Good Airation</span>
+          <span class="amenity"> WiFi</span>
+          <span class="amenity">Flat-Screen TV</span>
+        </div>
+        <div class="room-footer">
+          <a href="#book" class="room-btn">Book Now</a>
+          <span class="room-price">UGX 60,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 3: Executive -->
+    <div class="room-card featured">
+      <div class="room-badge">MOST POPULAR</div>
+      <div class="room-image" style="background-image: url('100,000.jpg');">
+        <div class="room-overlay">
+          <div class="room-price-badge">UGX 100,000/night</div>
+          <div class="breakfast-badge">Breakfast Included</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <h3>Executive Room</h3>
+        <p class="room-desc">Premium suite with superior furnishings and full breakfast. For business or leisure travelers.</p>
+        <div class="room-amenities">
+          <span class="amenity">Bed: King Suite</span>
+          <span class="amenity">Luxury Bathroom</span>
+          <span class="amenity">Good Airation</span>
+          <span class="amenity"> WiFi</span>
+          <span class="amenity">Flat-Screen TV</span>
+        
+          <span class="amenity">Work Desk</span>
+        </div>
+        <div class="room-footer">
+          <a href="#book" class="room-btn btn-primary">Book Now</a>
+          <span class="room-price">UGX 100,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 4: Deluxe Suite -->
+    <div class="room-card">
+      <div class="room-image" style="background-image: url('120,000.jpg');">
+        <div class="room-overlay">
+          <div class="room-price-badge">UGX 150,000/night</div>
+          <div class="breakfast-badge">Breakfast Included</div>
+        </div>
+      </div>
+      <div class="room-content">
+        <h3>Deluxe Suite</h3>
+        <p class="room-desc">Our most luxurious offering. Spacious suite with premium amenities and breakfast service.</p>
+        <div class="room-amenities">
+          <span class="amenity">Bed: King + Living Area</span>
+          <span class="amenity">Luxury Bathroom</span>
+          <span class="amenity">Good Airation</span>
+          <span class="amenity">WiFi</span>
+          <span class="amenity">Flat-Screen TV</span>
+          <span class="amenity">Breakfast Included</span>
+          <span class="amenity">Work Desk</span>
+          <span class="amenity">Sofa & Coffee Table</span>
+        </div>
+        <div class="room-footer">
+          <a href="#book" class="room-btn">Book Now</a>
+          <span class="room-price">UGX 150,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rooms-cta">
+    <p>All rooms feature clean linens, private bathrooms, and 24/7 access to our bar and restaurant.</p>
+    <a href="#contact" class="btn-outline">Questions About Rooms</a>
+  </div>
+</section>
+
 
 <!-- REVIEWS (Firebase dynamic) -->
 <section class="reviews" id="reviews">
@@ -251,20 +390,20 @@
   <div class="sec-head">
     <p class="sec-label">✦ Book a Room</p>
     <h2>Reserve Your <em>Stay</em></h2>
-    <p style="color:var(--text-soft);font-size:15px;max-width:500px;margin:0 auto;">Fill in your details and we'll confirm your room via WhatsApp within minutes.</p>
+    
   </div>
   <div class="bf-card">
     <div class="bf-grid">
       <div class="bf-field">
-        <label>🙂 Full Name</label>
+        <label>Full Name</label>
         <input type="text" id="bfName" placeholder="e.g. John Kato">
       </div>
       <div class="bf-field">
-        <label>📞 Phone Number</label>
+        <label>Phone Number</label>
         <input type="tel" id="bfPhone" placeholder="e.g. 0787 123 456">
       </div>
       <div class="bf-field">
-        <label>🛏 Room Type</label>
+        <label> Room Type</label>
         <select id="bfRoom">
           <option value="">Select a room…</option>
           <option value="Standard Room – UGX 50,000/night">Standard Room – UGX 50,000/night</option>
@@ -274,7 +413,7 @@
         </select>
       </div>
       <div class="bf-field">
-        <label>👥 Number of Guests</label>
+        <label>Number of Guests</label>
         <select id="bfGuests">
           <option value="1 guest">1 guest</option>
           <option value="2 guests">2 guests</option>
@@ -302,9 +441,9 @@
     <div class="bf-msg" id="bfMsg"></div>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
       <button class="bf-submit" style="flex:1;background:#25D366;" onclick="submitBooking('whatsapp')">Book via WhatsApp</button>
-      <button class="bf-submit" style="flex:1;background:var(--red);" onclick="submitBooking('pay')">💳 Pay Now (MTN/Airtel/Visa)</button>
+      <button class="bf-submit" style="flex:1;background:var(--red);" onclick="submitBooking('pay')">Pay Now (MTN/Airtel/Visa)</button>
     </div>
-    <p class="bf-note">WhatsApp: instant confirmation. Pay Now: secure online payment via Pesapal.</p>
+    <p class="bf-note"><span style="color:green">WhatsApp:</span> instant confirmation. <span style="color:red"> Pay Now:</span> to immediately secure online payment via Pesapal.</p>
   </div>
 </section>
 
@@ -398,7 +537,7 @@
   <p>Designed by:<a href="https://wa.me/256761273024" style="color:green;text-decoration: none;"> Dev_Edrine</a></p>
 </footer>
 
-<a href="tel:+256 787 70 00 44"><img src="images (7).jpeg" class="float-cal" title="Chat on WhatsApp"></a>
+
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
 
 <div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
@@ -437,9 +576,52 @@
 </div>
 
 <script>
+   // ── Hero Carousel Script ──
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  let currentSlide = 0;
+  let autoRotateInterval;
+
+  function showSlide(n) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === n);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === n);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(nextSlide, 5000);
+  }
+
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentSlide = i;
+      showSlide(currentSlide);
+      resetAutoRotate();
+    });
+  });
+
+  const heroCarousel = document.querySelector('.hero-carousel');
+  heroCarousel?.addEventListener('mouseenter', () => clearInterval(autoRotateInterval));
+  heroCarousel?.addEventListener('mouseleave', startAutoRotate);
+
+  startAutoRotate();
+
   // ════════════════════════════════════════
-  // ⬇️  REPLACE WITH YOUR SUPABASE PROJECT DETAILS
-  // (Get these from Supabase Dashboard → Project Settings → API)
+  
+  // ⬇ SUPABASE PROJECT DETAILS
   const SUPABASE_URL = "https://nyplpfiykmanteemzjbb.supabase.co";
   const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55cGxwZml5a21hbnRlZW16amJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0OTUyNTEsImV4cCI6MjA5NzA3MTI1MX0.-6_r2TXyZhbkLKvvTBLNY01e42IbDa9SgFA8_p3DzkI";
   // ════════════════════════════════════════
