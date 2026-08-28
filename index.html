@@ -98,7 +98,7 @@
   <!-- Image Carousel Container -->
   <div class="hero-carousel">
     <div class="carousel-slide active" style="background-image: url('70000.jpg');"></div>
-    <div class="carousel-slide" style="background-image: url('120_000.jpg');"></div>
+    <div class="carousel-slide" style="background-image: url('120,000.jpg');"></div>
   </div>
   
   <!-- Dark overlay for text readability -->
@@ -133,18 +133,80 @@
 </section>
 <!-- STRIP -->
 <div class="strip">
-  <a href="rooms.html" class="strip-item" style="text-decoration:none;">
-    <div class="strip-icon">🛏</div><div><h3>Accommodation</h3><p>4 room types from 50k</p></div>
+
+  <!-- Accommodation -->
+  <a href="rooms.html" class="strip-item">
+    <div class="strip-icon">
+      <!-- Bed icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 18V7"/>
+        <path d="M3 14h18v4"/>
+        <path d="M5 14V9h5c2 0 3 2 3 5"/>
+        <path d="M21 18V11c0-1.1-.9-2-2-2h-6"/>
+      </svg>
+    </div>
+
+    <div>
+      <h3>Accommodation</h3>
+      <p>4 room types from 50k</p>
+    </div>
   </a>
-  <a href="#bar-section" class="strip-item" style="text-decoration:none;">
-    <div class="strip-icon">🍺</div><div><h3>Bar & Restaurant</h3><p>Drinks, food & great vibes</p></div>
+
+
+  <!-- Bar & Restaurant -->
+  <a href="#bar-section" class="strip-item">
+    <div class="strip-icon">
+      <!-- Restaurant icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 3v8"/>
+        <path d="M4 3v5a3 3 0 0 0 6 0V3"/>
+        <path d="M7 11v10"/>
+        <path d="M16 3v18"/>
+        <path d="M16 3c3 1 4 3 4 6v2h-4"/>
+      </svg>
+    </div>
+
+    <div>
+      <h3>Bar & Restaurant</h3>
+      <p>Drinks, food & great vibes</p>
+    </div>
   </a>
+
+
+  <!-- Gardens -->
   <div class="strip-item">
-    <div class="strip-icon">🌿</div><div><h3>Gardens</h3><p>Relax in outdoor space</p></div>
+    <div class="strip-icon">
+      <!-- Leaf icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 4C11 4 5 8 5 14c0 3 2 5 5 5 6 0 10-6 10-15Z"/>
+        <path d="M4 21c4-7 8-10 15-13"/>
+      </svg>
+    </div>
+
+    <div>
+      <h3>Gardens</h3>
+      <p>Relax in outdoor space</p>
+    </div>
   </div>
-  <a href="gallery.html" class="strip-item" style="text-decoration:none;">
-    <div class="strip-icon">📸</div><div><h3>Gallery</h3><p>See our spaces</p></div>
+
+
+  <!-- Gallery -->
+  <a href="gallery.html" class="strip-item">
+    <div class="strip-icon">
+      <!-- Gallery icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
+        <circle cx="8" cy="9" r="1.5"/>
+        <path d="m3 17 5-5 4 4 3-3 6 6"/>
+      </svg>
+    </div>
+
+    <div>
+      <h3>Gallery</h3>
+      <p>See our spaces</p>
+    </div>
   </a>
+
 </div>
 
 <!-- ABOUT -->
@@ -327,18 +389,18 @@
       </div>
       <p class="rf-rating-text" id="rfRatingText">&nbsp;</p>
       <div class="rf-field">
-        <label>🙂 Your Name</label>
+        <label> Your Name</label>
         <input type="text" id="rfName" placeholder="e.g. Sarah Nakato">
       </div>
       <div class="rf-field">
-        <label>📍 Where are you from?</label>
+        <label> Where are you from?</label>
         <input type="text" id="rfLocation" placeholder="e.g. Kampala, Jinja, Hoima…">
       </div>
       <div class="rf-field">
-        <label>📝 Your Review</label>
+        <label>Your Review</label>
         <textarea id="rfText" placeholder="Tell others about your stay at Ritz Motel…"></textarea>
       </div>
-      <button class="rf-submit" id="rfSubmit" onclick="submitReview()">⭐ Submit Review</button>
+      <button class="rf-submit" id="rfSubmit" onclick="submitReview()">Submit Review</button>
       <div class="rf-msg" id="rfMsg"></div>
     </div>
   </div>
@@ -422,20 +484,20 @@
         </select>
       </div>
       <div class="bf-field">
-        <label>📅 Check-in Date</label>
+        <label>Check-in Date</label>
         <input type="date" id="bfCheckin">
       </div>
       <div class="bf-field">
-        <label>📅 Check-out Date</label>
+        <label> Check-out Date</label>
         <input type="date" id="bfCheckout">
       </div>
       <div class="bf-field">
-        <label>📧 Email (optional)</label>
+        <label> Email (optional)</label>
         <input type="email" id="bfEmail" placeholder="e.g. john@gmail.com">
       </div>
     </div>
     <div class="bf-field" style="margin-top:4px;">
-      <label>📝 Special Requests (optional)</label>
+      <label>Special Requests (optional)</label>
       <textarea id="bfNotes" placeholder="e.g. early check-in, ground floor room, extra towels…" rows="3"></textarea>
     </div>
     <div class="bf-msg" id="bfMsg"></div>
@@ -500,31 +562,26 @@
     <a href="gallery.html" class="btn-outline-red">See Full Gallery →</a>
   </div>
 </section>
+<!-- BAR & RESTAURANT SECTION -->
+<section class="bar-section" id="bar-section">
+  <div class="bar-hero">
+    <div class="bar-hero-content">
+      <p class="sec-label">UNWIND & CELEBRATE</p>
+      <h2>Ritz Bar & <em>Restaurant</em></h2>
+      <p>Open 24/7. Cold drinks, fresh food, and great company. Perfect for relaxation or celebration.</p>
+    </div>
+  </div>
 
 
 <!-- =========================
      BAR & RESTAURANT SECTION
 ========================= -->
-<section class="bar-section" id="bar-section">
 
-    <!-- HERO -->
-    <div class="bar-hero">
-        <div class="bar-hero-content">
-            <p class="sec-label">UNWIND & CELEBRATE</p>
-
-            <h2>Ritz Bar & <em>Restaurant</em></h2>
-
-            <p>
-                Open 24/7. Fresh food, refreshing drinks,
-                and great company.
-            </p>
-        </div>
-    </div>
+<!-- =========================
+     OUR MENU
+========================= -->
 
 
-    <!-- =========================
-         OUR MENU
-    ========================= -->
     <div class="menu-wrapper">
 
         <button class="main-menu-btn" id="menuButton">
@@ -546,50 +603,334 @@
             <!-- =====================
                  FOOD
             ====================== -->
-            <div class="category">
+   <div class="category">
 
-                <button class="category-btn">
-                    <span>🍽️ Food</span>
-                    <span class="category-arrow">+</span>
-                </button>
+        <button class="category-btn">
+            <span>🍽️ Food</span>
+            <span class="category-arrow">+</span>
+        </button>
 
-                <div class="category-content">
+        <div class="category-content">
 
-                    <div class="menu-item">
-                        <div>
-                            <strong>Chips & Eggs</strong>
-                            <small>Fresh chips served with eggs</small>
-                        </div>
-                        <span>UGX 8,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Rolex</strong>
-                            <small>Chapati roll with eggs</small>
-                        </div>
-                        <span>UGX 5,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Grilled Chicken</strong>
-                            <small>Freshly grilled chicken</small>
-                        </div>
-                        <span>UGX 15,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Nyama Choma</strong>
-                            <small>Grilled meat plate</small>
-                        </div>
-                        <span>UGX 20,000</span>
-                    </div>
-
+            <div class="menu-item">
+                <div>
+                    <strong>Plain Chips</strong>
+                    <small>Fresh chips served with salad/kachumbari</small>
                 </div>
+                <span>UGX 10,000</span>
             </div>
 
+
+            <div class="menu-item">
+                <div>
+                    <strong>2 Eggs</strong>
+                    <small>Two eggs served with salad/kachumbari</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Plain Katogo (Veg) + Matooke</strong>
+                    <small>Vegetable katogo served with matooke</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Meat Katogo + Matooke</strong>
+                    <small>Meat katogo served with matooke</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Chips & Chicken</strong>
+                    <small>Chicken served with chips and salad/kachumbari</small>
+                </div>
+                <span>UGX 25,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Beef & Chips</strong>
+                    <small>Beef served with chips and salad/kachumbari</small>
+                </div>
+                <span>UGX 25,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Goat Meat & Chips</strong>
+                    <small>Goat meat served with chips and salad/kachumbari</small>
+                </div>
+                <span>UGX 30,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Fish & Chips</strong>
+                    <small>Fish served with chips and salad/kachumbari</small>
+                </div>
+                <span>UGX 35,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Gizzard & Liver</strong>
+                    <small>Served with salad/kachumbari</small>
+                </div>
+                <span>UGX 30,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Plain Chips with Salad</strong>
+                    <small>Fresh chips with salad/kachumbari</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Potato Wedges</strong>
+                    <small>Crispy potato wedges with salad</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Rice</strong>
+                    <small>Served with salad/kachumbari</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Matooke</strong>
+                    <small>Traditional Ugandan matooke</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Cassava</strong>
+                    <small>Served with salad/kachumbari</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Cowpeas</strong>
+                    <small>Served with salad/kachumbari</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Beef Samosa</strong>
+                    <small>Pair of beef samosas</small>
+                </div>
+                <span>UGX 4,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Chicken Samosa</strong>
+                    <small>Pair of chicken samosas</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Bread</strong>
+                    <small>3/4 slices</small>
+                </div>
+                <span>UGX 3,000</span>
+            </div>
+
+
+            <!-- FOOD NOTE -->
+
+            <div class="menu-note">
+                <strong>Note:</strong>
+                All the above goes with salad/kachumbari.
+                The accompaniment can be changed to
+                posho, rice, spaghetti, matooke, or cassava.
+            </div>
+
+        </div>
+    </div>
+
+  <!-- =====================
+         SOFT DRINKS
+    ====================== -->
+
+    <div class="category">
+
+        <button class="category-btn">
+            <span>🥤 Soft Drinks</span>
+            <span class="category-arrow">+</span>
+        </button>
+
+        <div class="category-content">
+
+            <div class="menu-item">
+                <div>
+                    <strong>Coca-Cola / Fanta</strong>
+                    <small>Cold soft drink</small>
+                </div>
+                <span>UGX 3,000</span>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <strong>Sprite / 7UP</strong>
+                    <small>Cold soft drink</small>
+                </div>
+                <span>UGX 3,000</span>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <strong>Bottled Water</strong>
+                    <small>Refreshing bottled water</small>
+                </div>
+                <span>UGX 2,000</span>
+            </div>
+
+            <div class="menu-item">
+                <div>
+                    <strong>Fresh Juice</strong>
+                    <small>Freshly prepared juice</small>
+                </div>
+                <span>UGX 4,000</span>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- =====================
+         TEA & COFFEE
+    ====================== -->
+
+    <div class="category">
+
+        <button class="category-btn">
+            <span>☕ Tea & Coffee</span>
+            <span class="category-arrow">+</span>
+        </button>
+
+        <div class="category-content">
+
+            <div class="menu-item">
+                <div>
+                    <strong>Black Tea</strong>
+                    <small>Freshly prepared black tea</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Milk Tea</strong>
+                    <small>Warm tea prepared with milk</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Black Coffee</strong>
+                    <small>Freshly brewed black coffee</small>
+                </div>
+                <span>UGX 8,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Milk Coffee</strong>
+                    <small>Warm coffee with milk</small>
+                </div>
+                <span>UGX 7,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Hot Water</strong>
+                    <small>Hot drinking water</small>
+                </div>
+                <span>UGX 1,500</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Lemon Tea</strong>
+                    <small>Refreshing tea with lemon</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Honey (Extra)</strong>
+                    <small>Honey added on request</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Plain Milk</strong>
+                    <small>Warm plain milk</small>
+                </div>
+                <span>UGX 5,000</span>
+            </div>
+
+
+            <div class="menu-item">
+                <div>
+                    <strong>Dawa Tea</strong>
+                    <small>Warm lemon, honey and ginger drink</small>
+                </div>
+                <span>UGX 10,000</span>
+            </div>
+
+        </div>
+    </div>
 
             <!-- =====================
                  BEERS
@@ -597,7 +938,7 @@
             <div class="category">
 
                 <button class="category-btn">
-                    <span>🍺 Beers</span>
+                    <span> Beers</span>
                     <span class="category-arrow">+</span>
                 </button>
 
@@ -639,101 +980,7 @@
             </div>
 
 
-            <!-- =====================
-                 SOFT DRINKS
-            ====================== -->
-            <div class="category">
-
-                <button class="category-btn">
-                    <span>🥤 Soft Drinks</span>
-                    <span class="category-arrow">+</span>
-                </button>
-
-                <div class="category-content">
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Coca-Cola / Fanta</strong>
-                            <small>Cold soft drink</small>
-                        </div>
-                        <span>UGX 3,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Sprite / 7UP</strong>
-                            <small>Cold soft drink</small>
-                        </div>
-                        <span>UGX 3,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Bottled Water</strong>
-                            <small>Refreshing bottled water</small>
-                        </div>
-                        <span>UGX 2,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Fresh Juice</strong>
-                            <small>Freshly prepared juice</small>
-                        </div>
-                        <span>UGX 4,000</span>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <!-- =====================
-                 TEA & COFFEE
-            ====================== -->
-            <div class="category">
-
-                <button class="category-btn">
-                    <span>☕ Tea & Coffee</span>
-                    <span class="category-arrow">+</span>
-                </button>
-
-                <div class="category-content">
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Black Coffee</strong>
-                            <small>Freshly brewed coffee</small>
-                        </div>
-                        <span>UGX 3,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Coffee with Milk</strong>
-                            <small>Warm coffee with milk</small>
-                        </div>
-                        <span>UGX 4,000</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Tea</strong>
-                            <small>Freshly prepared tea</small>
-                        </div>
-                        <span>UGX 2,500</span>
-                    </div>
-
-                    <div class="menu-item">
-                        <div>
-                            <strong>Hot Chocolate</strong>
-                            <small>Warm chocolate drink</small>
-                        </div>
-                        <span>UGX 4,000</span>
-                    </div>
-
-                </div>
-            </div>
-
+            
 
             <!-- =====================
                  WINES & SPIRITS
@@ -741,7 +988,7 @@
             <div class="category">
 
                 <button class="category-btn">
-                    <span>🍷 Wines & Spirits</span>
+                    <span> Wines & Spirits</span>
                     <span class="category-arrow">+</span>
                 </button>
 
@@ -794,6 +1041,7 @@
 
 </section>
 
+  
 <style>
   /* =========================
    BAR SECTION
@@ -1905,67 +2153,342 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('bfCheckout').min = this.value;
   });
 </script>
+<!----- smooth animations---->
+<script>
+/* =========================================================
+   RITZ MOTEL — ANIMATION JAVASCRIPT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================================
+       1. SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+        ".rooms-header, .room-card, " +
+        ".gardens-section .sec-head, .gd-item, " +
+        ".bar-hero, .menu-wrapper, " +
+        ".teaser-card, .booking-form-section, " +
+        ".bf-card, .review-card, .sec-head"
+    );
+
+    revealElements.forEach(function (element) {
+        element.classList.add("reveal");
+    });
+
+
+    const revealObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+
+    revealElements.forEach(function (element) {
+        revealObserver.observe(element);
+    });
+
+
+    /* =====================================================
+       2. STAGGER ROOM CARDS
+    ===================================================== */
+
+    document.querySelectorAll(".room-card").forEach(function (card, index) {
+
+        card.style.transitionDelay = (index * 0.12) + "s";
+
+    });
+
+
+    /* =====================================================
+       3. STAGGER GARDEN ITEMS
+    ===================================================== */
+
+    document.querySelectorAll(".gd-item").forEach(function (item, index) {
+
+        item.style.transitionDelay = (index * 0.10) + "s";
+
+    });
+
+
+    /* =====================================================
+       4. STAGGER TEASER CARDS
+    ===================================================== */
+
+    document.querySelectorAll(".teaser-card").forEach(function (card, index) {
+
+        card.style.transitionDelay = (index * 0.12) + "s";
+
+    });
+
+
+    /* =====================================================
+       5. MENU ANIMATION
+    ===================================================== */
+
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+
+    if (menuButton && menuPanel) {
+
+        menuButton.addEventListener("click", function () {
+
+            setTimeout(function () {
+
+                const isVisible =
+                    menuPanel.classList.contains("open") ||
+                    menuPanel.classList.contains("active") ||
+                    getComputedStyle(menuPanel).display !== "none";
+
+                if (isVisible) {
+
+                    menuPanel.classList.remove("menu-opening");
+
+                    /* Force browser to restart animation */
+                    void menuPanel.offsetWidth;
+
+                    menuPanel.classList.add("menu-opening");
+                    menuPanel.classList.add("menu-visible");
+
+                } else {
+
+                    menuPanel.classList.remove("menu-visible");
+
+                }
+
+            }, 10);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       6. CATEGORY BUTTON ANIMATION
+    ===================================================== */
+
+    document.querySelectorAll(".category-btn").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const category = button.closest(".category");
+
+            if (category) {
+
+                setTimeout(function () {
+
+                    if (
+                        category.classList.contains("open") ||
+                        category.classList.contains("active")
+                    ) {
+                        category.classList.add("active");
+                    } else {
+                        category.classList.remove("active");
+                    }
+
+                }, 10);
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       7. SMOOTH ANCHOR SCROLL
+    ===================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const targetId = link.getAttribute("href");
+
+            if (!targetId || targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       8. IMAGE LOAD FADE
+    ===================================================== */
+
+    document.querySelectorAll("img").forEach(function (img) {
+
+        img.style.opacity = "0";
+
+        if (img.complete) {
+
+            img.style.opacity = "1";
+
+        } else {
+
+            img.addEventListener("load", function () {
+                img.style.opacity = "1";
+            });
+
+            img.addEventListener("error", function () {
+                img.style.opacity = "1";
+            });
+
+        }
+
+    });
+
+
+    /* =====================================================
+       9. MOUSE PARALLAX FOR HERO
+    ===================================================== */
+
+    const hero = document.querySelector(".bar-hero");
+    const heroContent = document.querySelector(".bar-hero-content");
+
+    if (
+        hero &&
+        heroContent &&
+        window.innerWidth > 768
+    ) {
+
+        hero.addEventListener("mousemove", function (event) {
+
+            const rect = hero.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left) / rect.width - 0.5;
+
+            const y =
+                (event.clientY - rect.top) / rect.height - 0.5;
+
+            heroContent.style.transform =
+                `translate(${x * 8}px, ${y * 8}px)`;
+
+        });
+
+
+        hero.addEventListener("mouseleave", function () {
+
+            heroContent.style.transform =
+                "translate(0, 0)";
+
+        });
+
+    }
+
+
+    /* =====================================================
+       10. ADD FLOATING EFFECT TO IMPORTANT BADGES
+    ===================================================== */
+
+    document.querySelectorAll(
+        ".room-badge, .breakfast-badge"
+    ).forEach(function (badge) {
+
+        badge.classList.add("float-animation");
+
+    });
+
+
+    /* =====================================================
+       11. BUTTON RIPPLE EFFECT
+    ===================================================== */
+
+    document.querySelectorAll(
+        "button, .room-btn, .btn-outline-red"
+    ).forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            const ripple = document.createElement("span");
+
+            ripple.style.position = "absolute";
+            ripple.style.width = "10px";
+            ripple.style.height = "10px";
+            ripple.style.borderRadius = "50%";
+            ripple.style.background = "rgba(255,255,255,0.35)";
+            ripple.style.pointerEvents = "none";
+            ripple.style.transform = "translate(-50%, -50%) scale(1)";
+            ripple.style.transition =
+                "transform 0.6s ease, opacity 0.6s ease";
+
+            const rect = button.getBoundingClientRect();
+
+            ripple.style.left =
+                (event.clientX - rect.left) + "px";
+
+            ripple.style.top =
+                (event.clientY - rect.top) + "px";
+
+            button.appendChild(ripple);
+
+            requestAnimationFrame(function () {
+
+                ripple.style.transform =
+                    "translate(-50%, -50%) scale(20)";
+
+                ripple.style.opacity = "0";
+
+            });
+
+            setTimeout(function () {
+                ripple.remove();
+            }, 650);
+
+        });
+
+    });
+
+
+    /* =====================================================
+       12. CURRENT YEAR AUTOMATICALLY
+       If your footer contains #currentYear
+    ===================================================== */
+
+    const yearElement =
+        document.getElementById("currentYear");
+
+    if (yearElement) {
+
+        yearElement.textContent =
+            new Date().getFullYear();
+
+    }
+
+
+    console.log("✨ Ritz Motel animations loaded.");
+
+});
+</script>
 </body>
 </html>
-
-
-
-<style>
-.dropdown {
-  position: relative;
-}
-
-/* Style the dropdown button */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Dropdown content */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Links inside dropdown content */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #f1f1f1
-}
-
-/* Show the dropdown content on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change background color of dropdown button on hover */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-</style>
-
-
-
-
-<div class="dropdown">
-  <button class="dropbtn">Our Menu</button>
-  <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>

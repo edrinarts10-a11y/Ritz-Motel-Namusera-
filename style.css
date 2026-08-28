@@ -376,6 +376,184 @@
   }
   .strip-item h3 { font-size: 14px; font-weight: 600; letter-spacing: 0.5px; }
   .strip-item p { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+  
+  /* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .strip-item {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 28px 14px;
+
+    overflow: hidden;
+  }
+
+  /* ICON */
+  .strip-icon {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+
+  .strip-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* TEXT CONTAINER */
+  .strip-item > div:last-child {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .strip-item h3 {
+    margin: 0 0 6px;
+
+    font-size: 19px;
+    line-height: 1.2;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .strip-item p {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.45;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+}
+/* =========================================================
+   MOBILE FIX — STRIP CARDS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .strip {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .strip-item {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        width: 100% !important;
+        min-width: 0 !important;
+
+        gap: 14px !important;
+        padding: 22px 14px !important;
+
+        box-sizing: border-box;
+    }
+
+    /* Icon */
+    .strip-item .strip-icon {
+        flex: 0 0 58px !important;
+        width: 58px !important;
+        height: 58px !important;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0 !important;
+    }
+
+    .strip-item .strip-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Text container */
+    .strip-item > div:last-child {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+
+    /* FIX THE VERTICAL LETTER PROBLEM */
+    .strip-item h3,
+    .strip-item p {
+        writing-mode: horizontal-tb !important;
+        text-orientation: mixed !important;
+
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+        white-space: normal !important;
+
+        width: auto !important;
+        max-width: 100% !important;
+
+        margin: 0;
+    }
+
+    .strip-item h3 {
+        font-size: 15px !important;
+        line-height: 1.2 !important;
+    }
+
+    .strip-item p {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin-top: 5px !important;
+    }
+
+}
+
+
+/* Very small phones */
+@media (max-width: 380px) {
+
+    .strip-item {
+        gap: 9px !important;
+        padding: 18px 9px !important;
+    }
+
+    .strip-item .strip-icon {
+        flex-basis: 48px !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .strip-item .strip-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .strip-item h3 {
+        font-size: 13px !important;
+    }
+
+    .strip-item p {
+        font-size: 10px !important;
+    }
+
+}
 
   /* ── ABOUT ── */
   .about { display: grid; grid-template-columns: 1fr 1fr; }
@@ -445,6 +623,20 @@
   .menu-list { display: flex; flex-direction: column; gap: 2px; }
   .menu-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); }
   .menu-row::before { content: '▶'; color: var(--red); font-size: 9px; flex-shrink: 0; }
+  .menu-note {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.7;
+    border-left: 3px solid var(--red);
+}
+
+.menu-note strong {
+    color: var(--text);
+}
 
   /* ── GARDENS ── */
   .gardens { background: var(--green); padding: 80px 60px; position: relative; overflow: hidden; }
@@ -1900,3 +2092,654 @@
     width: 100%; height: 100%; object-fit: cover;
     display: block; border-radius: 16px;
   }
+
+
+
+/* =========================
+   FEATURE STRIP
+========================= */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: #d9082f;
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 45px 35px;
+  min-height: 150px;
+
+  color: white;
+  text-decoration: none;
+
+  border-right: 1px solid rgba(255,255,255,0.18);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+
+  transition: background 0.3s ease;
+}
+
+.strip-item:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+
+/* ICON CIRCLE */
+.strip-icon {
+  width: 82px;
+  height: 82px;
+  min-width: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(120, 0, 25, 0.35);
+}
+
+
+/* SVG ICON */
+.strip-icon svg {
+  width: 43px;
+  height: 43px;
+
+  fill: none;
+  stroke: white;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* TEXT */
+.strip-item h3 {
+  margin: 0 0 7px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.strip-item p {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: rgba(255,255,255,0.82);
+}
+
+
+
+
+
+
+
+<!-- =========================================================
+     RITZ MOTEL — SMOOTH ANIME>
+========================================================= -->
+
+
+
+/* =========================================================
+   1. GLOBAL SMOOTHNESS
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Smooth transitions for common interactive elements */
+a,
+button,
+input,
+textarea,
+select,
+.room-card,
+.teaser-card,
+.gd-item,
+.menu-item,
+.category-btn,
+.btn-outline-red,
+.room-btn {
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        color 0.35s ease,
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   2. PAGE LOAD ANIMATION
+========================================================= */
+
+body {
+    animation: pageFadeIn 0.8s ease-out both;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   3. SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.65,.3,1);
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Different reveal directions */
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.65,.3,1);
+}
+
+.reveal-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.65,.3,1);
+}
+
+.reveal-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.65,.3,1);
+}
+
+.reveal-scale.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   4. HERO ANIMATION
+========================================================= */
+
+.bar-hero-content {
+    animation: heroContent 1.1s cubic-bezier(.2,.7,.3,1) both;
+}
+
+@keyframes heroContent {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   5. ROOM CARDS
+========================================================= */
+
+.room-card {
+    will-change: transform;
+}
+
+.room-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Image zoom */
+
+.room-image {
+    overflow: hidden;
+}
+
+.room-card:hover .room-image {
+    transform: scale(1.015);
+}
+
+
+/* =========================================================
+   6. GARDEN / GALLERY IMAGES
+========================================================= */
+
+.gd-item {
+    overflow: hidden;
+}
+
+.gd-item img {
+    transition:
+        transform 0.8s cubic-bezier(.2,.65,.3,1),
+        filter 0.8s ease;
+}
+
+.gd-item:hover img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   7. TEASER CARDS
+========================================================= */
+
+.teaser-card {
+    transform: translateY(0);
+}
+
+.teaser-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* =========================================================
+   8. BUTTON ANIMATIONS
+========================================================= */
+
+button,
+.room-btn,
+.btn-outline-red {
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover,
+.room-btn:hover,
+.btn-outline-red:hover {
+    transform: translateY(-2px);
+}
+
+button:active,
+.room-btn:active,
+.btn-outline-red:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+
+/* Shine effect */
+
+.room-btn::after,
+.btn-outline-red::after,
+.main-menu-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.room-btn:hover::after,
+.btn-outline-red:hover::after,
+.main-menu-btn:hover::after {
+    left: 140%;
+}
+
+
+/* =========================================================
+   9. MENU OPENING ANIMATION
+========================================================= */
+
+.menu-panel {
+    transform-origin: top center;
+}
+
+/* When JavaScript adds this class */
+
+.menu-panel.menu-opening {
+    animation: menuOpen 0.45s cubic-bezier(.2,.8,.3,1) both;
+}
+
+@keyframes menuOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scaleY(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   10. MENU ITEMS STAGGER
+========================================================= */
+
+.menu-panel.menu-visible .category {
+    animation: categoryAppear 0.55s ease both;
+}
+
+.menu-panel.menu-visible .category:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.menu-panel.menu-visible .category:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.menu-panel.menu-visible .category:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.menu-panel.menu-visible .category:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+.menu-panel.menu-visible .category:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+@keyframes categoryAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   11. MENU CATEGORY BUTTON
+========================================================= */
+
+.category-btn {
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    transform: translateX(4px);
+}
+
+
+/* Arrow rotation */
+
+.category-btn .category-arrow {
+    display: inline-block;
+    transition: transform 0.35s ease;
+}
+
+.category.active .category-arrow {
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   12. MENU ITEM HOVER
+========================================================= */
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item:hover {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   13. BOOKING FORM
+========================================================= */
+
+.bf-card {
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.bf-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Inputs */
+
+.bf-field input,
+.bf-field textarea,
+.bf-field select {
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.bf-field input:focus,
+.bf-field textarea:focus,
+.bf-field select:focus {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   14. REVIEW CARDS
+========================================================= */
+
+.review-card {
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+}
+
+
+/* =========================================================
+   15. FLOATING EFFECT
+========================================================= */
+
+.float-animation {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   16. IMAGE LOADING EFFECT
+========================================================= */
+
+img {
+    transition:
+        opacity 0.5s ease,
+        transform 0.7s ease;
+}
+
+img:not([src]),
+img[src=""] {
+    opacity: 0;
+}
+
+
+/* =========================================================
+   17. SECTION HEADINGS
+========================================================= */
+
+.sec-head,
+.rooms-header {
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* =========================================================
+   18. NAVIGATION LINKS
+========================================================= */
+
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 70%;
+}
+
+
+/* =========================================================
+   19. CHATBOT / NINA
+========================================================= */
+
+#ninaWindow {
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s cubic-bezier(.2,.8,.3,1);
+}
+
+#ninaWindow.open {
+    animation: ninaOpen 0.4s ease both;
+}
+
+@keyframes ninaOpen {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   20. PAGE SECTION SPACING REVEAL
+========================================================= */
+
+section {
+    scroll-margin-top: 80px;
+}
+
+
+/* =========================================================
+   21. ACCESSIBILITY
+   Respect users who prefer reduced motion
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
+
+
+/* =========================================================
+   22. MOBILE OPTIMIZATION
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .reveal {
+        transform: translateY(25px);
+    }
+
+    .reveal-left,
+    .reveal-right {
+        transform: translateY(25px);
+    }
+
+    .room-card:hover,
+    .teaser-card:hover,
+    .review-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .gd-item:hover img {
+        transform: scale(1.04);
+    }
+
+}
+
+
+
+
