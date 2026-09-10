@@ -1160,41 +1160,88 @@
   }
 
   .bar-hero {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     text-align: center;
-    margin-bottom: 60px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    padding: 50px 20px;
 
-  .bar-hero-content .sec-label {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-soft);
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.42),
+            rgba(0, 0, 0, 0.52)
+        ),
+        url("bar_lounge.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.bar-hero-content {
+    max-width: 680px;
+    color: #fff;
+}
+
+/* UNWIND & CELEBRATE */
+.bar-hero .sec-label {
+    color: #fff;
     font-weight: 600;
-    margin-bottom: 8px;
-  }
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin: 0 0 14px;
+}
 
-  .bar-hero-content h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 900;
-    color: var(--text);
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
+/* Main heading */
+.bar-hero h2 {
+    font-size: clamp(30px, 5vw, 52px);
+    line-height: 1.15;
+    margin: 0 0 18px;
+    color: #fff;
+}
 
-  .bar-hero-content h2 em {
-    color: var(--red);
+/* Green accent only on Restaurant */
+.bar-hero h2 em {
+    color: #4CAF50;
     font-style: italic;
-  }
+}
 
-  .bar-hero-content p {
-    font-size: 16px;
-    color: var(--text-soft);
-    line-height: 1.8;
-  }
+/* Description */
+.bar-hero-content > p:last-child {
+    max-width: 580px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+
+    .bar-hero {
+        min-height: 330px;
+        padding: 45px 20px;
+    }
+
+    .bar-hero .sec-label {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        margin-bottom: 12px;
+    }
+
+    .bar-hero h2 {
+        font-size: 32px;
+        line-height: 1.15;
+        margin-bottom: 16px;
+    }
+
+    .bar-hero-content > p:last-child {
+        font-size: 15px;
+        line-height: 1.65;
+        max-width: 330px;
+    }
+}
+
 
   /* MENU GRID */
   .bar-container {
