@@ -579,7 +579,7 @@
   .about-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--green) 0%, #1B5E20 100%); }
   .about-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 22px); }
   .about-visual-text { position: relative; z-index: 1; text-align: center; padding: 40px; color: white; }
-  .about-visual-text .av-icon { font-size: 100px; display: block; margin-bottom: 12px; }
+  .about-visual-text .av-icon { display: none; }
   .about-visual-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; opacity: 0.2; }
   .about-visual-text p { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.65; margin-top: 6px; }
 
@@ -658,7 +658,7 @@
   .c-cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 780px; margin: 0 auto 40px; }
   .c-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 26px 28px; flex: 1; min-width: 190px; text-align: center; transition: box-shadow .2s; }
   .c-card:hover { box-shadow: 0 8px 30px rgba(200,16,46,0.1); }
-  .c-card .ci { font-size: 28px; margin-bottom: 10px; display: block; }
+  .c-card .ci { color: var(--red); margin-bottom: 12px; display: flex; justify-content: center; }
   .c-card h4 { font-size: 10px; color: var(--text-soft); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
   .c-card p, .c-card a { color: var(--text); font-size: 15px; font-weight: 500; text-decoration: none; }
   .c-card a:hover { color: var(--red); }
@@ -1990,11 +1990,11 @@
     padding: 40px 28px; position: relative; overflow: hidden;
   }
   .cs-card::before {
-    content: 'COMING SOON'; position: absolute; top: 18px; right: -28px;
-    background: var(--red); color: white; font-size: 9px; letter-spacing: 2px;
-    padding: 5px 36px; transform: rotate(35deg); font-weight: 700;
+    content: 'COMING SOON'; display:inline-block; position: static; margin-bottom: 16px;
+    background: var(--red-light); color: var(--red); font-size: 10px; letter-spacing: 2px;
+    padding: 6px 14px; border-radius: 20px; font-weight: 700;
   }
-  .cs-icon { font-size: 52px; margin-bottom: 14px; }
+  .cs-icon { display:none; }
   .cs-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); margin-bottom: 8px; }
   .cs-card p { font-size: 14px; color: var(--text-soft); line-height: 1.7; }
 
@@ -2790,3 +2790,43 @@ section {
 
 
 
+
+
+
+/* ── BOOKING FORM (refined) ── */
+.bf-intro { max-width: 520px; margin: 0 auto; color: var(--text-soft); font-size: 15px; line-height: 1.7; }
+.bf-group { border: 0; padding: 0; margin: 0 0 28px; min-width: 0; }
+.bf-group legend {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--red); padding: 0 0 14px; margin-bottom: 4px; width: 100%;
+  border-bottom: 1px solid var(--border); display: block;
+}
+.bf-group .bf-grid { margin-top: 18px; margin-bottom: 0; }
+.bf-wide { grid-column: 1 / -1; }
+.bf-notes { margin-top: 16px; }
+.bf-opt { font-weight: 400; color: var(--text-soft); font-size: 12px; margin-left: 4px; }
+.bf-summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: var(--off-white); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 8px;
+}
+.bf-sum-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); font-weight: 600; }
+.bf-sum-value { font-size: 16px; font-weight: 700; color: var(--text); }
+.bf-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.bf-actions .bf-submit { margin-top: 0; width: 100%; box-shadow: none; }
+.bf-pay { background: var(--red); color: #fff; }
+.bf-pay:hover { background: var(--red-dark); opacity: 1; }
+.bf-wa { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.bf-wa:hover { border-color: var(--text); background: var(--off-white); opacity: 1; }
+.bf-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.bf-note { line-height: 1.6; margin-top: 16px; }
+.bf-field label { letter-spacing: .2px; }
+.nav-toggle svg { display: block; }
+@media (max-width: 768px) {
+  .bf-group .bf-grid { gap: 14px; }
+  .bf-wide { grid-column: auto; }
+}
+
+/* contact cards: four across on desktop */
+.c-cards { max-width: 1000px; flex-wrap: wrap; }
+@media (min-width: 900px) { .c-card { max-width: 240px; } }

@@ -15,7 +15,7 @@
     background: white; border-radius: 24px; padding: 48px 36px;
     box-shadow: 0 12px 48px rgba(0,0,0,0.08); max-width: 480px; width: 100%;
   }
-  .confirmed-icon { font-size: 64px; margin-bottom: 16px; }
+  .confirmed-icon { margin-bottom: 16px; display:flex; justify-content:center; }
   .confirmed-card h1 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text); margin-bottom: 10px; }
   .confirmed-card h1 em { color: var(--red); font-style: italic; }
   .confirmed-card p { color: var(--text-soft); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
@@ -34,15 +34,15 @@
 
 <div class="confirmed-wrap">
   <div class="confirmed-card">
-    <div class="confirmed-icon">🎉</div>
-    <h1>Booking <em>Confirmed!</em></h1>
+    <div class="confirmed-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg></div>
+    <h1>Booking <em>Confirmed</em></h1>
     <div class="status-box" id="statusBox">
-      <p id="statusText">✅ Payment received successfully!</p>
+      <p id="statusText">Payment received successfully.</p>
     </div>
     <p>Thank you for booking with Ritz Motel Namusera. We'll send a confirmation to your contact details shortly. If you have any questions, call or WhatsApp us.</p>
     <div class="confirmed-btns">
-      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I%20just%20completed%20my%20booking%20payment." class="btn-red" target="_blank">💬 WhatsApp Us</a>
-      <a href="index.html" class="btn-outline-red">← Back to Home</a>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I%20just%20completed%20my%20booking%20payment." class="btn-red" target="_blank">WhatsApp Us</a>
+      <a href="index.html" class="btn-outline-red">Back to Home</a>
     </div>
   </div>
 </div>
@@ -56,7 +56,7 @@
   if (status && status.toLowerCase() !== 'completed') {
     document.getElementById('statusBox').style.background = '#FFF3E0';
     document.getElementById('statusText').style.color = '#E65100';
-    document.getElementById('statusText').textContent = '⏳ Payment is being processed. We will confirm once complete.';
+    document.getElementById('statusText').textContent = 'Payment is being processed. We will confirm once it is complete.';
   }
   if (ref) {
     const p = document.createElement('p');
