@@ -1,0 +1,8 @@
+# local backups
+_original/
+
+# OS / editor junk
+.trashed-*
+.DS_Store
+Thumbs.db
+*.swp

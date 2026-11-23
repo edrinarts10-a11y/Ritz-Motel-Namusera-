@@ -4,45 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Booking Confirmed – Ritz Motel Namusera</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function () {
+  var t = 'dark';
+  try { t = localStorage.getItem('ritz-theme') || 'dark'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', t);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('ritz-theme', next); } catch (e) {}
+}
+</script>
 <link rel="stylesheet" href="style.css">
-<style>
-  .confirmed-wrap {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    background: var(--cream); padding: 40px 24px; flex-direction: column; text-align: center;
-  }
-  .confirmed-card {
-    background: white; border-radius: 24px; padding: 48px 36px;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.08); max-width: 480px; width: 100%;
-  }
-  .confirmed-icon { margin-bottom: 16px; display:flex; justify-content:center; }
-  .confirmed-card h1 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text); margin-bottom: 10px; }
-  .confirmed-card h1 em { color: var(--red); font-style: italic; }
-  .confirmed-card p { color: var(--text-soft); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
-  .status-box { background: #E8F5E9; border-radius: 12px; padding: 16px; margin-bottom: 24px; }
-  .status-box p { color: #2e7d32; font-weight: 600; font-size: 14px; margin: 0; }
-  .confirmed-btns { display: flex; flex-direction: column; gap: 12px; }
-</style>
+
 </head>
 <body>
 <nav>
   <div class="nav-logo">
-    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
     <div class="logo-text">Ritz Motel <span>Always Better</span></div>
   </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" style="color:var(--red);">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="bar.html">Bar &amp; Restaurant</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark and light mode" title="Toggle dark / light mode">
+    <span class="tt-sun" aria-hidden="true">☀</span><span class="tt-moon" aria-hidden="true">☾</span>
+  </button>
+  <a href="book.html" class="nav-cta">Book a Room</a>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
 <div class="confirmed-wrap">
   <div class="confirmed-card">
-    <div class="confirmed-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg></div>
-    <h1>Booking <em>Confirmed</em></h1>
+    <div class="confirmed-icon">🎉</div>
+    <h1>Booking <em>Confirmed!</em></h1>
     <div class="status-box" id="statusBox">
-      <p id="statusText">Payment received successfully.</p>
+      <p id="statusText">✅ Payment received successfully!</p>
     </div>
     <p>Thank you for booking with Ritz Motel Namusera. We'll send a confirmation to your contact details shortly. If you have any questions, call or WhatsApp us.</p>
     <div class="confirmed-btns">
-      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I%20just%20completed%20my%20booking%20payment." class="btn-red" target="_blank">WhatsApp Us</a>
-      <a href="index.html" class="btn-outline-red">Back to Home</a>
+      <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I%20just%20completed%20my%20booking%20payment." class="btn-red" target="_blank">💬 WhatsApp Us</a>
+      <a href="index.html" class="btn-outline-red">← Back to Home</a>
     </div>
   </div>
 </div>
@@ -56,7 +68,7 @@
   if (status && status.toLowerCase() !== 'completed') {
     document.getElementById('statusBox').style.background = '#FFF3E0';
     document.getElementById('statusText').style.color = '#E65100';
-    document.getElementById('statusText').textContent = 'Payment is being processed. We will confirm once it is complete.';
+    document.getElementById('statusText').textContent = '⏳ Payment is being processed. We will confirm once complete.';
   }
   if (ref) {
     const p = document.createElement('p');

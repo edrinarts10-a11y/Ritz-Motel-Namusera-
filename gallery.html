@@ -4,25 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery – Ritz Motel Namusera</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function () {
+  var t = 'dark';
+  try { t = localStorage.getItem('ritz-theme') || 'dark'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', t);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('ritz-theme', next); } catch (e) {}
+}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <div class="nav-logo">
-    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
     <div class="logo-text">Ritz Motel <span>Always Better</span></div>
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="rooms.html">Rooms</a></li>
-    <li><a href="bar.html">Bar & Restaurant</a></li>
+    <li><a href="bar.html">Bar &amp; Restaurant</a></li>
     <li><a href="gallery.html" style="color:var(--red);">Gallery</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="index.html#book" class="nav-cta">Book Now</a>
-  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark and light mode" title="Toggle dark / light mode">
+    <span class="tt-sun" aria-hidden="true">☀</span><span class="tt-moon" aria-hidden="true">☾</span>
+  </button>
+  <a href="book.html" class="nav-cta">Book a Room</a>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
 <section class="page-hero">
@@ -31,15 +50,16 @@
     <h1>See <em>Ritz</em></h1>
     <p>A glimpse into our rooms, bar, gardens and outdoor spaces at Ritz Motel Namusera.</p>
   </div>
-  </section>
+  <div class="page-hero-deco">📸</div>
+</section>
 
 <section class="gallery-section">
   <div class="gallery-filters">
-    <button class="gf-btn active" onclick="filterGallery('all', this)">All · 18</button>
-    <button class="gf-btn" onclick="filterGallery('bar', this)">Bar & Lounge · 4</button>
-    <button class="gf-btn" onclick="filterGallery('facility', this)">Facility · 5</button>
-    <button class="gf-btn" onclick="filterGallery('gardens', this)">Gardens · 7</button>
-    <button class="gf-btn" onclick="filterGallery('exterior', this)">Exterior · 2</button>
+    <button class="gf-btn active" onclick="filterGallery('all', this)">All · 19</button>
+    <button class="gf-btn" onclick="filterGallery('bar', this)">🍺 Bar & Lounge · 4</button>
+    <button class="gf-btn" onclick="filterGallery('facility', this)">🏨 Facility · 6</button>
+    <button class="gf-btn" onclick="filterGallery('gardens', this)">🌿 Gardens · 7</button>
+    <button class="gf-btn" onclick="filterGallery('exterior', this)">🌆 Exterior · 2</button>
   </div>
 
   <div class="gallery-grid" id="galleryGrid">
@@ -47,98 +67,103 @@
     <!-- BAR & LOUNGE -->
     <div class="g-item wide" data-cat="bar" onclick="openLightbox(this, 'The Bar – Ritz Motel')">
       <img src="bar_lounge.jpg" alt="Bar lounge with blue lighting">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Bar & Lounge</div>
     </div>
     <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Bar Counter – Ritz Motel')">
       <img src="bar_counter.jpg" alt="Bar counter">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Bar & Lounge</div>
     </div>
     <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Lobby Lounge – Ritz Motel')">
       <img src="lobby_sofas.jpg" alt="Lobby with teal sofas">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Bar & Lounge</div>
     </div>
     <div class="g-item" data-cat="bar" onclick="openLightbox(this, 'Reception – Ritz Motel')">
       <img src="reception.jpg" alt="Reception desk">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Bar & Lounge</div>
     </div>
 
     <!-- FACILITY -->
     <div class="g-item wide" data-cat="facility" onclick="openLightbox(this, 'Balcony View – Ritz Motel')">
       <img src="balcony_view.jpg" alt="Balcony with panoramic view">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Facility</div>
     </div>
     <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Corridor – Ritz Motel')">
       <img src="corridor.jpg" alt="Corridor">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Facility</div>
     </div>
     <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Corridor Seating – Ritz Motel')">
       <img src="corridor_seating.jpg" alt="Corridor seating area">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
+      <div class="g-cat-label">Facility</div>
+    </div>
+    <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Outdoor Terrace – Ritz Motel')">
+      <img src="seat.jpg" alt="Outdoor seating area">
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Facility</div>
     </div>
     <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Night Terrace – Ritz Motel')">
       <img src="terrace_night.jpg" alt="Terrace at night">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Facility</div>
     </div>
     <div class="g-item" data-cat="facility" onclick="openLightbox(this, 'Interior Light – Ritz Motel')">
       <img src="wall_lamp.jpg" alt="Interior wall lamp">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Facility</div>
     </div>
 
     <!-- GARDENS -->
     <div class="g-item wide" data-cat="gardens" onclick="openLightbox(this, 'Garden Path – Ritz Motel')">
       <img src="garden_path.jpg" alt="Garden pathway">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Path – Ritz Motel')">
       <img src="garden_path_2.jpg" alt="Garden path 2">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Green Garden – Ritz Motel')">
       <img src="garden_green.jpg" alt="Green garden lawn">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Lawn – Ritz Motel')">
       <img src="garden_lawn.jpg" alt="Garden lawn">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden at Night – Ritz Motel')">
       <img src="garden_night_1.jpg" alt="Garden at night">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Night Lights – Ritz Motel')">
       <img src="garden_night_2.jpg" alt="Garden night lights">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
     <div class="g-item" data-cat="gardens" onclick="openLightbox(this, 'Garden Evening – Ritz Motel')">
       <img src="garden_night_3.jpg" alt="Garden evening">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Gardens</div>
     </div>
 
     <!-- EXTERIOR -->
     <div class="g-item wide" data-cat="exterior" onclick="openLightbox(this, 'Ritz Motel Entrance – Night')">
       <img src="entrance_night.jpg" alt="Entrance at night">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Exterior</div>
     </div>
     <div class="g-item" data-cat="exterior" onclick="openLightbox(this, 'Ritz Motel Building')">
       <img src="exterior.jpg" alt="Building exterior">
-      <div class="g-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div class="g-overlay">🔍</div>
       <div class="g-cat-label">Exterior</div>
     </div>
 
@@ -147,7 +172,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
   <button class="lb-nav lb-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
   <div class="lightbox-inner" onclick="event.stopPropagation()">
     <img id="lbImg" src="" alt="">
@@ -160,19 +185,51 @@
 <section class="book-banner">
   <h2>Like What You See?</h2>
   <p>Come experience Ritz Motel in person. Book a room or plan your next event with us.</p>
-  <a href="index.html#book" class="btn-red" style="background:#fff;color:var(--red);">Book a Room</a>
-  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20book%20a%20visit." class="btn-wa" target="_blank">WhatsApp Us</a>
+
 </section>
 
 <footer>
-  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
-  <div class="f-dots">
-    <div class="f-dot" style="background:var(--red)"></div>
-    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
-    <div class="f-dot" style="background:var(--green)"></div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
+          <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+        </div>
+        <p>Clean rooms, a 24/7 bar &amp; restaurant and beautiful gardens along Kampala–Hoima Road, Namusera, Uganda.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/256787700044" aria-label="WhatsApp" target="_blank" rel="noopener">✆</a>
+          <a href="tel:+256787700044" aria-label="Call">☎</a>
+          <a href="mailto:info@ritzmotelnamusera.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bar.html">Bar &amp; Restaurant</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>Hoima Rd, Namusera<br>Off Musembi Road<br>Wakiso, Uganda</p>
+        <a href="tel:+256787700044">0787 700 044</a>
+        <a href="mailto:info@ritzmotelnamusera.com">info@ritzmotelnamusera.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Good to know</h5>
+        <p>Open 24/7<br>Check-in 12:00 · Check-out 11:00</p>
+        <a href="book.html">Book a room</a>
+        <a href="index.html#contact">Get directions</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ritz Motel Namusera. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
+      <span>Designed by <a href="https://wa.me/256761273024" target="_blank" rel="noopener">Dev_Edrine</a></span>
+    </div>
   </div>
-  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
-  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
 </footer>
 
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>

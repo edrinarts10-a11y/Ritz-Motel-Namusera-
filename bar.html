@@ -13,7 +13,22 @@
 <meta property="og:description" content="Visit the Ritz Motel bar and restaurant. Cold beers, spirits, fresh juices, nyama choma, Ugandan dishes, tea & coffee. Open 24/7 to guests and the public.">
 <meta property="og:image" content="https://ritzmotelnamusera.com/entrance_night.jpg">
 <link rel="icon" type="image/jpeg" href="IMG_20260613_023639.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function () {
+  var t = 'dark';
+  try { t = localStorage.getItem('ritz-theme') || 'dark'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', t);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('ritz-theme', next); } catch (e) {}
+}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,18 +36,22 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
     <div class="logo-text">Ritz Motel <span>Always Better</span></div>
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="rooms.html">Rooms</a></li>
-    <li><a href="bar.html" style="color:var(--red);">Bar & Restaurant</a></li>
+    <li><a href="bar.html" style="color:var(--red);">Bar &amp; Restaurant</a></li>
     <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="index.html#book" class="nav-cta">Book Now</a>
-  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark and light mode" title="Toggle dark / light mode">
+    <span class="tt-sun" aria-hidden="true">☀</span><span class="tt-moon" aria-hidden="true">☾</span>
+  </button>
+  <a href="book.html" class="nav-cta">Book a Room</a>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
 <!-- PAGE HERO -->
@@ -42,16 +61,17 @@
     <h1>The Ritz <em>Bar</em></h1>
     <p>Cold drinks, warm vibes. Great food, great company. Open to guests and the public — day and night.</p>
   </div>
-  </section>
+  <div class="page-hero-deco">🍹</div>
+</section>
 
 <!-- BAR HIGHLIGHTS STRIP -->
 <div class="bar-hero-strip">
-  <div class="bhs-item"><h4>Local Beers</h4><p>Bell, Nile, Club, Castle</p></div>
-  <div class="bhs-item"><h4>Spirits & Wines</h4><p>Local & international</p></div>
-  <div class="bhs-item"><h4>Local Dishes</h4><p>Katogo, matooke & more</p></div>
-  <div class="bhs-item"><h4>Tea & Coffee</h4><p>Dawa tea, milk tea & more</p></div>
-  <div class="bhs-item"><h4>Outdoor Seating</h4><p>Garden bar area</p></div>
-  <div class="bhs-item"><h4>Open 24/7</h4><p>Day and night</p></div>
+  <div class="bhs-item"><div class="bhi">🍺</div><h4>Local Beers</h4><p>Bell, Nile, Club, Castle</p></div>
+  <div class="bhs-item"><div class="bhi">🥃</div><h4>Spirits & Wines</h4><p>Local & international</p></div>
+  <div class="bhs-item"><div class="bhi">🥩</div><h4>Local Dishes</h4><p>Katogo, matooke & more</p></div>
+  <div class="bhs-item"><div class="bhi">☕</div><h4>Tea & Coffee</h4><p>Dawa tea, milk tea & more</p></div>
+  <div class="bhs-item"><div class="bhi">🌿</div><h4>Outdoor Seating</h4><p>Garden bar area</p></div>
+  <div class="bhs-item"><div class="bhi">🕐</div><h4>Open 24/7</h4><p>Day and night</p></div>
 </div>
 
 <!-- MENU SECTION -->
@@ -61,14 +81,66 @@
     <h2>Bar, Tea & <em>Food</em></h2>
   </div>
 
-    <div class="menu-tabs">
-    <button class="menu-tab active" onclick="switchTab('food', this)">Food</button>
-    <button class="menu-tab" onclick="switchTab('tea', this)">Tea & Hot Drinks</button>
-    <button class="menu-tab" onclick="switchTab('drinks', this)">Bar Drinks</button>
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="switchTab('drinks', this)">🍺 Bar Drinks</button>
+    <button class="menu-tab" onclick="switchTab('tea', this)">☕ Tea & Hot Drinks</button>
+    <button class="menu-tab" onclick="switchTab('food', this)">🍽️ Food</button>
+  </div>
+
+  <!-- BAR DRINKS PANEL -->
+  <div class="menu-panel active" id="tab-drinks">
+    <div class="menu-cat">
+      <h3>Local Beers</h3>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Bell Lager</div><div class="mi-desc">Uganda's classic lager, cold & refreshing</div></div><div class="mi-price">UGX 3,500</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Nile Special</div><div class="mi-desc">Premium Ugandan lager</div></div><div class="mi-price">UGX 4,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Club Pilsner</div><div class="mi-desc">Smooth and easy drinking</div></div><div class="mi-price">UGX 3,500</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Castle Lite</div><div class="mi-desc">Light and crisp</div></div><div class="mi-price">UGX 4,000</div></div>
+      </div>
+    </div>
+    <div class="menu-cat">
+      <h3>Spirits</h3>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Uganda Waragi</div><div class="mi-desc">Local gin spirit, served with mixer</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Konyagi</div><div class="mi-desc">East African spirit</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Smirnoff Vodka</div><div class="mi-desc">Per shot</div></div><div class="mi-price">UGX 7,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Jameson Whiskey</div><div class="mi-desc">Per shot</div></div><div class="mi-price">UGX 9,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Red Wine</div><div class="mi-desc">Per glass</div></div><div class="mi-price">UGX 12,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">White Wine</div><div class="mi-desc">Per glass</div></div><div class="mi-price">UGX 12,000</div></div>
+      </div>
+    </div>
+    <div class="menu-cat">
+      <h3>Soft Drinks & Juice</h3>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Coca-Cola / Pepsi</div><div class="mi-desc">330ml bottle</div></div><div class="mi-price">UGX 2,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fanta / Sprite</div><div class="mi-desc">330ml bottle</div></div><div class="mi-price">UGX 2,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Water (Still)</div><div class="mi-desc">500ml bottle</div></div><div class="mi-price">UGX 1,500</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fresh Passion Juice</div><div class="mi-desc">Freshly squeezed</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fresh Mango Juice</div><div class="mi-desc">Freshly squeezed</div></div><div class="mi-price">UGX 5,000</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEA & HOT DRINKS PANEL -->
+  <div class="menu-panel" id="tab-tea">
+    <div class="menu-cat">
+      <h3>Tea & Coffee</h3>
+      <div class="menu-items-grid">
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Black Tea</div><div class="mi-desc">Plain, no milk</div></div><div class="mi-price">UGX 3,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Milk Tea</div><div class="mi-desc">Tea with fresh milk</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Lemon Tea</div><div class="mi-desc">Tea with fresh lemon</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Dawa Tea</div><div class="mi-desc">Ginger, lemon & honey herbal tea</div></div><div class="mi-price">UGX 10,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Black Coffee</div><div class="mi-desc">Strong Ugandan coffee</div></div><div class="mi-price">UGX 8,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Milk Coffee</div><div class="mi-desc">Coffee with fresh milk</div></div><div class="mi-price">UGX 7,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Plain Milk</div><div class="mi-desc">Fresh whole milk, hot or cold</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Hot Water</div><div class="mi-desc">Per flask</div></div><div class="mi-price">UGX 1,500</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Honey (Extra)</div><div class="mi-desc">Added to any drink</div></div><div class="mi-price">UGX 1,000</div></div>
+      </div>
+    </div>
   </div>
 
   <!-- FOOD PANEL -->
-  <div class="menu-panel active" id="tab-food">
+  <div class="menu-panel" id="tab-food">
     <div class="menu-cat">
       <h3>Main Dishes</h3>
       <div class="menu-items-grid">
@@ -87,7 +159,7 @@
         <div class="menu-item"><div class="mi-left"><div class="mi-name">Plain Chips with Salad</div><div class="mi-desc">Fries + kachumbari</div></div><div class="mi-price">UGX 10,000</div></div>
         <div class="menu-item"><div class="mi-left"><div class="mi-name">Potato Wedges</div><div class="mi-desc">Seasoned oven wedges</div></div><div class="mi-price">UGX 10,000</div></div>
         <div class="menu-item"><div class="mi-left"><div class="mi-name">2 Eggs</div><div class="mi-desc">Fried or boiled</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Beef Samosa (pair)</div><div class="mi-desc">Two beef-filled samosas</div></div><div class="mi-price">UGX 5,000</div></div>
+        <div class="menu-item"><div class="mi-left"><div class="mi-name">Beef Samosa (pair)</div><div class="mi-desc">Two beef-filled samosas</div></div><div class="mi-price">UGX 4,000</div></div>
         <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Samosa (pair)</div><div class="mi-desc">Two chicken-filled samosas</div></div><div class="mi-price">UGX 5,000</div></div>
         <div class="menu-item"><div class="mi-left"><div class="mi-name">Bread (3/4 slices)</div><div class="mi-desc">Plain or with butter</div></div><div class="mi-price">UGX 3,000</div></div>
       </div>
@@ -102,60 +174,8 @@
         <div class="menu-item"><div class="mi-left"><div class="mi-name">Cowpeas</div><div class="mi-desc">Cooked cowpea beans</div></div><div class="mi-price">UGX 10,000</div></div>
       </div>
     </div>
-    <div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:10px;padding:16px 20px;margin-top:8px;font-size:13px;color:#5D4037;line-height:1.7;">
-      <strong>Note:</strong> All dishes are served with salad/kachumbari. The accompaniment can be changed to posho, rice, spaghetti, matooke, or cassava — just ask!
-    </div>
-  </div>
-
-  <!-- TEA & HOT DRINKS PANEL -->
-  <div class="menu-panel" id="tab-tea">
-    <div class="menu-cat">
-      <h3>Tea & Coffee</h3>
-      <div class="menu-items-grid">
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Black Tea</div><div class="mi-desc">Plain, no milk</div></div><div class="mi-price">UGX 3,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Milk Tea</div><div class="mi-desc">Tea with fresh milk</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Lemon Tea</div><div class="mi-desc">Tea with fresh lemon</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Dawa Tea</div><div class="mi-desc">Ginger, lemon & honey herbal tea</div></div><div class="mi-price">UGX 10,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Black Coffee</div><div class="mi-desc">Strong Ugandan coffee</div></div><div class="mi-price">UGX 8,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Milk Coffee</div><div class="mi-desc">Coffee with fresh milk</div></div><div class="mi-price">UGX 7,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Plain Milk</div><div class="mi-desc">Fresh whole milk, hot or cold</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Hot Water</div><div class="mi-desc">Per flask</div></div><div class="mi-price"UGX 3,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Honey (Extra)</div><div class="mi-desc">Added to any drink</div></div><div class="mi-price">UGX 1,000</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BAR DRINKS PANEL -->
-  <div class="menu-panel" id="tab-drinks">
-    <div class="menu-cat">
-      <h3>Local Beers</h3>
-      <div class="menu-items-grid">
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Bell Lager</div><div class="mi-desc">Uganda's classic lager, cold & refreshing</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Nile Special</div><div class="mi-desc">Premium Ugandan lager</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Club Pilsner</div><div class="mi-desc">Smooth and easy drinking</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Castle Lite</div><div class="mi-desc">Light and crisp</div></div><div class="mi-price">UGX 5,000</div></div>
-      </div>
-    </div>
-    <div class="menu-cat">
-      <h3>Spirits</h3>
-      <div class="menu-items-grid">
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Uganda Waragi</div><div class="mi-desc">Local gin spirit, served with mixer</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Konyagi</div><div class="mi-desc">East African spirit</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Smirnoff Vodka</div><div class="mi-desc">Per shot</div></div><div class="mi-price">UGX 7,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Jameson Whiskey</div><div class="mi-desc">Per shot</div></div><div class="mi-price">UGX 9,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Red Wine</div><div class="mi-desc">Per glass</div></div><div class="mi-price">UGX 12,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">White Wine</div><div class="mi-desc">Per glass</div></div><div class="mi-price">UGX 12,000</div></div>
-      </div>
-    </div>
-    <div class="menu-cat">
-      <h3>Soft Drinks & Juice</h3>
-      <div class="menu-items-grid">
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Coca-Cola / Pepsi</div><div class="mi-desc">330ml bottle</div></div><div class="mi-price">UGX 3,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fanta / Sprite</div><div class="mi-desc">330ml bottle</div></div><div class="mi-price">UGX 3,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Water (Still)</div><div class="mi-desc">500ml bottle</div></div><div class="mi-price">UGX 3,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fresh Passion Juice</div><div class="mi-desc">Freshly squeezed</div></div><div class="mi-price">UGX 5,000</div></div>
-        <div class="menu-item"><div class="mi-left"><div class="mi-name">Fresh Mango Juice</div><div class="mi-desc">Freshly squeezed</div></div><div class="mi-price">UGX 5,000</div></div>
-      </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px 20px;margin-top:18px;font-size:13px;color:var(--muted);line-height:1.7;">
+      <strong>📝 Note:</strong> All dishes are served with salad/kachumbari. The accompaniment can be changed to posho, rice, spaghetti, matooke, or cassava — just ask!
     </div>
   </div>
 </section>
@@ -164,20 +184,53 @@
 <section class="book-banner">
   <h2>Visit the Ritz Bar Tonight</h2>
   <p>Open to the public — guests and walk-ins welcome. Call ahead for large groups or events.</p>
-  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20enquire%20about%20the%20bar%20and%20restaurant." class="btn-wa" target="_blank">WhatsApp Us</a>
-  <a href="tel:+256787700044" class="btn-call">Call 0787 700 044</a>
+  <a href="https://wa.me/256787700044?text=Hello%20Ritz%20Motel!%20I'd%20like%20to%20enquire%20about%20the%20bar%20and%20restaurant." class="btn-wa" target="_blank">💬 WhatsApp Us</a>
+  <a href="tel:+256787700044" class="btn-call">📞 Call 0787 700 044</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
-  <div class="f-dots">
-    <div class="f-dot" style="background:var(--red)"></div>
-    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
-    <div class="f-dot" style="background:var(--green)"></div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
+          <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+        </div>
+        <p>Clean rooms, a 24/7 bar &amp; restaurant and beautiful gardens along Kampala–Hoima Road, Namusera, Uganda.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/256787700044" aria-label="WhatsApp" target="_blank" rel="noopener">✆</a>
+          <a href="tel:+256787700044" aria-label="Call">☎</a>
+          <a href="mailto:info@ritzmotelnamusera.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bar.html">Bar &amp; Restaurant</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>Hoima Rd, Namusera<br>Off Musembi Road<br>Wakiso, Uganda</p>
+        <a href="tel:+256787700044">0787 700 044</a>
+        <a href="mailto:info@ritzmotelnamusera.com">info@ritzmotelnamusera.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Good to know</h5>
+        <p>Open 24/7<br>Check-in 12:00 · Check-out 11:00</p>
+        <a href="book.html">Book a room</a>
+        <a href="index.html#contact">Get directions</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ritz Motel Namusera. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
+      <span>Designed by <a href="https://wa.me/256761273024" target="_blank" rel="noopener">Dev_Edrine</a></span>
+    </div>
   </div>
-  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
-  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
 </footer>
 
 <a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>

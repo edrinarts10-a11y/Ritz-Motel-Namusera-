@@ -67,7 +67,22 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function () {
+  var t = 'dark';
+  try { t = localStorage.getItem('ritz-theme') || 'dark'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', t);
+})();
+function toggleTheme() {
+  var root = document.documentElement;
+  var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('ritz-theme', next); } catch (e) {}
+}
+</script>
 <link rel="stylesheet" href="style.css">
 <!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -77,184 +92,195 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="IMG_20260613_023639.jpg" class="logo-icon">
+    <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
     <div class="logo-text">Ritz Motel <span>Always Better</span></div>
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" style="color:var(--red);">Home</a></li>
     <li><a href="rooms.html">Rooms</a></li>
-    <li><a href="#bar-section">Bar & Restaurant</a></li>
+    <li><a href="#bar-section">Bar &amp; Restaurant</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="#gardens">Gardens</a></li>
     <li><a href="#book">Book Now</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark and light mode" title="Toggle dark / light mode">
+    <span class="tt-sun" aria-hidden="true">☀</span><span class="tt-moon" aria-hidden="true">☾</span>
+  </button>
   <a href="#book" class="nav-cta">Book a Room</a>
-  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
 
-<!-- HERO - CAROUSEL VERSION -->
+<!-- HERO -->
 <section class="hero" id="hero">
-  <!-- Image Carousel Container -->
   <div class="hero-carousel">
-    <div class="carousel-slide active" style="background-image: url('70000.jpg');"></div>
+    <div class="carousel-slide active" style="background-image: url('entrance_night.jpg');"></div>
+    <div class="carousel-slide" style="background-image: url('70000.jpg');"></div>
     <div class="carousel-slide" style="background-image: url('120,000.jpg');"></div>
   </div>
-  
-  <!-- Dark overlay for text readability -->
+
   <div class="hero-overlay"></div>
-  
-  <!-- Hero Content -->
+
   <div class="hero-content">
-    <div class="hero-tag">Your Comfort Retreat</div>
-    <h1><em>Ritz</em><br>Motel</h1>
-    <p class="hero-sub">Namusera, Kampala-Hoima Road</p>
-    <div class="hero-bar"></div>
-    <p>Clean, comfortable rooms from UGX 50,000/night. Experience our bar & restaurant, beautiful gardens, and 24/7 hospitality — all at one address.</p>
+    <div class="hero-tag">Namusera · Kampala–Hoima Road</div>
+    <h1>Stay bold.<br><em>Rest easy.</em></h1>
+    <p class="hero-sub">Ritz Motel · Always Better</p>
+    <p>Clean, comfortable rooms from UGX 50,000 a night — with a 24/7 bar &amp; restaurant, gardens and hospitality that feels like home.</p>
     <div class="hero-btns">
-      <a href="#book" class="btn-red">Book Now</a>
-      <a href="rooms.html" class="btn-ghost">View Rooms</a>
+      <a href="book.html" class="btn-red">Book Your Stay</a>
+      <a href="rooms.html" class="btn-ghost">Explore Rooms</a>
     </div>
   </div>
 
-  <!-- Carousel indicators (dots) -->
   <div class="carousel-dots">
-    <button class="dot active" data-slide="0" aria-label="Room 1"></button>
-    <button class="dot" data-slide="1" aria-label="Room 2"></button>
-  </div>
-
-  <!-- Scroll hint -->
-  <div class="scroll-hint">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="12 5 12 19"></polyline>
-      <polyline points="19 12 12 19 5 12"></polyline>
-    </svg>
+    <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="dot" data-slide="2" aria-label="Slide 3"></button>
   </div>
 </section>
-<!-- STRIP -->
+
+<!-- FLOATING HERO CARDS -->
 <div class="strip">
-
-  <!-- Accommodation -->
   <a href="rooms.html" class="strip-item">
+    <div class="strip-img" style="background-image:url('70.000.jpg');"></div>
+    <span class="strip-num">01</span>
     <div class="strip-icon">
-      <!-- Bed icon -->
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 18V7"/>
-        <path d="M3 14h18v4"/>
-        <path d="M5 14V9h5c2 0 3 2 3 5"/>
-        <path d="M21 18V11c0-1.1-.9-2-2-2h-6"/>
-      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V7"/><path d="M3 14h18v4"/><path d="M5 14V9h5c2 0 3 2 3 5"/><path d="M21 18V11c0-1.1-.9-2-2-2h-6"/></svg>
     </div>
-
-    <div>
-      <h3>Accommodation</h3>
-      <p>4 room types from 50k</p>
-    </div>
+    <h3>Rooms</h3>
+    <p>4 types from UGX 50,000</p>
   </a>
 
-
-  <!-- Bar & Restaurant -->
   <a href="#bar-section" class="strip-item">
+    <div class="strip-img" style="background-image:url('bar_lounge.jpg');"></div>
+    <span class="strip-num">02</span>
     <div class="strip-icon">
-      <!-- Restaurant icon -->
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 3v8"/>
-        <path d="M4 3v5a3 3 0 0 0 6 0V3"/>
-        <path d="M7 11v10"/>
-        <path d="M16 3v18"/>
-        <path d="M16 3c3 1 4 3 4 6v2h-4"/>
-      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8"/><path d="M4 3v5a3 3 0 0 0 6 0V3"/><path d="M7 11v10"/><path d="M16 3v18"/><path d="M16 3c3 1 4 3 4 6v2h-4"/></svg>
     </div>
-
-    <div>
-      <h3>Bar & Restaurant</h3>
-      <p>Drinks, food & great vibes</p>
-    </div>
+    <h3>Bar &amp; Restaurant</h3>
+    <p>Drinks, food &amp; good vibes</p>
   </a>
 
-
-  <!-- Gardens -->
-  <div class="strip-item">
+  <a href="#gardens" class="strip-item">
+    <div class="strip-img" style="background-image:url('garden_path.jpg');"></div>
+    <span class="strip-num">03</span>
     <div class="strip-icon">
-      <!-- Leaf icon -->
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20 4C11 4 5 8 5 14c0 3 2 5 5 5 6 0 10-6 10-15Z"/>
-        <path d="M4 21c4-7 8-10 15-13"/>
-      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C11 4 5 8 5 14c0 3 2 5 5 5 6 0 10-6 10-15Z"/><path d="M4 21c4-7 8-10 15-13"/></svg>
     </div>
+    <h3>Gardens</h3>
+    <p>Events &amp; outdoor lounging</p>
+  </a>
 
-    <div>
-      <h3>Gardens</h3>
-      <p>Relax in outdoor space</p>
-    </div>
-  </div>
-
-
-  <!-- Gallery -->
   <a href="gallery.html" class="strip-item">
+    <div class="strip-img" style="background-image:url('seat.jpg');"></div>
+    <span class="strip-num">04</span>
     <div class="strip-icon">
-      <!-- Gallery icon -->
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="4" width="18" height="16" rx="2"/>
-        <circle cx="8" cy="9" r="1.5"/>
-        <path d="m3 17 5-5 4 4 3-3 6 6"/>
-      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg>
     </div>
-
-    <div>
-      <h3>Gallery</h3>
-      <p>See our spaces</p>
-    </div>
+    <h3>Gallery</h3>
+    <p>See every corner</p>
   </a>
+</div>
 
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Rooms from UGX 50,000</span><span>Bar &amp; Restaurant · Open 24/7</span><span>Gardens &amp; Events</span><span>Free WiFi</span><span>Kampala–Hoima Road</span><span>Always Better</span>
+    <span>Rooms from UGX 50,000</span><span>Bar &amp; Restaurant · Open 24/7</span><span>Gardens &amp; Events</span><span>Free WiFi</span><span>Kampala–Hoima Road</span><span>Always Better</span>
+  </div>
 </div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-text">
-    <p class="sec-label">Who We Are</p>
-    <h2>A Fresh Stay<br><em>Worth Every Night</em></h2>
-    <p>Ritz Motel is a modern hospitality destination along Kampala-Hoima Road in Namusera, just after Shell Petro Station. Whether travelling for business or leisure, we offer a clean, comfortable and affordable experience.</p>
-    <p>From well-furnished rooms to our garden lounge — perfect for birthdays, get-togethers, and weddings — plus a vibrant bar and restaurant, every corner of Ritz is designed for your relaxation.</p>
+    <p class="sec-label">Who we are</p>
+    <h2>A fresh stay,<br><em>worth every night.</em></h2>
+    <p>Ritz Motel is a modern hospitality destination along Kampala–Hoima Road in Namusera, just after Shell Petro Station. Whether travelling for business or leisure, we offer a clean, comfortable and affordable experience.</p>
+    <p>From well-furnished rooms to our garden lounge — perfect for birthdays, get-togethers and weddings — plus a vibrant bar and restaurant, every corner of Ritz is designed for your relaxation.</p>
     <div class="stats-row">
       <div class="stat-box"><span class="num">4</span><span class="lbl">Room Types</span></div>
-      <div class="stat-box"><span class="num">24/7</span><span class="lbl">Open</span></div>
-      <div class="stat-box"><span class="num" id="avgStat"></span><span class="lbl">Rated</span></div>
+      <div class="stat-box"><span class="num">24/7</span><span class="lbl">Always Open</span></div>
+      <div class="stat-box"><span class="num" id="avgStat">—</span><span class="lbl">Guest Rated</span></div>
     </div>
   </div>
   <div class="about-visual">
     <div class="about-pattern"></div>
     <div class="about-visual-text">
-      
       <h3>Ritz Motel</h3>
-      <p>Kampala-Hoima Road · Namusera</p>
+      <p>Kampala–Hoima Road · Namusera</p>
     </div>
   </div>
 </section>
 
-<!-- ROOMS COLLECTION SECTION -->
+<!-- EXPERIENCES -->
+<section class="teasers">
+  <div class="sec-head">
+    <p class="sec-label">Explore Ritz</p>
+    <h2>Everything in <em>one place</em></h2>
+  </div>
+  <div class="exp-list">
+    <a href="rooms.html" class="exp-row">
+      <div class="exp-body">
+        <span class="exp-num">01 — ACCOMMODATION</span>
+        <h3>Rooms &amp; Suites</h3>
+        <p>Four room types — Standard, Comfort, Executive and Deluxe Suite. From UGX 50,000 a night, with breakfast included on Executive and Suite stays.</p>
+        <span class="exp-link">View rooms</span>
+      </div>
+      <div class="exp-media"><img src="reception.jpg" alt="Ritz Motel rooms and reception"></div>
+    </a>
+
+    <a href="#bar-section" class="exp-row">
+      <div class="exp-body">
+        <span class="exp-num">02 — FOOD &amp; DRINKS</span>
+        <h3>Bar &amp; Restaurant</h3>
+        <p>Cold beers, spirits, fresh juice, nyama choma, katogo and more. Open to guests and the public, day and night.</p>
+        <span class="exp-link">See the menu</span>
+      </div>
+      <div class="exp-media"><img src="bar_lounge.jpg" alt="Ritz Motel bar and lounge"></div>
+    </a>
+
+    <a href="#gardens" class="exp-row">
+      <div class="exp-body">
+        <span class="exp-num">03 — OUTDOORS</span>
+        <h3>Gardens &amp; Events</h3>
+        <p>Lush greenery, shaded seating and evening lights. A relaxed setting for birthdays, weddings, corporate events and get-togethers.</p>
+        <span class="exp-link">Explore the gardens</span>
+      </div>
+      <div class="exp-media"><img src="garden_night_1.jpg" alt="Ritz Motel gardens at night"></div>
+    </a>
+
+    <a href="gallery.html" class="exp-row">
+      <div class="exp-body">
+        <span class="exp-num">04 — THE FULL PICTURE</span>
+        <h3>Photo Gallery</h3>
+        <p>See our rooms, bar, gardens and event spaces. Get a feel for the Ritz experience before you arrive.</p>
+        <span class="exp-link">View the gallery</span>
+      </div>
+      <div class="exp-media"><img src="seat.jpg" alt="Ritz Motel seating area"></div>
+    </a>
+  </div>
+</section>
+
+<!-- ROOMS -->
 <section class="rooms-collection" id="rooms-section">
   <div class="rooms-header">
-    <p class="sec-label">DISCOVER OUR SPACES</p>
-    <h2>Choose Your <em>Perfect Room</em></h2>
-    <p class="rooms-subtitle">Four distinct room types designed for comfort and affordability. All include clean linens, AC, and 24/7 service.</p>
+    <p class="sec-label">Discover our spaces</p>
+    <h2>Choose your <em>perfect room</em></h2>
+    <p class="rooms-subtitle">Four distinct room types designed for comfort and affordability. All include clean linens and 24/7 service.</p>
   </div>
 
   <div class="rooms-grid">
-    <!-- Room 1: Standard -->
     <div class="room-card">
       <div class="room-image" style="background-image: url('70.000.jpg');">
-        <div class="room-overlay">
-          <div class="room-price-badge">UGX 50,000/night</div>
-        </div>
+        <div class="room-overlay"><div class="room-price-badge">UGX 50,000 / night</div></div>
       </div>
       <div class="room-content">
         <h3>Standard Room</h3>
-        <p class="room-desc">Comfortable and clean entry-level accommodation. Perfect for budget-conscious travelers.</p>
+        <p class="room-desc">Comfortable and clean entry-level accommodation. Perfect for budget-conscious travellers.</p>
         <div class="room-amenities">
           <span class="amenity">Bed: Queen or Twin</span>
           <span class="amenity">Private Bathroom</span>
-          <span class="amenity">Good Airation</span>
+          <span class="amenity">Good Aeration</span>
           <span class="amenity">WiFi</span>
         </div>
         <div class="room-footer">
@@ -264,12 +290,9 @@
       </div>
     </div>
 
-    <!-- Room 2: Comfort -->
     <div class="room-card">
       <div class="room-image" style="background-image: url('50,000.jpg');">
-        <div class="room-overlay">
-          <div class="room-price-badge">UGX 60,000/night</div>
-        </div>
+        <div class="room-overlay"><div class="room-price-badge">UGX 60,000 / night</div></div>
       </div>
       <div class="room-content">
         <h3>Comfort Room</h3>
@@ -277,7 +300,7 @@
         <div class="room-amenities">
           <span class="amenity">Bed: King Size</span>
           <span class="amenity">Premium Bathroom</span>
-          <span class="amenity">Good Airation</span>
+          <span class="amenity">Good Aeration</span>
           <span class="amenity">WiFi</span>
           <span class="amenity">Flat-Screen TV</span>
         </div>
@@ -288,25 +311,23 @@
       </div>
     </div>
 
-    <!-- Room 3: Executive -->
     <div class="room-card featured">
-      <div class="room-badge">MOST POPULAR</div>
+      <div class="room-badge">Most popular</div>
       <div class="room-image" style="background-image: url('100,000.jpg');">
         <div class="room-overlay">
-          <div class="room-price-badge">UGX 100,000/night</div>
-          <div class="breakfast-badge">Breakfast Included</div>
+          <div class="room-price-badge">UGX 100,000 / night</div>
+          <div class="breakfast-badge">Breakfast included</div>
         </div>
       </div>
       <div class="room-content">
         <h3>Executive Room</h3>
-        <p class="room-desc">Premium suite with superior furnishings and full breakfast. For business or leisure travelers.</p>
+        <p class="room-desc">Premium suite with superior furnishings and full breakfast. For business or leisure travellers.</p>
         <div class="room-amenities">
           <span class="amenity">Bed: King Suite</span>
           <span class="amenity">Luxury Bathroom</span>
-          <span class="amenity">Good Airation</span>
+          <span class="amenity">Good Aeration</span>
           <span class="amenity">WiFi</span>
           <span class="amenity">Flat-Screen TV</span>
-        
           <span class="amenity">Work Desk</span>
         </div>
         <div class="room-footer">
@@ -316,12 +337,11 @@
       </div>
     </div>
 
-    <!-- Room 4: Deluxe Suite -->
     <div class="room-card">
       <div class="room-image" style="background-image: url('120,000.jpg');">
         <div class="room-overlay">
-          <div class="room-price-badge">UGX 150,000/night</div>
-          <div class="breakfast-badge">Breakfast Included</div>
+          <div class="room-price-badge">UGX 150,000 / night</div>
+          <div class="breakfast-badge">Breakfast included</div>
         </div>
       </div>
       <div class="room-content">
@@ -330,12 +350,12 @@
         <div class="room-amenities">
           <span class="amenity">Bed: King + Living Area</span>
           <span class="amenity">Luxury Bathroom</span>
-          <span class="amenity">Good Airation</span>
+          <span class="amenity">Good Aeration</span>
           <span class="amenity">WiFi</span>
           <span class="amenity">Flat-Screen TV</span>
           <span class="amenity">Breakfast Included</span>
           <span class="amenity">Work Desk</span>
-          <span class="amenity">Sofa & Coffee Table</span>
+          <span class="amenity">Sofa &amp; Coffee Table</span>
         </div>
         <div class="room-footer">
           <a href="#book" class="room-btn">Book Now</a>
@@ -351,12 +371,11 @@
   </div>
 </section>
 
-
-<!-- REVIEWS (Firebase dynamic) -->
+<!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="sec-head">
-    <p class="sec-label">Guest Reviews</p>
-    <h2>What Our <em>Guests Say</em></h2>
+    <p class="sec-label">Guest reviews</p>
+    <h2>What our <em>guests say</em></h2>
   </div>
   <div class="reviews-overall">
     <div class="ov-score" id="ovScore">—</div>
@@ -371,11 +390,11 @@
   </div>
 </section>
 
-<!-- REVIEW SUBMISSION FORM -->
+<!-- REVIEW FORM -->
 <div class="review-form-wrap" id="leaveReview">
   <div class="sec-head">
-    <p class="sec-label">Share Your Experience</p>
-    <h2>Leave a <em>Review</em></h2>
+    <p class="sec-label">Share your experience</p>
+    <h2>Leave a <em>review</em></h2>
   </div>
   <div class="rf-inner">
     <div class="rf-card">
@@ -406,137 +425,81 @@
   </div>
 </div>
 
-<!-- PAGE TEASERS -->
-<section class="teasers">
-  <div class="sec-head">
-    <p class="sec-label">Explore Ritz</p>
-    <h2>Everything in <em>One Place</em></h2>
-  </div>
-  <div class="teasers-grid">
-    <a href="rooms.html" class="teaser-card">
-      <div class="teaser-img t1">
-        <img src="reception.jpg" alt="Ritz Motel Rooms">
-      </div>
-      <div class="teaser-body">
-        <h3>Our Rooms</h3>
-        <p>From UGX 50,000/night. Four room types — Standard, Comfort, Executive and Deluxe Suite. Executive & Suite include breakfast.</p>
-        <div class="teaser-link">View Rooms →</div>
-      </div>
-    </a>
-    <a href="#bar-section" class="teaser-card">
-      <div class="teaser-img t2">
-        <img src="bar_lounge.jpg" alt="Ritz Motel Bar & Restaurant">
-      </div>
-      <div class="teaser-body">
-        <h3>Bar & Restaurant</h3>
-        <p>Cold drinks, local beers, spirits, wines, nyama choma and more. Open to guests and the public, day and night.</p>
-        <div class="teaser-link">See the Menu →</div>
-      </div>
-    </a>
-    <a href="gallery.html" class="teaser-card">
-      <div class="teaser-img t3">
-        <img src="seat.jpg" alt="Ritz Motel Gallery">
-      </div>
-      <div class="teaser-body">
-        <h3>Photo Gallery</h3>
-        <p>See our rooms, bar, gardens and event spaces. Get a feel for the Ritz experience before you arrive.</p>
-        <div class="teaser-link">View Gallery →</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-
 <!-- BOOKING FORM -->
 <section class="booking-form-section" id="book">
   <div class="sec-head">
-    <p class="sec-label">Book a Room</p>
-    <h2>Reserve Your <em>Stay</em></h2>
-    <p class="bf-intro">Choose your dates and room. Pay securely online, or send the request to our reception on WhatsApp.</p>
+    <p class="sec-label">Book a room</p>
+    <h2>Reserve your <em>stay</em></h2>
   </div>
   <div class="bf-card">
-    <fieldset class="bf-group">
-      <legend>Your details</legend>
-      <div class="bf-grid">
-        <div class="bf-field">
-          <label for="bfName">Full name</label>
-          <input type="text" id="bfName" placeholder="John Kato" autocomplete="name">
-        </div>
-        <div class="bf-field">
-          <label for="bfPhone">Phone number</label>
-          <input type="tel" id="bfPhone" placeholder="0787 123 456" autocomplete="tel">
-        </div>
-        <div class="bf-field bf-wide">
-          <label for="bfEmail">Email <span class="bf-opt">optional</span></label>
-          <input type="email" id="bfEmail" placeholder="john@gmail.com" autocomplete="email">
-        </div>
+    <div class="bf-grid">
+      <div class="bf-field">
+        <label>Full Name</label>
+        <input type="text" id="bfName" placeholder="e.g. John Kato">
       </div>
-    </fieldset>
-
-    <fieldset class="bf-group">
-      <legend>Your stay</legend>
-      <div class="bf-grid">
-        <div class="bf-field">
-          <label for="bfRoom">Room type</label>
-          <select id="bfRoom">
-            <option value="">Select a room</option>
-            <option value="Standard Room – UGX 50,000/night">Standard Room – UGX 50,000/night</option>
-            <option value="Comfort Room – UGX 60,000/night">Comfort Room – UGX 60,000/night</option>
-            <option value="Executive Room – UGX 100,000/night (Breakfast included)">Executive Room – UGX 100,000/night (Breakfast included)</option>
-            <option value="Deluxe Suite – UGX 150,000/night (Breakfast included)">Deluxe Suite – UGX 150,000/night (Breakfast included)</option>
-          </select>
-        </div>
-        <div class="bf-field">
-          <label for="bfGuests">Guests</label>
-          <select id="bfGuests">
-            <option value="1 guest">1 guest</option>
-            <option value="2 guests">2 guests</option>
-            <option value="3 guests">3 guests</option>
-            <option value="4+ guests">4+ guests</option>
-          </select>
-        </div>
-        <div class="bf-field">
-          <label for="bfCheckin">Check-in</label>
-          <input type="date" id="bfCheckin">
-        </div>
-        <div class="bf-field">
-          <label for="bfCheckout">Check-out</label>
-          <input type="date" id="bfCheckout">
-        </div>
+      <div class="bf-field">
+        <label>Phone Number</label>
+        <input type="tel" id="bfPhone" placeholder="e.g. 0787 123 456">
       </div>
-      <div class="bf-field bf-notes">
-        <label for="bfNotes">Special requests <span class="bf-opt">optional</span></label>
-        <textarea id="bfNotes" placeholder="Early check-in, ground floor room, extra towels" rows="3"></textarea>
+      <div class="bf-field">
+        <label>Room Type</label>
+        <select id="bfRoom">
+          <option value="">Select a room…</option>
+          <option value="Standard Room – UGX 50,000/night">Standard Room – UGX 50,000/night</option>
+          <option value="Comfort Room – UGX 60,000/night">Comfort Room – UGX 60,000/night</option>
+          <option value="Executive Room – UGX 100,000/night (Breakfast included)">Executive Room – UGX 100,000/night (Breakfast included)</option>
+          <option value="Deluxe Suite – UGX 150,000/night (Breakfast included)">Deluxe Suite – UGX 150,000/night (Breakfast included)</option>
+        </select>
       </div>
-    </fieldset>
-
-    <div class="bf-summary" id="bfSummary" aria-live="polite">
-      <span class="bf-sum-label">Estimated total</span>
-      <span class="bf-sum-value" id="bfSumValue">Select a room and dates</span>
+      <div class="bf-field">
+        <label>Number of Guests</label>
+        <select id="bfGuests">
+          <option value="1 guest">1 guest</option>
+          <option value="2 guests">2 guests</option>
+          <option value="3 guests">3 guests</option>
+          <option value="4+ guests">4+ guests</option>
+        </select>
+      </div>
+      <div class="bf-field">
+        <label>Check-in Date</label>
+        <input type="date" id="bfCheckin">
+      </div>
+      <div class="bf-field">
+        <label>Check-out Date</label>
+        <input type="date" id="bfCheckout">
+      </div>
+      <div class="bf-field">
+        <label>Email (optional)</label>
+        <input type="email" id="bfEmail" placeholder="e.g. john@gmail.com">
+      </div>
     </div>
-
+    <div class="bf-field" style="margin-top:4px;">
+      <label>Special Requests (optional)</label>
+      <textarea id="bfNotes" placeholder="e.g. early check-in, ground floor room, extra towels…" rows="3"></textarea>
+    </div>
     <div class="bf-msg" id="bfMsg"></div>
-
-    <div class="bf-actions">
-      <button type="button" class="bf-submit bf-pay" onclick="submitBooking('pay')">Pay securely online</button>
-      <button type="button" class="bf-submit bf-wa" onclick="submitBooking('whatsapp')">Send request on WhatsApp</button>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+      <button class="bf-submit" style="flex:1;background:#25D366;" onclick="submitBooking('whatsapp')">Book via WhatsApp</button>
+      <button class="bf-submit" style="flex:1;" onclick="submitBooking('pay')">Pay Now (MTN/Airtel/Visa)</button>
     </div>
-    <p class="bf-note">Online payment accepts MTN Mobile Money, Airtel Money and Visa/Mastercard through Pesapal. WhatsApp requests are confirmed by our reception.</p>
+    <p class="bf-note"><span class="bf-ok">WhatsApp:</span> instant confirmation. <span class="bf-warn">Pay Now:</span> to immediately secure online payment via Pesapal.</p>
   </div>
 </section>
 
 <!-- COMING SOON -->
 <section class="coming-soon">
   <div class="sec-head">
-    <p class="sec-label">What's Coming</p>
+    <p class="sec-label">What's coming</p>
     <h2>New at <em>Ritz</em></h2>
   </div>
   <div class="cs-grid">
     <div class="cs-card">
+      <span class="cs-icon">🧖</span>
       <h3>Ritz Sauna</h3>
       <p>A relaxing sauna retreat for guests and walk-ins. Unwind, detox and recharge in style after a long day.</p>
     </div>
     <div class="cs-card">
+      <span class="cs-icon">🏋️</span>
       <h3>Ritz Gym</h3>
       <p>A fully equipped fitness centre opening soon. Keep up your routine while staying at Ritz Motel.</p>
     </div>
@@ -545,56 +508,32 @@
 
 <!-- GARDENS -->
 <section class="gardens-section" id="gardens">
-  <div class="sec-head" style="text-align:center;padding:0 24px 40px;">
-    <p class="sec-label">Our Gardens</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:900;color:var(--text);margin:10px 0 12px;">Beautiful <em style="color:var(--red);font-style:italic;">Outdoor Spaces</em></h2>
-    <p style="color:var(--text-soft);font-size:15px;max-width:520px;margin:0 auto;">Lush greenery, shaded seating and a relaxed atmosphere. Perfect for evening drinks, private events, birthdays, weddings and get-togethers.</p>
+  <div class="sec-head">
+    <p class="sec-label">Our gardens</p>
+    <h2>Beautiful <em>outdoor spaces</em></h2>
+    <p style="font-size:0.95rem;max-width:520px;margin:0 auto;">Lush greenery, shaded seating and a relaxed atmosphere. Perfect for evening drinks, private events, birthdays, weddings and get-togethers.</p>
   </div>
   <div class="gardens-grid">
-    <div class="gd-item wide">
-      <img src="garden_path.jpg" alt="Ritz Motel Gardens">
-      <div class="gd-overlay"><span>Our Gardens</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_lawn.jpg" alt="Garden Lawn">
-      <div class="gd-overlay"><span>Garden Lawn</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_green.jpg" alt="Green Garden">
-      <div class="gd-overlay"><span>Green Spaces</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_night_1.jpg" alt="Garden at Night">
-      <div class="gd-overlay"><span>Evening Vibes</span></div>
-    </div>
-    <div class="gd-item">
-      <img src="garden_night_2.jpg" alt="Garden Night Lights">
-      <div class="gd-overlay"><span>Night Lights</span></div>
-    </div>
+    <div class="gd-item wide"><img src="garden_path.jpg" alt="Ritz Motel Gardens"><div class="gd-overlay"><span>Our Gardens</span></div></div>
+    <div class="gd-item"><img src="garden_lawn.jpg" alt="Garden Lawn"><div class="gd-overlay"><span>Garden Lawn</span></div></div>
+    <div class="gd-item"><img src="garden_green.jpg" alt="Green Garden"><div class="gd-overlay"><span>Green Spaces</span></div></div>
+    <div class="gd-item"><img src="garden_night_1.jpg" alt="Garden at Night"><div class="gd-overlay"><span>Evening Vibes</span></div></div>
+    <div class="gd-item"><img src="garden_night_2.jpg" alt="Garden Night Lights"><div class="gd-overlay"><span>Night Lights</span></div></div>
   </div>
   <div style="text-align:center;margin-top:36px;">
     <a href="gallery.html" class="btn-outline-red">See Full Gallery →</a>
   </div>
 </section>
-<!-- BAR & RESTAURANT SECTION -->
+
+<!-- BAR & RESTAURANT -->
 <section class="bar-section" id="bar-section">
   <div class="bar-hero">
     <div class="bar-hero-content">
-      <p class="sec-label">UNWIND & CELEBRATE</p>
-      <h2>Ritz Bar & <em>Restaurant</em></h2>
+      <p class="sec-label">Unwind &amp; celebrate</p>
+      <h2>Ritz Bar &amp; <em>Restaurant</em></h2>
       <p>Open 24/7. Cold drinks, fresh food, and great company. Perfect for relaxation or celebration.</p>
     </div>
   </div>
-
-
-<!-- =========================
-     BAR & RESTAURANT SECTION
-========================= -->
-
-<!-- =========================
-     OUR MENU
-========================= -->
-
 
     <div class="menu-wrapper">
 
@@ -620,7 +559,7 @@
    <div class="category">
 
         <button class="category-btn">
-            <span>Food</span>
+            <span> Food</span>
             <span class="category-arrow">+</span>
         </button>
 
@@ -807,7 +746,7 @@
     <div class="category">
 
         <button class="category-btn">
-            <span>Soft Drinks</span>
+            <span> Soft Drinks</span>
             <span class="category-arrow">+</span>
         </button>
 
@@ -857,7 +796,7 @@
     <div class="category">
 
         <button class="category-btn">
-            <span>Tea & Coffee</span>
+            <span> Tea & Coffee</span>
             <span class="category-arrow">+</span>
         </button>
 
@@ -952,7 +891,7 @@
             <div class="category">
 
                 <button class="category-btn">
-                    <span>Beers</span>
+                    <span> Beers</span>
                     <span class="category-arrow">+</span>
                 </button>
 
@@ -1002,7 +941,7 @@
             <div class="category">
 
                 <button class="category-btn">
-                    <span>Wines & Spirits</span>
+                    <span> Wines & Spirits</span>
                     <span class="category-arrow">+</span>
                 </button>
 
@@ -1053,415 +992,217 @@
 
     </div>
 
+
+
+  <div class="bar-container">
+    <div class="menu-grid">
+      <div class="menu-card scroll-fade">
+        <div class="menu-icon">Kitchen</div>
+        <h3>Fresh Food</h3>
+        <p class="menu-desc">Served all day, every day</p>
+        <ul class="menu-items">
+          <li>Chips &amp; Chicken — 25k</li>
+          <li>Beef &amp; Chips — 25k</li>
+          <li>Goat Meat &amp; Chips — 30k</li>
+          <li>Fish &amp; Chips — 35k</li>
+          <li>Katogo &amp; Matooke — 10k</li>
+        </ul>
+        <a href="bar.html" class="btn-small">Full Menu</a>
+      </div>
+
+      <div class="menu-card scroll-fade" style="animation-delay:0.1s;">
+        <div class="menu-icon">Bar</div>
+        <h3>Drinks</h3>
+        <p class="menu-desc">Cold beers &amp; spirits</p>
+        <ul class="menu-items">
+          <li>Local Beers — 5k</li>
+          <li>Uganda Waragi — 5k</li>
+          <li>Smirnoff Vodka — 7k</li>
+          <li>Jameson Whiskey — 9k</li>
+          <li>Fresh Juice — 5k</li>
+        </ul>
+        <a href="bar.html" class="btn-small">See Drinks</a>
+      </div>
+
+      <div class="menu-card scroll-fade" style="animation-delay:0.2s;">
+        <div class="menu-icon">Garden</div>
+        <h3>Garden Lounge</h3>
+        <p class="menu-desc">Outdoor seating under the stars</p>
+        <ul class="menu-items">
+          <li>Shaded daytime seating</li>
+          <li>Evening lights &amp; music</li>
+          <li>Private event space</li>
+          <li>Free WiFi</li>
+          <li>Open to the public</li>
+        </ul>
+        <a href="#gardens" class="btn-small">Explore</a>
+      </div>
+
+      <div class="menu-card featured scroll-fade" style="animation-delay:0.3s;">
+        <div class="menu-icon">Party</div>
+        <h3>Events &amp; Groups</h3>
+        <p class="menu-desc">Host your celebration here</p>
+        <ul class="menu-items">
+          <li>Birthday Parties</li>
+          <li>Corporate Events</li>
+          <li>Wedding Receptions</li>
+          <li>Group Bookings Available</li>
+        </ul>
+        <a href="#contact" class="btn-small">Inquire Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar-atmosphere scroll-slide-up">
+    <h3>The Ritz Experience</h3>
+    <div class="atmosphere-grid">
+      <div class="atmosphere-item"><span class="atmo-icon">Garden</span><h4>Garden Lounge</h4><p>Relax under the stars in our peaceful outdoor garden space.</p></div>
+      <div class="atmosphere-item"><span class="atmo-icon">Music</span><h4>Entertainment</h4><p>Live music on weekends. Great vibes all week.</p></div>
+      <div class="atmosphere-item"><span class="atmo-icon">Friends</span><h4>Social Hub</h4><p>Meet locals and travellers. Network and relax.</p></div>
+      <div class="atmosphere-item"><span class="atmo-icon">WiFi</span><h4>Stay Connected</h4><p>Free WiFi throughout the bar and restaurant.</p></div>
+    </div>
+  </div>
+
+  <div class="bar-cta scroll-fade">
+    <p>Open 24/7 for your convenience</p>
+    <a href="#contact" class="btn-red">Reserve a Table or Call Ahead</a>
+  </div>
 </section>
 
-  
-<style>
-  /* =========================
-   BAR SECTION
-========================= */
-
-.bar-section {
-    position: relative;
-    width: 100%;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.bar-hero {
-    min-height: 400px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    padding: 60px 20px;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.55),
-            rgba(0, 0, 0, 0.65)
-        ),
-        url("bar_lounge.jpg");
-
-    background-size: cover;
-    background-position: center;
-}
-
-
-.bar-hero-content {
-    max-width: 700px;
-    color: white;
-}
-
-
-.sec-label {
-    color: #4CAF50;
-    font-weight: 700;
-    letter-spacing: 3px;
-    font-size: 14px;
-}
-
-
-.bar-hero h2 {
-    font-size: clamp(35px, 6vw, 65px);
-    margin: 15px 0;
-}
-
-
-.bar-hero h2 em {
-    color: #4CAF50;
-}
-
-
-.bar-hero p {
-    line-height: 1.7;
-}
-
-
-/* =========================
-   MENU WRAPPER
-========================= */
-
-.menu-wrapper {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 35px 20px;
-}
-
-
-/* =========================
-   MAIN MENU BUTTON
-========================= */
-
-.main-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-
-    padding: 15px 28px;
-
-    background: #4CAF50;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    font-size: 17px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-.main-menu-btn:hover {
-    background: #3e8e41;
-    transform: translateY(-2px);
-}
-
-
-.menu-arrow {
-    font-size: 20px;
-
-    transition: transform 0.3s;
-}
-
-
-.main-menu-btn.active .menu-arrow {
-    transform: rotate(180deg);
-}
-
-
-/* =========================
-   MENU PANEL
-========================= */
-
-.menu-panel {
-    display: none;
-
-    width: min(700px, 95vw);
-
-    margin-top: 15px;
-
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.18);
-
-    animation: menuOpen 0.3s ease;
-}
-
-
-.menu-panel.show {
-    display: block;
-}
-
-
-@keyframes menuOpen {
-
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================
-   MENU TITLE
-========================= */
-
-.menu-title {
-    text-align: center;
-    margin: 0;
-
-    font-size: 25px;
-}
-
-
-.menu-subtitle {
-    text-align: center;
-
-    color: #777;
-
-    margin-bottom: 25px;
-}
-
-
-/* =========================
-   CATEGORY
-========================= */
-
-.category {
-    margin-bottom: 10px;
-}
-
-
-/* CATEGORY BUTTON */
-
-.category-btn {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 17px 18px;
-
-    background: #f5f5f5;
-
-    border: none;
-    border-radius: 8px;
-
-    font-size: 16px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-}
-
-
-.category-btn:hover {
-    background: #e9f5ea;
-}
-
-
-.category-btn.active {
-    background: #4CAF50;
-    color: white;
-}
-
-
-.category-arrow {
-    font-size: 22px;
-
-    transition: transform 0.3s;
-}
-
-
-.category-btn.active .category-arrow {
-    transform: rotate(45deg);
-}
-
-
-/* =========================
-   CATEGORY CONTENT
-========================= */
-
-.category-content {
-    display: none;
-
-    padding: 8px 0;
-}
-
-
-.category-content.show {
-    display: block;
-
-    animation: categoryOpen 0.25s ease;
-}
-
-
-@keyframes categoryOpen {
-
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================
-   MENU ITEMS
-========================= */
-
-.menu-item {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 15px 12px;
-
-    border-bottom: 1px solid #eee;
-}
-
-
-.menu-item:last-child {
-    border-bottom: none;
-}
-
-
-.menu-item strong {
-    display: block;
-
-    font-size: 15px;
-}
-
-
-.menu-item small {
-    display: block;
-
-    margin-top: 4px;
-
-    color: #777;
-
-    font-size: 12px;
-}
-
-
-.menu-item > span {
-    color: #3e8e41;
-
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-
-/* =========================
-   CLOSE BUTTON
-========================= */
-
-.close-menu {
-    width: 100%;
-
-    margin-top: 20px;
-
-    padding: 13px;
-
-    border: none;
-    border-radius: 7px;
-
-    background: #222;
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    transition: 0.3s;
-}
-
-
-.close-menu:hover {
-    background: #444;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .bar-hero {
-        min-height: 330px;
-        padding: 40px 18px;
-    }
-
-
-    .menu-panel {
-        width: 100%;
-
-        padding: 18px;
-
-        border-radius: 12px;
-    }
-
-
-    .menu-title {
-        font-size: 21px;
-    }
-
-
-    .category-btn {
-        padding: 15px;
-    }
-
-
-    .menu-item {
-        padding: 13px 5px;
-
-        align-items: flex-start;
-    }
-
-
-    .menu-item > span {
-        font-size: 13px;
-    }
-
-}
-</style>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="sec-label">Find us</p>
+  <h2>Come stay at <em>Ritz</em></h2>
+  <p>Easy to find along Kampala–Hoima Road. Call us or WhatsApp to book your room.</p>
+  <div class="c-cards">
+    <div class="c-card"><span class="ci">📞</span><h4>Phone</h4><a href="tel:+256787700044">0787 700 044</a></div>
+    <div class="c-card"><span class="ci">✉️</span><h4>Email</h4><p>info@ritzmotelnamusera.com</p></div>
+    <div class="c-card"><span class="ci">📍</span><h4>Address</h4><p>Hoima Rd, Namusera<br>Off Musembi Road</p></div>
+    <div class="c-card"><span class="ci">📮</span><h4>P.O. Box</h4><p>33294 Kampala</p></div>
+  </div>
+  <div class="map-wrap">
+    <iframe src="https://www.google.com/maps?q=Ritz+Motel,+Kampala-Hoima+Road,+Wakiso,+Uganda&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ritz Motel Namusera Location"></iframe>
+  </div>
+  <p style="color:var(--text-soft);font-size:13px;margin-top:12px;">Open 24 hours · 7 days a week</p>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <p class="sec-label" style="justify-content:center;">Ready when you are</p>
+  <h2>Let's make your stay <em>memorable.</em></h2>
+  <p>Book a room, reserve a table or plan an event with us. Our team is available around the clock.</p>
+  <div class="hero-btns">
+    <a href="book.html" class="btn-red">Book a Room</a>
+    <a href="https://wa.me/256787700044" class="btn-ghost" target="_blank" rel="noopener">Talk to Us on WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="IMG_20260613_023639.jpg" class="logo-icon" alt="Ritz Motel logo">
+          <div class="logo-text">Ritz Motel <span>Always Better</span></div>
+        </div>
+        <p>Clean rooms, a 24/7 bar &amp; restaurant and beautiful gardens along Kampala–Hoima Road, Namusera, Uganda.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/256787700044" aria-label="WhatsApp" target="_blank" rel="noopener">✆</a>
+          <a href="tel:+256787700044" aria-label="Call">☎</a>
+          <a href="mailto:info@ritzmotelnamusera.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="bar.html">Bar &amp; Restaurant</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>Hoima Rd, Namusera<br>Off Musembi Road<br>Wakiso, Uganda</p>
+        <a href="tel:+256787700044">0787 700 044</a>
+        <a href="mailto:info@ritzmotelnamusera.com">info@ritzmotelnamusera.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Good to know</h5>
+        <p>Open 24/7<br>Check-in 12:00 · Check-out 11:00</p>
+        <a href="book.html">Book a room</a>
+        <a href="index.html#contact">Get directions</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ritz Motel Namusera. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
+      <span>Designed by <a href="https://wa.me/256761273024" target="_blank" rel="noopener">Dev_Edrine</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp" alt="WhatsApp"></a>
+
+<div class="nina-label" id="ninaLabel">Chat with Nina 👋</div>
+<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina" alt="Nina">
+<div class="nina-window" id="ninaWindow">
+  <div class="nina-header">
+    <img src="images (3).jpeg" class="nina-avatar" alt="Nina">
+    <div class="nina-info">
+      <h4>Nina</h4>
+      <p>Ritz Motel Assistant</p>
+    </div>
+    <div class="nina-status"><div class="nina-dot"></div> Online</div>
+    <button onclick="toggleNina()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-size:18px;cursor:pointer;padding:0 0 0 8px;line-height:1;">✕</button>
+  </div>
+  <div class="nina-msgs" id="ninaMsgs">
+    <div class="msg-time">Today</div>
+    <div class="msg bot">Hi there! 👋 I'm <strong>Nina</strong>, your Ritz Motel assistant. I can help with rooms, food, bookings and more. What would you like to know?</div>
+  </div>
+  <div id="ninaTypingWrap" style="padding:6px 12px;display:none;">
+    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
+  </div>
+  <div class="nina-quick" id="quickChips">
+    <div class="q-chip" onclick="sendQuick('What rooms do you have?')">🛏 Rooms</div>
+    <div class="q-chip" onclick="sendQuick('What food do you serve?')">🍽️ Food</div>
+    <div class="q-chip" onclick="sendQuick('What does the bar offer?')">🍺 Bar</div>
+    <div class="q-chip" onclick="sendQuick('How do I book a room?')">📅 Book</div>
+    <div class="q-chip" onclick="sendQuick('Where are you located?')">📍 Location</div>
+    <div class="q-chip" onclick="sendQuick('Tell me about the gardens')">🌿 Gardens</div>
+  </div>
+  <div class="nina-input-row">
+    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="nina-send" onclick="sendMsg()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+
+<script>
+  // SCROLL ANIMATION OBSERVER
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.animation = entry.target.classList.contains('scroll-slide-up') 
+          ? 'slideInUp 0.8s ease-out forwards' 
+          : 'fadeInUp 0.6s ease-out forwards';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-fade, .scroll-slide-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -1576,156 +1317,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
- 
-      <!-- EVENTS -->
-      <div class="menu-card featured scroll-fade" style="animation-delay: 0.5s;">
-        <div class="menu-icon">Party</div>
-        <h3>Events & Groups</h3>
-        <p class="menu-desc">Host your celebration here</p>
-        <ul class="menu-items">
-          <li>Birthday Parties</li>
-          <li>Corporate Events</li>
-          <li>Wedding Receptions</li>
-          <li>Group Bookings Available</li>
-        </ul>
-        <a href="#contact" class="btn-small">Inquire Now</a>
-      </div>
-    </div>
-
-    <!-- ATMOSPHERE -->
-    <div class="bar-atmosphere scroll-slide-up">
-      <h3>The Ritz Experience</h3>
-      <div class="atmosphere-grid">
-        <div class="atmosphere-item">
-          <span class="atmo-icon">Garden</span>
-          <h4>Garden Lounge</h4>
-          <p>Relax under the stars in our peaceful outdoor garden space</p>
-        </div>
-        <div class="atmosphere-item">
-          <span class="atmo-icon">Music</span>
-          <h4>Entertainment</h4>
-          <p>Live music on weekends. Great vibes all week</p>
-        </div>
-        <div class="atmosphere-item">
-          <span class="atmo-icon">Friends</span>
-          <h4>Social Hub</h4>
-          <p>Meet locals and travelers. Network and relax</p>
-        </div>
-        <div class="atmosphere-item">
-          <span class="atmo-icon">WiFi</span>
-          <h4>Stay Connected</h4>
-          <p>Free WiFi throughout the bar and restaurant</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="bar-cta scroll-fade">
-      <p>Open 24/7 for your convenience</p>
-      <a href="#contact" class="btn-red">Reserve a Table or Call Ahead</a>
-    </div>
-  </div>
-</section>
-
-
-<script>
-  // SCROLL ANIMATION OBSERVER
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.animation = entry.target.classList.contains('scroll-slide-up') 
-          ? 'slideInUp 0.8s ease-out forwards' 
-          : 'fadeInUp 0.6s ease-out forwards';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.scroll-fade, .scroll-slide-up').forEach(el => {
-    observer.observe(el);
-  });
-</script>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <p class="sec-label">Find Us</p>
-  <h2>Come Stay at <em>Ritz</em></h2>
-  <p>Easy to find along Kampala-Hoima Road. Call us or WhatsApp to book your room.</p>
-  <div class="c-cards">
-    <div class="c-card"><span class="ci"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><h4>Phone</h4><a href="tel:+256787700044">0787 700 044</a></div>
-        <div class="c-card"><span class="ci"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><h4>Email</h4><p>info@ritzmotelnamusera.com</p></div>
-    <div class="c-card"><span class="ci"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h4>Address</h4><p>Hoima Rd, Namusera<br>Off Musembi Road</p></div>
-    <div class="c-card"><span class="ci"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg></span><h4>P.O. Box</h4><p>33294 Kampala</p></div>
-
-  </div>
-  <div class="map-wrap">
-    <iframe
-      src="https://www.google.com/maps?q=Ritz+Motel,+Kampala-Hoima+Road,+Wakiso,+Uganda&output=embed"
-      width="100%" height="100%" style="border:0;" loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade" title="Ritz Motel Namusera Location">
-    </iframe>
-  </div>
-
-  <p style="color:var(--text-soft);font-size:13px;margin-top:12px;">Open 24 hours · 7 days a week</p>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Ritz Motel Namusera. All rights reserved.</p>
-  <div class="f-dots">
-    <div class="f-dot" style="background:var(--red)"></div>
-    <div class="f-dot" style="background:rgba(255,255,255,0.3)"></div>
-    <div class="f-dot" style="background:var(--green)"></div>
-  </div>
-  <p>Kampala-Hoima Rd, Namusera · 0787 700 044</p>
-  <p class="f-legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
-  <p>Designed by:<a href="https://wa.me/256761273024" style="color:green;text-decoration: none;"> Dev_Edrine</a></p>
-</footer>
-
-
-<a href="https://wa.me/256787700044"><img src="images (4).jpeg" class="float-wa" title="Chat on WhatsApp"></a>
-
-<div class="nina-label" id="ninaLabel">Chat with Nina</div>
-<img src="images (3).jpeg" class="nina-btn" id="ninaBtn" onclick="toggleNina()" title="Chat with Nina">
-<div class="nina-window" id="ninaWindow">
-  <div class="nina-header">
-    <img src="images (3).jpeg" class="nina-avatar" alt="Nina">
-    <div class="nina-info">
-      <h4>Nina</h4>
-      <p>Ritz Motel Assistant</p>
-    </div>
-    <div class="nina-status"><div class="nina-dot"></div> Online</div>
-    <button onclick="toggleNina()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-size:18px;cursor:pointer;padding:0 0 0 8px;line-height:1;" aria-label="Close">&times;</button>
-  </div>
-  <div class="nina-msgs" id="ninaMsgs">
-    <div class="msg-time">Today</div>
-    <div class="msg bot">Hi there!  I'm <strong>Nina</strong>, your Ritz Motel assistant. I can help with rooms, food, bookings and more. What would you like to know?</div>
-  </div>
-  <div id="ninaTypingWrap" style="padding:6px 12px;display:none;">
-    <div class="nina-typing" style="display:flex;"><span></span><span></span><span></span></div>
-  </div>
-  <div class="nina-quick" id="quickChips">
-    <div class="q-chip" onclick="sendQuick('What rooms do you have?')">Rooms</div>
-    <div class="q-chip" onclick="sendQuick('What food do you serve?')">Food</div>
-    <div class="q-chip" onclick="sendQuick('What does the bar offer?')">Bar</div>
-    <div class="q-chip" onclick="sendQuick('How do I book a room?')">Book</div>
-    <div class="q-chip" onclick="sendQuick('Where are you located?')">Location</div>
-    <div class="q-chip" onclick="sendQuick('Tell me about the gardens')">Gardens</div>
-  </div>
-  <div class="nina-input-row">
-    <input class="nina-input" id="ninaInput" type="text" placeholder="Ask Nina anything…" onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="nina-send" onclick="sendMsg()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
-  </div>
-</div>
-
 <script>
    // ── Hero Carousel Script ──
   const slides = document.querySelectorAll('.carousel-slide');
@@ -1790,7 +1381,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (error) throw error;
       const grid = document.getElementById('reviewsGrid');
       if (!data || data.length === 0) {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">No reviews yet. Be the first to share your stay.</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">No reviews yet — be the first! 😊</div>';
         document.getElementById('ovScore').textContent = '—';
         document.getElementById('ovStars').textContent = '☆☆☆☆☆';
         document.getElementById('ovLabel').textContent = '0 reviews';
@@ -1815,7 +1406,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('ovScore').textContent = avg;
       document.getElementById('ovStars').textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
       document.getElementById('ovLabel').textContent = `Based on ${count} review${count > 1 ? 's' : ''}`;
-      document.getElementById('avgStat').textContent = avg + ' / 5';
+      document.getElementById('avgStat').textContent = '⭐ ' + avg;
     } catch(e) {
       document.getElementById('reviewsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:32px;font-size:14px;">Could not load reviews right now.</div>';
     }
@@ -1823,7 +1414,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadReviews();
 
   // ── Star picker ──
-  const RATING_WORDS = { 1: 'Poor', 2: 'Fair', 3: 'Good', 4: 'Very good', 5: 'Excellent' };
+  const RATING_WORDS = { 1: 'Poor 😕', 2: 'Fair 🙂', 3: 'Good 👍', 4: 'Very Good 😄', 5: 'Excellent! 🤩' };
   let selectedRating = 0;
   const rfRatingText = document.getElementById('rfRatingText');
   document.querySelectorAll('.sp-star').forEach(star => {
@@ -1850,9 +1441,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const text = document.getElementById('rfText').value.trim();
     const msg = document.getElementById('rfMsg');
     msg.style.display = 'none';
-    if (!selectedRating) { showMsg('Please select a star rating ', 'err'); return; }
+    if (!selectedRating) { showMsg('Please select a star rating ⭐', 'err'); return; }
     if (!name) { showMsg('Please enter your name', 'err'); return; }
-    if (text.length < 15) { showMsg('Please write a bit more about your stay ', 'err'); return; }
+    if (text.length < 15) { showMsg('Please write a bit more about your stay 😊', 'err'); return; }
     const btn = document.getElementById('rfSubmit');
     btn.disabled = true; btn.textContent = 'Submitting…';
     try {
@@ -1860,7 +1451,7 @@ document.addEventListener("DOMContentLoaded", function () {
         name, location: location || 'Uganda', text, rating: selectedRating
       });
       if (error) throw error;
-      showMsg('Thank you for your review. It is now live.', 'ok');
+      showMsg('✅ Thank you for your review! It\'s now live.', 'ok');
       document.getElementById('rfName').value = '';
       document.getElementById('rfLocation').value = '';
       document.getElementById('rfText').value = '';
@@ -1871,7 +1462,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch(e) {
       showMsg('Something went wrong. Please try again.', 'err');
     }
-    btn.disabled = false; btn.textContent = 'Submit Review';
+    btn.disabled = false; btn.textContent = '⭐ Submit Review';
   }
   function showMsg(txt, type) {
     const el = document.getElementById('rfMsg');
@@ -1894,154 +1485,154 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       keys: ['hello','hi','hey','good morning','good afternoon','good evening','hie','ola','howdy'],
       replies: [
-        "Hello! Welcome to Ritz Motel Namusera. I'm Nina, your virtual assistant. How can I help you today?",
-        "Hi there! Great to have you here. I'm Nina — ask me anything about our rooms, food, bar or how to book!",
-        "Hey! I'm Nina, your Ritz Motel assistant. What can I help you with today?"
+        "Hello! 👋 Welcome to Ritz Motel Namusera. I'm Nina, your virtual assistant. How can I help you today?",
+        "Hi there! 😊 Great to have you here. I'm Nina — ask me anything about our rooms, food, bar or how to book!",
+        "Hey! 👋 I'm Nina, your Ritz Motel assistant. What can I help you with today?"
       ]
     },
     {
       keys: ['room','rooms','accommodation','stay','bed','sleep','night','lodge'],
       replies: [
-        "We have 4 room types at Ritz Motel\n\n• Standard Room — UGX 50,000/night\n• Comfort Room — UGX 60,000/night\n• Executive Room — UGX 100,000/night (Breakfast included)\n• Deluxe Suite — UGX 150,000/night (Breakfast included)\n\nAll rooms are clean and comfortable. Would you like to book? "
+        "We have 4 room types at Ritz Motel 🛏\n\n• Standard Room — UGX 50,000/night\n• Comfort Room — UGX 60,000/night\n• Executive Room — UGX 100,000/night 🍳 (Breakfast included)\n• Deluxe Suite — UGX 150,000/night 🍳 (Breakfast included)\n\nAll rooms are clean and comfortable. Would you like to book? 😊"
       ]
     },
     {
       keys: ['standard'],
-      replies: ["Our Standard Room is UGX 50,000/night — private bathroom, TV, 24h power and secure lock. No breakfast. Would you like to book it via WhatsApp? 0787700044"]
+      replies: ["Our Standard Room is UGX 50,000/night 🛏 — private bathroom, TV, 24h power and secure lock. No breakfast. Would you like to book it via WhatsApp? 0787700044"]
     },
     {
       keys: ['comfort'],
-      replies: ["The Comfort Room is UGX 60,000/night — en-suite bathroom, AC and TV. No breakfast included. To book, call or WhatsApp us on 0787700044 "]
+      replies: ["The Comfort Room is UGX 60,000/night 🛏 — en-suite bathroom, AC and TV. No breakfast included. To book, call or WhatsApp us on 0787700044 😊"]
     },
     {
       keys: ['executive'],
-      replies: ["The Executive Room is UGX 100,000/night — en-suite, WiFi, AC, Smart TV and hot water. Breakfast is INCLUDED every morning\n\nTo book: WhatsApp 0787700044"]
+      replies: ["The Executive Room is UGX 100,000/night ⭐ — en-suite, WiFi, AC, Smart TV and hot water. Breakfast is INCLUDED every morning 🍳\n\nTo book: WhatsApp 0787700044"]
     },
     {
       keys: ['deluxe','suite','best room','vip'],
-      replies: ["Our Deluxe Suite is UGX 150,000/night — garden view, WiFi, AC, Smart TV, seating area and in-room safe. Breakfast INCLUDED\n\nThe best experience Ritz has to offer! Book via WhatsApp: 0787700044"]
+      replies: ["Our Deluxe Suite is UGX 150,000/night 🌟 — garden view, WiFi, AC, Smart TV, seating area and in-room safe. Breakfast INCLUDED 🍳\n\nThe best experience Ritz has to offer! Book via WhatsApp: 0787700044"]
     },
     {
       keys: ['breakfast','b&b','bed and breakfast','include breakfast'],
-      replies: ["Breakfast is included in our Executive Room (UGX 100,000) and Deluxe Suite (UGX 150,000)\n\nThe Standard and Comfort rooms do not include breakfast, but food is available at our restaurant anytime! "]
+      replies: ["Breakfast is included in our Executive Room (UGX 100,000) and Deluxe Suite (UGX 150,000) 🍳\n\nThe Standard and Comfort rooms do not include breakfast, but food is available at our restaurant anytime! 😊"]
     },
     {
       keys: ['cheap','affordable','budget','cheapest','lowest price','cheap room'],
-      replies: ["Our most affordable room is the Standard Room at UGX 50,000/night — clean, comfortable and great value!\n\nTo book, WhatsApp us on 0787700044 "]
+      replies: ["Our most affordable room is the Standard Room at UGX 50,000/night 🛏 — clean, comfortable and great value!\n\nTo book, WhatsApp us on 0787700044 😊"]
     },
     {
       keys: ['price','cost','how much','rate','charge','fee','tariff'],
-      replies: ["Here are our room rates\n\n• Standard — UGX 50,000/night\n• Comfort — UGX 60,000/night\n• Executive — UGX 100,000/night (+ breakfast )\n• Deluxe Suite — UGX 150,000/night (+ breakfast )\n\nWould you like to book? Call/WhatsApp: 0787700044"]
+      replies: ["Here are our room rates 💰\n\n• Standard — UGX 50,000/night\n• Comfort — UGX 60,000/night\n• Executive — UGX 100,000/night (+ breakfast 🍳)\n• Deluxe Suite — UGX 150,000/night (+ breakfast 🍳)\n\nWould you like to book? Call/WhatsApp: 0787700044"]
     },
     {
       keys: ['book','booking','reserve','reservation','how to book','want to stay'],
       replies: [
-        "Booking is easy!\n\n1. Fill our booking form on this page, or\n2. Call/WhatsApp: 0787700044\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nWe confirm your room within minutes! ",
-        "To book a room at Ritz Motel, just WhatsApp or call us on 0787700044 — we're available 24/7 and confirm within minutes!"
+        "Booking is easy! 📅\n\n1. Fill our booking form on this page, or\n2. Call/WhatsApp: 0787700044\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nWe confirm your room within minutes! 😊",
+        "To book a room at Ritz Motel, just WhatsApp or call us on 0787700044 📞 — we're available 24/7 and confirm within minutes!"
       ]
     },
     {
       keys: ['checkin','check in','check-in','arrival','arrive'],
-      replies: ["Check-in time at Ritz Motel is 12:00pm (noon)\n\nIf you need early check-in, please contact us in advance on 0787700044 and we'll do our best to accommodate you "]
+      replies: ["Check-in time at Ritz Motel is 12:00pm (noon) 🕛\n\nIf you need early check-in, please contact us in advance on 0787700044 and we'll do our best to accommodate you 😊"]
     },
     {
       keys: ['checkout','check out','check-out','leaving','leave'],
-      replies: ["Check-out time is 11:00am\n\nFor late check-out requests, please speak to our staff or call 0787700044. Late check-out may be available depending on availability."]
+      replies: ["Check-out time is 11:00am 🕚\n\nFor late check-out requests, please speak to our staff or call 0787700044. Late check-out may be available depending on availability."]
     },
     {
       keys: ['wifi','internet','network','data'],
-      replies: ["Free WiFi is available in our Comfort, Executive and Deluxe Suite rooms\n\nThe Standard Room does not include WiFi. Need more info? Call 0787700044 "]
+      replies: ["Free WiFi is available in our Comfort, Executive and Deluxe Suite rooms 📶\n\nThe Standard Room does not include WiFi. Need more info? Call 0787700044 😊"]
     },
     {
       keys: ['ac','air condition','air-condition','fan','cool'],
-      replies: ["Air conditioning is available in our Comfort Room, Executive Room and Deluxe Suite\n\nThe Standard Room does not have AC. Would you like to book one of our AC rooms?"]
+      replies: ["Air conditioning is available in our Comfort Room, Executive Room and Deluxe Suite ❄️\n\nThe Standard Room does not have AC. Would you like to book one of our AC rooms?"]
     },
     {
       keys: ['food','eat','eating','meal','menu','restaurant','dining','lunch','dinner','supper'],
-      replies: ["Our restaurant serves delicious food Open 24/7!\n\nMAINS: Chips & Chicken 25k, Beef & Chips 25k, Goat Meat & Chips 30k, Fish & Chips 35k, Gizzard & Liver 30k\n\nLIGHT BITES: Plain Chips 10k, Potato Wedges 10k, 2 Eggs 5k, Samosas from 4k\n\nUGANDAN: Katogo+Matooke 10k, Rice 5k, Matooke 10k, Cassava 5k\n\nAll served with salad/kachumbari. Tap 'See the Menu' for the full list!"]
+      replies: ["Our restaurant serves delicious food 🍽️ Open 24/7!\n\n🥩 MAINS: Chips & Chicken 25k, Beef & Chips 25k, Goat Meat & Chips 30k, Fish & Chips 35k, Gizzard & Liver 30k\n\n🍟 LIGHT BITES: Plain Chips 10k, Potato Wedges 10k, 2 Eggs 5k, Samosas from 4k\n\n🍌 UGANDAN: Katogo+Matooke 10k, Rice 5k, Matooke 10k, Cassava 5k\n\nAll served with salad/kachumbari. Tap 'See the Menu' for the full list!"]
     },
     {
       keys: ['fish','tilapia','nile perch'],
-      replies: ["Fish & Chips is UGX 35,000 — served with salad/kachumbari. The accompaniment can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
+      replies: ["Fish & Chips is UGX 35,000 🐟 — served with salad/kachumbari. The accompaniment can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
     },
     {
       keys: ['chicken','chips chicken','kuku'],
-      replies: ["Chips & Chicken is UGX 25,000 — served with salad/kachumbari. The side can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
+      replies: ["Chips & Chicken is UGX 25,000 🍗 — served with salad/kachumbari. The side can be swapped to rice, matooke, posho or cassava. Available 24/7!"]
     },
     {
       keys: ['goat','mbuzi','nyama choma','nyama','grill','bbq','roast'],
-      replies: ["Goat Meat & Chips is UGX 30,000 — classic nyama choma style, served with salad/kachumbari. Available 24/7 at our bar & restaurant!"]
+      replies: ["Goat Meat & Chips is UGX 30,000 🥩 — classic nyama choma style, served with salad/kachumbari. Available 24/7 at our bar & restaurant!"]
     },
     {
       keys: ['katogo','matooke','matoke','ugali','posho','cassava','cowpeas'],
-      replies: ["We serve authentic Ugandan food\n\n• Plain Katogo (veg) + Matooke — UGX 10,000\n• Meat Katogo + Matooke — UGX 10,000\n• Rice — UGX 5,000\n• Matooke — UGX 10,000\n• Cassava — UGX 5,000\n• Cowpeas — UGX 10,000\n\nAll main dishes come with salad/kachumbari!"]
+      replies: ["We serve authentic Ugandan food 🍌\n\n• Plain Katogo (veg) + Matooke — UGX 10,000\n• Meat Katogo + Matooke — UGX 10,000\n• Rice — UGX 5,000\n• Matooke — UGX 10,000\n• Cassava — UGX 5,000\n• Cowpeas — UGX 10,000\n\nAll main dishes come with salad/kachumbari!"]
     },
     {
       keys: ['samosa','samoosa'],
-      replies: ["Samosas available!\n• Beef Samosa (pair) — UGX 4,000\n• Chicken Samosa (pair) — UGX 5,000\n\nGreat snack with a cold drink! "]
+      replies: ["Samosas available! 😋\n• Beef Samosa (pair) — UGX 4,000\n• Chicken Samosa (pair) — UGX 5,000\n\nGreat snack with a cold drink! 🍺"]
     },
     {
       keys: ['bar','drink','drinks','alcohol','beer','beers'],
-      replies: ["Welcome to the Ritz Bar! Open 24/7 to guests and the public.\n\nLOCAL BEERS — UGX 5,000 each\nBell, Nile Special, Club Pilsner, Castle Lite\n\nSPIRITS: Waragi 5k, Konyagi 5k, Smirnoff 7k, Jameson 9k\n\nWine — UGX 12,000/glass\n\nFresh Juice — UGX 5,000\nSodas & Water — UGX 3,000\n\nCome on in! "]
+      replies: ["Welcome to the Ritz Bar! 🍺 Open 24/7 to guests and the public.\n\n🍺 LOCAL BEERS — UGX 5,000 each\nBell, Nile Special, Club Pilsner, Castle Lite\n\n🥃 SPIRITS: Waragi 5k, Konyagi 5k, Smirnoff 7k, Jameson 9k\n\n🍷 Wine — UGX 12,000/glass\n\n🧃 Fresh Juice — UGX 5,000\n💧 Sodas & Water — UGX 3,000\n\nCome on in! 🎉"]
     },
     {
       keys: ['bell','nile','club pilsner','castle','tusker','lager'],
-      replies: ["All local beers are UGX 5,000 each\n• Bell Lager\n• Nile Special\n• Club Pilsner\n• Castle Lite\n\nCold and refreshing! Come visit the Ritz Bar "]
+      replies: ["All local beers are UGX 5,000 each 🍺\n• Bell Lager\n• Nile Special\n• Club Pilsner\n• Castle Lite\n\nCold and refreshing! Come visit the Ritz Bar 😊"]
     },
     {
       keys: ['waragi','konyagi','vodka','whiskey','jameson','smirnoff','spirit','gin'],
-      replies: ["Our spirits menu\n\n• Uganda Waragi — UGX 5,000\n• Konyagi — UGX 5,000\n• Smirnoff Vodka — UGX 7,000\n• Jameson Whiskey — UGX 9,000\n• Wine (red/white) — UGX 12,000/glass\n\nCome enjoy a drink at the Ritz Bar! Open 24/7 "]
+      replies: ["Our spirits menu 🥃\n\n• Uganda Waragi — UGX 5,000\n• Konyagi — UGX 5,000\n• Smirnoff Vodka — UGX 7,000\n• Jameson Whiskey — UGX 9,000\n• Wine (red/white) — UGX 12,000/glass\n\nCome enjoy a drink at the Ritz Bar! Open 24/7 🎉"]
     },
     {
       keys: ['juice','fresh juice','mango','passion'],
-      replies: ["Fresh juices available at UGX 5,000\n• Fresh Passion Juice\n• Fresh Mango Juice\n\nAlso available: sodas (UGX 3,000), water (UGX 3,000) and hot drinks!"]
+      replies: ["Fresh juices available at UGX 5,000 🧃\n• Fresh Passion Juice\n• Fresh Mango Juice\n\nAlso available: sodas (UGX 3,000), water (UGX 3,000) and hot drinks!"]
     },
     {
       keys: ['tea','coffee','hot drink','milk tea','black tea','lemon tea','dawa','chai'],
-      replies: ["Our Tea & Hot Drinks menu\n\n• Black Tea — UGX 3,000\n• Milk Tea — UGX 5,000\n• Lemon Tea — UGX 5,000\n• Dawa Tea — UGX 10,000\n• Black Coffee — UGX 8,000\n• Milk Coffee — UGX 7,000\n• Plain Milk — UGX 5,000\n• Hot Water — UGX 1,500\n\nPerfect for a morning or evening treat! "]
+      replies: ["Our Tea & Hot Drinks menu ☕\n\n• Black Tea — UGX 3,000\n• Milk Tea — UGX 5,000\n• Lemon Tea — UGX 5,000\n• Dawa Tea — UGX 10,000\n• Black Coffee — UGX 8,000\n• Milk Coffee — UGX 7,000\n• Plain Milk — UGX 5,000\n• Hot Water — UGX 1,500\n\nPerfect for a morning or evening treat! 😊"]
     },
     {
       keys: ['garden','gardens','outdoor','outside','seating','event','birthday','wedding','party','function'],
-      replies: ["Our gardens are beautiful!\n\nLush greenery, shaded outdoor seating and a relaxed atmosphere — perfect for:\n• Birthday parties\n• Weddings\n• Corporate events\n• Evening drinks\n• Get-togethers\n\nOpen 24/7. For event booking call/WhatsApp: 0787700044 "]
+      replies: ["Our gardens are beautiful! 🌿\n\nLush greenery, shaded outdoor seating and a relaxed atmosphere — perfect for:\n• Birthday parties 🎂\n• Weddings 💍\n• Corporate events\n• Evening drinks\n• Get-togethers\n\nOpen 24/7. For event booking call/WhatsApp: 0787700044 😊"]
     },
     {
       keys: ['sauna','gym','fitness','spa','steam'],
-      replies: ["Great news — we're opening a Sauna & Gym at Ritz Motel very soon!\n\nStay tuned — it will be available to all guests. Call 0787700044 for the latest updates "]
+      replies: ["Great news — we're opening a Sauna & Gym at Ritz Motel very soon! 🧖🏋️\n\nStay tuned — it will be available to all guests. Call 0787700044 for the latest updates 😊"]
     },
     {
       keys: ['location','where','find you','directions','how to get','address','map','namusera','hoima road'],
-      replies: ["We're easy to find!\n\nRitz Motel Namusera\nKampala-Hoima Road\nOff Musembi Road, Namusera, Wakiso\n\nWe're just after Shell Petro Station along Hoima Road\n\nCall for directions: 0787700044"]
+      replies: ["We're easy to find! 📍\n\n🏨 Ritz Motel Namusera\nKampala-Hoima Road\nOff Musembi Road, Namusera, Wakiso\n\nWe're just after Shell Petro Station along Hoima Road 🚗\n\nCall for directions: 0787700044"]
     },
     {
       keys: ['contact','phone','call','whatsapp','number','reach'],
-      replies: ["You can reach Ritz Motel on\n\n• Phone/WhatsApp: 0787700044\n• Email: info@ritzmotelnamusera.com\n• Website: ritzmotelnamusera.com\n\nWe're open 24/7 — call anytime! "]
+      replies: ["You can reach Ritz Motel on 📞\n\n• Phone/WhatsApp: 0787700044\n• Email: info@ritzmotelnamusera.com\n• Website: ritzmotelnamusera.com\n\nWe're open 24/7 — call anytime! 😊"]
     },
     {
       keys: ['open','hours','24','when','time','always open'],
-      replies: ["Ritz Motel is open 24 hours, 7 days a week!\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nOur bar, restaurant and reception are always available. Come anytime! "]
+      replies: ["Ritz Motel is open 24 hours, 7 days a week! 🕐\n\nCheck-in: 12:00pm | Check-out: 11:00am\n\nOur bar, restaurant and reception are always available. Come anytime! 😊"]
     },
     {
       keys: ['wifi','parking','facilities','amenities','what do you have','what you offer'],
-      replies: ["Ritz Motel offers\n\n• Comfortable rooms (4 types)\n• Bar & Restaurant (open 24/7)\n• Beautiful gardens\n• Free WiFi (select rooms)\n• Air conditioning (select rooms)\n• Outdoor event space\nSauna & Gym (coming soon!)\n\nAnything specific you'd like to know? "]
+      replies: ["Ritz Motel offers 🏨\n\n✅ Comfortable rooms (4 types)\n✅ Bar & Restaurant (open 24/7)\n✅ Beautiful gardens\n✅ Free WiFi (select rooms)\n✅ Air conditioning (select rooms)\n✅ Outdoor event space\n🔜 Sauna & Gym (coming soon!)\n\nAnything specific you'd like to know? 😊"]
     },
     {
       keys: ['thank','thanks','thank you','asante','webale','merci'],
       replies: [
-        "You're welcome! Feel free to ask anything else. We hope to see you at Ritz Motel soon!",
-        "Happy to help! If you have more questions, I'm right here. Have a wonderful day!",
-        "Of course! Don't hesitate to ask if you need anything else. Ritz Motel looks forward to hosting you!"
+        "You're welcome! 😊 Feel free to ask anything else. We hope to see you at Ritz Motel soon!",
+        "Happy to help! 🌟 If you have more questions, I'm right here. Have a wonderful day!",
+        "Of course! 😊 Don't hesitate to ask if you need anything else. Ritz Motel looks forward to hosting you!"
       ]
     },
     {
       keys: ['bye','goodbye','good night','see you','later','ciao'],
       replies: [
-        "Goodbye! We hope to welcome you to Ritz Motel soon. Have a wonderful day!",
-        "Take care! Remember, we're always here — 24/7. See you soon at Ritz Motel!"
+        "Goodbye! 👋 We hope to welcome you to Ritz Motel soon. Have a wonderful day!",
+        "Take care! 😊 Remember, we're always here — 24/7. See you soon at Ritz Motel!"
       ]
     },
     {
       keys: ['review','reviews','feedback','rating','comment'],
-      replies: ["We love hearing from our guests!\n\nYou can leave a review right here on our website — just scroll to the Reviews section and share your experience!\n\nYou can also see what other guests are saying on our Reviews page "]
+      replies: ["We love hearing from our guests! ⭐\n\nYou can leave a review right here on our website — just scroll to the Reviews section and share your experience!\n\nYou can also see what other guests are saying on our Reviews page 😊"]
     }
   ];
 
@@ -2055,9 +1646,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Default fallback
     const defaults = [
-      "I'm not sure about that, but I'm happy to help with rooms, food, bar or bookings! Or call us directly on 0787700044.",
-      "Great question! For that, please call or WhatsApp us on 0787700044 — our team is available 24/7",
-      "I didn't quite catch that. Try asking about our rooms, food menu, bar, gardens or how to book. Or reach us on 0787700044!"
+      "I'm not sure about that, but I'm happy to help with rooms, food, bar or bookings! 😊 Or call us directly on 0787700044.",
+      "Great question! For that, please call or WhatsApp us on 0787700044 — our team is available 24/7 😊",
+      "I didn't quite catch that 😅 Try asking about our rooms, food menu, bar, gardens or how to book. Or reach us on 0787700044!"
     ];
     return defaults[Math.floor(Math.random() * defaults.length)];
   }
@@ -2115,23 +1706,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (method === 'whatsapp') {
       let waMsg = `Hello Ritz Motel! I'd like to make a booking.\n\n`;
-      waMsg += `*Name:* ${name}\n`;
-      waMsg += `*Phone:* ${phone}\n`;
-      waMsg += `*Room:* ${room}\n`;
-      waMsg += `*Guests:* ${guests}\n`;
-      waMsg += `*Check-in:* ${fmt(checkin)}\n`;
-      waMsg += `*Check-out:* ${fmt(checkout)}\n`;
-      waMsg += `*Nights:* ${nights} night${nights > 1 ? 's' : ''}\n`;
-      waMsg += `*Total:* UGX ${totalAmount.toLocaleString()}\n`;
-      if (notes) waMsg += `*Special requests:* ${notes}\n`;
+      waMsg += `👤 *Name:* ${name}\n`;
+      waMsg += `📞 *Phone:* ${phone}\n`;
+      waMsg += `🛏 *Room:* ${room}\n`;
+      waMsg += `👥 *Guests:* ${guests}\n`;
+      waMsg += `📅 *Check-in:* ${fmt(checkin)}\n`;
+      waMsg += `📅 *Check-out:* ${fmt(checkout)}\n`;
+      waMsg += `🌙 *Nights:* ${nights} night${nights > 1 ? 's' : ''}\n`;
+      waMsg += `💰 *Total:* UGX ${totalAmount.toLocaleString()}\n`;
+      if (notes) waMsg += `📝 *Special requests:* ${notes}\n`;
       waMsg += `\nPlease confirm availability. Thank you!`;
       window.open(`https://wa.me/256787700044?text=${encodeURIComponent(waMsg)}`, '_blank');
-      showBfMsg('Opening WhatsApp. Send the message to complete your request.', 'ok');
+      showBfMsg('✅ Opening WhatsApp — send the message to confirm your booking!', 'ok');
       return;
     }  // ── my number──
 
     if (method === 'pay') {
-      showBfMsg('Connecting to the secure payment page…', 'ok');
+      showBfMsg('⏳ Connecting to payment gateway…', 'ok');
       const btns = document.querySelectorAll('.bf-submit');
       btns.forEach(b => b.disabled = true);
       try {
@@ -2166,24 +1757,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('bfCheckin').addEventListener('change', function() {
     document.getElementById('bfCheckout').min = this.value;
   });
-
-  // ── Booking form: live estimate & date guards ──
-  (function(){
-    const room=document.getElementById('bfRoom'),ci=document.getElementById('bfCheckin'),co=document.getElementById('bfCheckout'),out=document.getElementById('bfSumValue');
-    if(!room||!ci||!co||!out) return;
-    const today=new Date().toISOString().split('T')[0];
-    ci.min=today; co.min=today;
-    function update(){
-      if(ci.value){ const n=new Date(ci.value); n.setDate(n.getDate()+1); co.min=n.toISOString().split('T')[0]; if(co.value && co.value<=ci.value) co.value=''; }
-      const p=roomPrices[room.value]||0;
-      if(!p||!ci.value||!co.value){ out.textContent='Select a room and dates'; return; }
-      const nights=Math.round((new Date(co.value)-new Date(ci.value))/86400000);
-      out.textContent=nights+' night'+(nights>1?'s':'')+' · UGX '+(p*nights).toLocaleString();
-    }
-    [room,ci,co].forEach(el=>el.addEventListener('change',update));
-  })();
 </script>
-<!----- smooth animations---->
+
 <script>
 /* =========================================================
    RITZ MOTEL — ANIMATION JAVASCRIPT
@@ -2516,10 +2091,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    
+    console.log("✨ Ritz Motel animations loaded.");
 
 });
 </script>
+
 </body>
 </html>
-
